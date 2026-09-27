@@ -15,7 +15,7 @@ const props = withDefaults(
     sizes?: string
     eager?: boolean
     /** How the photo fades into the page. */
-    fade?: 'hero' | 'bottom' | 'radial' | 'band' | 'none'
+    fade?: 'hero' | 'bottom' | 'radial' | 'band' | 'caption' | 'none'
     /** 0–1: how visible the photo is. */
     strength?: number
   }>(),
@@ -84,6 +84,10 @@ const photo = computed(() => photos[props.name]!)
 }
 .photo-fade--band {
   background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 85%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 35%, transparent) 38%, transparent 70%);
+}
+.photo-fade--caption {
+  /* Just enough behind a short title at the bottom edge; the rest of the photo is untouched. */
+  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 72%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 30%, transparent) 22%, transparent 42%);
 }
 .photo-fade--none {
   background: none;
