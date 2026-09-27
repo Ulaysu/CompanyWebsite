@@ -33,9 +33,9 @@ usePageMeta({
     >
       <div class="container-page">
         <div v-reveal class="relative mb-12 flex h-56 items-end overflow-hidden rounded-2xl border border-edge/[0.07] p-6 sm:mb-16 sm:h-80 sm:p-10">
-          <PhotoBackdrop :name="s.photo" fade="band" sizes="(min-width: 1216px) 1216px, 100vw" />
+          <PhotoBackdrop :name="s.photo" fade="caption" sizes="(min-width: 1216px) 1216px, 100vw" />
           <div class="relative">
-            <p class="font-mono text-xs text-fg-muted">Example system · 0{{ i + 1 }}</p>
+            <p class="inline-block rounded-full bg-ink-950/65 px-2.5 py-1 font-mono text-xs text-fg-muted backdrop-blur-sm">Example system · 0{{ i + 1 }}</p>
             <h2 :id="`${s.id}-title`" class="heading-xl text-gradient mt-3">{{ s.title }}</h2>
           </div>
         </div>

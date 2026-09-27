@@ -31,7 +31,7 @@ const classes = computed(() => [
     primary:
       'bg-fg text-ink-950 shadow-[0_0_0_1px_rgb(255_255_255/0.1),0_8px_24px_-8px_rgb(242_128_62/0.35)] hover:bg-fg/90 hover:shadow-[0_0_0_1px_rgb(255_255_255/0.2),0_10px_32px_-8px_rgb(242_128_62/0.5)]',
     secondary:
-      'border border-edge/12 bg-edge/[0.03] text-fg hover:border-edge/25 hover:bg-edge/[0.06]',
+      'border border-edge/12 bg-ink-950/55 text-fg backdrop-blur-md hover:border-edge/25 hover:bg-ink-950/70',
     ghost: 'px-0 text-fg hover:text-fg',
   }[props.variant],
 ])
