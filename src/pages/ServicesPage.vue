@@ -17,6 +17,7 @@ usePageMeta({
 <template>
   <div>
     <PageHero
+      photo="services"
       eyebrow="Services"
       title="Software built around your operation."
       lede="Three ways we help: building the system you're missing, connecting the tools you already have, and turning complex day-to-day operations into a single place to work from."

@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import ThemedImage from '@/components/ui/ThemedImage.vue'
+import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
+import type { PhotoName } from '@/content/photos'
 
-defineProps<{ eyebrow: string; title: string; lede?: string }>()
+defineProps<{ eyebrow: string; title: string; lede?: string; photo?: PhotoName }>()
 </script>
 
 <template>
   <section class="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24" aria-labelledby="page-title">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_70%_80%_at_85%_30%,#000_25%,transparent_75%)]">
+    <PhotoBackdrop v-if="photo" :name="photo" eager fade="hero" />
+    <div
+      v-else
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_70%_80%_at_85%_30%,#000_25%,transparent_75%)]"
+    >
       <ThemedImage name="field" alt="" sizes="100vw" img-class="h-full w-full object-cover object-right" />
     </div>
     <div class="container-page relative">

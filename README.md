@@ -11,6 +11,7 @@ npm run build      # type-check + pre-render all pages to dist/
 npm run preview    # serve dist/ locally
 node scripts/og-image.mjs   # regenerate public/og-image.png from scripts/og-image.html
 node scripts/generate-images.mjs [scene ...]   # regenerate the illustrations in public/images/
+node scripts/fetch-photos.mjs [key ...]        # download + optimise the photos in public/photos/
 ```
 
 `dist/` is a plain static site and can be deployed to any static host (Netlify, Vercel, Cloudflare Pages, S3, etc.). The build also writes `sitemap.xml`, `robots.txt` and `404.html`.
@@ -34,6 +35,12 @@ The site has a dark and a light theme. The first visit follows the system settin
 ## Illustrations
 
 The images in `public/images/` are generated in code, not stock or AI imagery. Isometric "architectural model" scenes and an abstract line field are drawn on a canvas by `scripts/images/scenes.js` (with `engine.js`), then exported as WebP in dark and light versions, two widths each. Edit a scene and run `node scripts/generate-images.mjs <scene>` to re-render it. `ThemedImage.vue` shows the variant for the current theme, and only that one is downloaded. To use a photo or an AI-generated image instead, drop files with the same names (`{name}-{dark|light}-{width}.webp`) into `public/images/`, or register a new entry in `src/content/images.ts`.
+
+## Photography
+
+Real photos (hero, page headers, solution headers, problem section, final call to action) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
+
+To swap a photo, change its `unsplash` ID in `photos.json` and run `node scripts/fetch-photos.mjs <key>`. To use your own photo, save it over `public/photos/<key>-<width>.webp` for each width listed.
 
 ## Structure
 

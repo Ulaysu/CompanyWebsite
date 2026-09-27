@@ -5,6 +5,7 @@ import PageHero from '@/components/sections/PageHero.vue'
 import SolutionFigure from '@/components/visuals/SolutionFigure.vue'
 import CtaInline from '@/components/sections/CtaInline.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
+import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 import { solutions } from '@/content/solutions'
 
 usePageMeta({
@@ -17,6 +18,7 @@ usePageMeta({
 <template>
   <div>
     <PageHero
+      photo="solutions"
       eyebrow="Solutions"
       title="A better system for the work behind the business."
       lede="These are examples of systems we can build — not products we sell. Every business runs differently, so each system is designed around the process it serves."
@@ -29,11 +31,18 @@ usePageMeta({
       class="border-t border-edge/[0.06] py-20 sm:py-28"
       :aria-labelledby="`${s.id}-title`"
     >
+      <div class="container-page">
+        <div v-reveal class="relative mb-12 flex h-56 items-end overflow-hidden rounded-2xl border border-edge/[0.07] p-6 sm:mb-16 sm:h-80 sm:p-10">
+          <PhotoBackdrop :name="s.photo" fade="band" sizes="(min-width: 1216px) 1216px, 100vw" />
+          <div class="relative">
+            <p class="font-mono text-xs text-fg-muted">Example system · 0{{ i + 1 }}</p>
+            <h2 :id="`${s.id}-title`" class="heading-xl text-gradient mt-3">{{ s.title }}</h2>
+          </div>
+        </div>
+      </div>
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div :class="['lg:col-span-5', i % 2 ? 'lg:order-2' : '']">
-          <p v-reveal class="font-mono text-xs text-fg-subtle">Example system · 0{{ i + 1 }}</p>
-          <h2 :id="`${s.id}-title`" v-reveal="60" class="heading-xl text-gradient mt-4">{{ s.title }}</h2>
-          <p v-reveal="100" class="mt-5 leading-relaxed text-fg-muted">{{ s.summary }}</p>
+          <p v-reveal="100" class="text-lg leading-relaxed text-fg-muted">{{ s.summary }}</p>
 
           <ol v-reveal="140" class="mt-8 flex flex-wrap items-center gap-1.5" :aria-label="`${s.title} workflow`">
             <template v-for="(f, j) in s.flow" :key="f">
