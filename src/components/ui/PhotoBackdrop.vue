@@ -47,34 +47,43 @@ const photo = computed(() => photos[props.name]!)
 <style>
 /* Unscoped on purpose: the light-theme rules key off <html data-theme>. Class names are prefixed to avoid clashes. */
 .photo-backdrop__img {
-  filter: grayscale(0.45) saturate(0.85) contrast(1.05) brightness(0.62);
+  filter: grayscale(0.15) saturate(0.95) contrast(1.05) brightness(0.88);
 }
 .photo-backdrop__tone {
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 35%, transparent), transparent 40%),
-    color-mix(in oklab, var(--color-accent) 6%, transparent);
+    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent), transparent 22%),
+    color-mix(in oklab, var(--color-accent) 4%, transparent);
 }
 [data-theme='light'] .photo-backdrop__img {
-  filter: grayscale(0.6) saturate(0.8) contrast(0.9) brightness(1.1);
+  filter: grayscale(0.2) saturate(0.9) contrast(0.98) brightness(1.04);
 }
 [data-theme='light'] .photo-backdrop__tone {
-  background: color-mix(in oklab, var(--color-ink-950) 68%, transparent);
+  background: color-mix(in oklab, var(--color-ink-950) 22%, transparent);
 }
 
-/* Fades: all end in the page background so sections join seamlessly. */
+/*
+ * Fades: strongest only where text sits (left side / bottom), and every fade
+ * ends in the page background so sections still join seamlessly.
+ */
 .photo-fade--hero {
   background:
-    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 88%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 55%, color-mix(in oklab, var(--color-ink-950) 25%, transparent) 100%),
-    linear-gradient(180deg, transparent 45%, var(--color-ink-950) 100%);
+    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 82%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 45%, transparent 75%),
+    linear-gradient(180deg, transparent 60%, var(--color-ink-950) 100%);
+}
+/* On narrow screens text spans the full width, so the scrim is even rather than left-weighted. */
+@media (max-width: 767px) {
+  .photo-fade--hero {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 66%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 74%, transparent) 60%, var(--color-ink-950) 100%);
+  }
 }
 .photo-fade--bottom {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 30%, transparent) 0%, transparent 35%, var(--color-ink-950) 100%);
+  background: linear-gradient(180deg, transparent 0%, transparent 50%, var(--color-ink-950) 100%);
 }
 .photo-fade--radial {
-  background: radial-gradient(ellipse 70% 70% at 50% 50%, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 0%, var(--color-ink-950) 100%);
+  background: radial-gradient(ellipse 55% 45% at 50% 50%, color-mix(in oklab, var(--color-ink-950) 72%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 50%, transparent) 55%, color-mix(in oklab, var(--color-ink-950) 15%, transparent) 80%, var(--color-ink-950) 100%);
 }
 .photo-fade--band {
-  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 92%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 20%, transparent) 70%);
+  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 85%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 35%, transparent) 38%, transparent 70%);
 }
 .photo-fade--none {
   background: none;
