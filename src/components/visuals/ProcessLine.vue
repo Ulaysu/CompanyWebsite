@@ -22,7 +22,7 @@ useVisibleInterval(() => root.value, () => (active.value = (active.value + 1) % 
         <span
           v-if="i < steps.length - 1"
           aria-hidden="true"
-          class="absolute top-[7px] left-4 hidden h-px w-full bg-white/10 sm:left-1/2 sm:block"
+          class="absolute top-[7px] left-4 hidden h-px w-full bg-edge/10 sm:left-1/2 sm:block"
         >
           <span
             class="block h-full origin-left bg-accent/60 transition-transform duration-700"
@@ -33,7 +33,7 @@ useVisibleInterval(() => root.value, () => (active.value = (active.value + 1) % 
           aria-hidden="true"
           :class="[
             'relative z-10 size-[15px] rounded-full border transition-colors duration-500',
-            i <= active ? 'border-accent bg-accent/20' : 'border-white/20 bg-ink-950',
+            i <= active ? 'border-accent bg-accent/20' : 'border-edge/20 bg-ink-950',
           ]"
         >
           <span v-if="i === active" class="absolute inset-[3px] rounded-full bg-accent" />

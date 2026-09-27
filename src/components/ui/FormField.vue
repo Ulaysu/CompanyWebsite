@@ -25,7 +25,7 @@ const describedBy = computed(() =>
 )
 
 const fieldClass =
-  'block w-full rounded-lg border bg-ink-950/60 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none focus:border-white/25 focus:shadow-[0_0_0_4px_rgb(242_128_62/0.12)]'
+  'block w-full rounded-lg border bg-ink-950/60 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none focus:border-edge/25 focus:shadow-[0_0_0_4px_rgb(242_128_62/0.12)]'
 </script>
 
 <template>
@@ -44,7 +44,7 @@ const fieldClass =
       :placeholder="placeholder"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="describedBy"
-      :class="[fieldClass, 'resize-y py-3 leading-relaxed', error ? 'border-red-400/60' : 'border-white/10']"
+      :class="[fieldClass, 'resize-y py-3 leading-relaxed', error ? 'border-red-400/60' : 'border-edge/10']"
     />
     <input
       v-else
@@ -58,7 +58,7 @@ const fieldClass =
       :inputmode="inputmode"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="describedBy"
-      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-white/10']"
+      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/10']"
     />
     <p v-if="hint && !error" :id="`${id}-hint`" class="mt-2 text-xs text-fg-subtle">{{ hint }}</p>
     <p v-if="error" :id="`${id}-error`" class="mt-2 text-xs text-red-300">{{ error }}</p>

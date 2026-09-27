@@ -12,7 +12,7 @@ withDefaults(
 </script>
 
 <template>
-  <section class="relative overflow-hidden border-t border-white/[0.06]" aria-labelledby="final-cta-title">
+  <section class="relative overflow-hidden border-t border-edge/[0.06]" aria-labelledby="final-cta-title">
     <div aria-hidden="true" class="bg-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_60%_80%_at_50%_100%,#000_20%,transparent_70%)]" />
     <div aria-hidden="true" class="pointer-events-none absolute -bottom-40 left-1/2 h-80 w-[40rem] max-w-full -translate-x-1/2 rounded-full bg-accent/[0.09] blur-3xl" />
     <div class="container-page relative py-24 text-center sm:py-32">

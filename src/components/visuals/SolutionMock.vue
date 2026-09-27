@@ -33,8 +33,8 @@ useVisibleInterval(
                 i === active
                   ? 'border-accent/40 bg-accent/10 text-fg'
                   : i < active
-                    ? 'border-white/[0.08] text-fg-muted'
-                    : 'border-white/[0.05] text-fg-subtle',
+                    ? 'border-edge/[0.08] text-fg-muted'
+                    : 'border-edge/[0.05] text-fg-subtle',
               ]"
             >
               {{ step }}
@@ -45,21 +45,21 @@ useVisibleInterval(
 
         <!-- Metrics -->
         <div class="mt-4 grid grid-cols-3 gap-2">
-          <div v-for="m in solution.metrics" :key="m.label" class="rounded-lg border border-white/[0.06] bg-white/[0.015] px-2.5 py-2 sm:px-3">
+          <div v-for="m in solution.metrics" :key="m.label" class="rounded-lg border border-edge/[0.06] bg-edge/[0.015] px-2.5 py-2 sm:px-3">
             <p class="truncate text-[0.625rem] text-fg-subtle">{{ m.label }}</p>
             <p class="mt-0.5 text-base font-semibold tracking-tight text-fg tabular-nums sm:text-lg">{{ m.value }}</p>
           </div>
         </div>
 
         <!-- Table -->
-        <div class="mt-4 overflow-hidden rounded-lg border border-white/[0.06]">
-          <div class="flex items-center justify-between gap-3 border-b border-white/[0.06] bg-white/[0.015] px-3 py-2">
+        <div class="mt-4 overflow-hidden rounded-lg border border-edge/[0.06]">
+          <div class="flex items-center justify-between gap-3 border-b border-edge/[0.06] bg-edge/[0.015] px-3 py-2">
             <span class="flex items-center gap-1.5 text-[0.625rem] text-fg-subtle">
               <Search class="size-3" /> Filter
             </span>
             <span class="font-mono text-[0.5625rem] text-fg-subtle">{{ solution.rows.length }} of many</span>
           </div>
-          <div class="grid grid-cols-[1fr_auto] gap-3 border-b border-white/[0.06] px-3 py-1.5 text-[0.5625rem] tracking-wider text-fg-subtle uppercase sm:grid-cols-[1fr_6rem_5rem]">
+          <div class="grid grid-cols-[1fr_auto] gap-3 border-b border-edge/[0.06] px-3 py-1.5 text-[0.5625rem] tracking-wider text-fg-subtle uppercase sm:grid-cols-[1fr_6rem_5rem]">
             <span>{{ solution.columns[0] }}</span>
             <span>{{ solution.columns[1] }}</span>
             <span class="hidden text-right sm:block">{{ solution.columns[2] }}</span>
@@ -68,7 +68,7 @@ useVisibleInterval(
             <li
               v-for="row in solution.rows"
               :key="row.primary"
-              class="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-white/[0.04] px-3 py-2 transition-colors last:border-0 hover:bg-white/[0.02] sm:grid-cols-[1fr_6rem_5rem]"
+              class="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-edge/[0.04] px-3 py-2 transition-colors last:border-0 hover:bg-edge/[0.02] sm:grid-cols-[1fr_6rem_5rem]"
             >
               <span class="min-w-0">
                 <span class="block truncate text-[0.6875rem] text-fg sm:text-xs">{{ row.primary }}</span>

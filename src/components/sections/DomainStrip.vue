@@ -3,7 +3,7 @@ import { problemDomains } from '@/content/general'
 </script>
 
 <template>
-  <section class="border-y border-white/[0.06] bg-ink-900/40" aria-labelledby="domains-title">
+  <section class="border-y border-edge/[0.06] bg-ink-900/40" aria-labelledby="domains-title">
     <div class="container-page grid grid-cols-1 gap-8 py-12 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-14">
       <div class="lg:col-span-3">
         <h2 id="domains-title" class="text-lg font-medium tracking-tight text-fg">
@@ -11,7 +11,7 @@ import { problemDomains } from '@/content/general'
         </h2>
         <p class="mt-2 text-sm text-fg-subtle">The kinds of operational problems we solve.</p>
       </div>
-      <ul class="grid grid-cols-4 gap-px overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.06] sm:grid-cols-8 lg:col-span-9">
+      <ul class="grid grid-cols-4 gap-px overflow-hidden rounded-xl border border-edge/[0.06] bg-edge/[0.06] sm:grid-cols-8 lg:col-span-9">
         <li
           v-for="(d, i) in problemDomains"
           :key="d.label"

@@ -7,7 +7,7 @@ defineProps<{ title: string; body?: string; button: string; to?: string }>()
 <template>
   <div
     v-reveal
-    class="relative flex flex-col gap-6 overflow-hidden rounded-xl border border-white/[0.08] bg-gradient-to-br from-ink-800 to-ink-900 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+    class="relative flex flex-col gap-6 overflow-hidden rounded-xl border border-edge/[0.08] bg-gradient-to-br from-ink-800 to-ink-900 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
   >
     <div aria-hidden="true" class="pointer-events-none absolute -top-24 -right-10 size-64 rounded-full bg-accent/[0.08] blur-3xl" />
     <div class="relative">

@@ -28,10 +28,10 @@ const nodes = [
 
 
 const schedule = [
-  { label: 'Unit 04', bars: [{ s: 4, w: 30, tone: 'bg-white/20' }, { s: 40, w: 22, tone: 'bg-accent/70' }] },
-  { label: 'Unit 11', bars: [{ s: 14, w: 40, tone: 'bg-white/20' }, { s: 62, w: 18, tone: 'bg-white/10' }] },
-  { label: 'Crew A', bars: [{ s: 0, w: 18, tone: 'bg-white/10' }, { s: 24, w: 44, tone: 'bg-white/20' }] },
-  { label: 'Van 02', bars: [{ s: 30, w: 26, tone: 'bg-warning/50' }, { s: 64, w: 30, tone: 'bg-white/20' }] },
+  { label: 'Unit 04', bars: [{ s: 4, w: 30, tone: 'bg-edge/20' }, { s: 40, w: 22, tone: 'bg-accent/70' }] },
+  { label: 'Unit 11', bars: [{ s: 14, w: 40, tone: 'bg-edge/20' }, { s: 62, w: 18, tone: 'bg-edge/10' }] },
+  { label: 'Crew A', bars: [{ s: 0, w: 18, tone: 'bg-edge/10' }, { s: 24, w: 44, tone: 'bg-edge/20' }] },
+  { label: 'Van 02', bars: [{ s: 30, w: 26, tone: 'bg-warning/50' }, { s: 64, w: 30, tone: 'bg-edge/20' }] },
 ]
 </script>
 
@@ -47,11 +47,11 @@ const schedule = [
         <StatusPill tone="accent" label="In approval" />
       </div>
       <div class="grid grid-cols-3 gap-2 text-[0.625rem]">
-        <div class="rounded-md border border-white/[0.06] p-2"><p class="text-fg-subtle">Requested by</p><p class="mt-0.5 text-fg-muted">Operations</p></div>
-        <div class="rounded-md border border-white/[0.06] p-2"><p class="text-fg-subtle">Cost centre</p><p class="mt-0.5 text-fg-muted">CC-210</p></div>
-        <div class="rounded-md border border-white/[0.06] p-2"><p class="text-fg-subtle">Due</p><p class="mt-0.5 text-fg-muted">Friday</p></div>
+        <div class="rounded-md border border-edge/[0.06] p-2"><p class="text-fg-subtle">Requested by</p><p class="mt-0.5 text-fg-muted">Operations</p></div>
+        <div class="rounded-md border border-edge/[0.06] p-2"><p class="text-fg-subtle">Cost centre</p><p class="mt-0.5 text-fg-muted">CC-210</p></div>
+        <div class="rounded-md border border-edge/[0.06] p-2"><p class="text-fg-subtle">Due</p><p class="mt-0.5 text-fg-muted">Friday</p></div>
       </div>
-      <ul v-if="size === 'lg'" class="space-y-1.5 rounded-md border border-white/[0.06] p-2.5">
+      <ul v-if="size === 'lg'" class="space-y-1.5 rounded-md border border-edge/[0.06] p-2.5">
         <li v-for="t in trail" :key="t.who" class="flex items-center gap-2 text-[0.625rem] sm:text-[0.6875rem]">
           <span class="w-16 shrink-0 text-fg-muted">{{ t.who }}</span>
           <span class="min-w-0 flex-1 truncate text-fg-subtle">{{ t.what }}</span>
@@ -63,7 +63,7 @@ const schedule = [
           <span
             :class="[
               'block h-1 rounded-full transition-colors duration-500',
-              i < 2 ? 'bg-accent/80' : i === 2 ? 'bg-white/15 group-hover:bg-accent/80' : 'bg-white/10',
+              i < 2 ? 'bg-accent/80' : i === 2 ? 'bg-edge/15 group-hover:bg-accent/80' : 'bg-edge/10',
             ]"
           />
           <span class="flex items-center gap-1 text-[0.5625rem] text-fg-subtle">
@@ -78,7 +78,7 @@ const schedule = [
     <div v-else-if="kind === 'integrations'" class="relative h-full">
       <svg class="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
         <g v-for="n in nodes" :key="n.label">
-          <line :x1="n.x" :y1="n.y" x2="50" y2="50" stroke="rgb(255 255 255 / 0.08)" vector-effect="non-scaling-stroke" />
+          <line :x1="n.x" :y1="n.y" x2="50" y2="50" class="stroke-edge/8" vector-effect="non-scaling-stroke" />
           <line
             :x1="n.x" :y1="n.y" x2="50" y2="50"
             stroke="var(--color-accent)" stroke-opacity="0.6" stroke-dasharray="2 8"
@@ -90,7 +90,7 @@ const schedule = [
       <span
         v-for="n in nodes"
         :key="n.label"
-        class="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-md border border-white/[0.08] bg-ink-900 px-2 py-1 text-[0.625rem] whitespace-nowrap text-fg-muted"
+        class="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-md border border-edge/[0.08] bg-ink-900 px-2 py-1 text-[0.625rem] whitespace-nowrap text-fg-muted"
         :style="{ left: `${n.x}%`, top: `${n.y}%` }"
       >
         <component :is="n.icon" class="size-3 text-fg-subtle" />
@@ -112,7 +112,7 @@ const schedule = [
       </div>
       <div class="relative flex-1 space-y-2.5">
         <div class="absolute inset-y-0 left-14 right-0 grid grid-cols-7">
-          <span v-for="d in 7" :key="d" class="border-l border-white/[0.04]" />
+          <span v-for="d in 7" :key="d" class="border-l border-edge/[0.04]" />
         </div>
         <div
           class="absolute inset-y-0 left-[calc(3.5rem+46%)] w-px bg-accent/70 transition-transform duration-700 group-hover:translate-x-3"

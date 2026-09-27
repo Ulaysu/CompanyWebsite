@@ -117,7 +117,7 @@ const nextSteps = [
             you work out what should be built.
           </p>
 
-          <ol class="mt-12 hidden space-y-6 border-l border-white/[0.08] pl-6 lg:block">
+          <ol class="mt-12 hidden space-y-6 border-l border-edge/[0.08] pl-6 lg:block">
             <li v-for="(s, i) in nextSteps" :key="s.title" class="relative">
               <span class="absolute top-1.5 -left-[27.5px] size-1.5 rounded-full bg-accent" aria-hidden="true" />
               <p class="text-sm font-medium text-fg"><span class="mr-2 font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span>{{ s.title }}</p>
@@ -125,8 +125,8 @@ const nextSteps = [
             </li>
           </ol>
 
-          <div class="mt-10 flex items-center gap-4 rounded-xl border border-white/[0.08] p-4">
-            <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/[0.03]">
+          <div class="mt-10 flex items-center gap-4 rounded-xl border border-edge/[0.08] p-4">
+            <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-edge/10 bg-edge/[0.03]">
               <Mail class="size-4 text-fg-muted" aria-hidden="true" />
             </span>
             <div class="min-w-0">
@@ -167,7 +167,7 @@ const nextSteps = [
               </div>
             </fieldset>
 
-            <div class="border-t border-white/[0.06] pt-8">
+            <div class="border-t border-edge/[0.06] pt-8">
             <fieldset class="min-w-0 space-y-5">
               <legend class="eyebrow mb-5">The problem</legend>
               <FormField v-model="form.business" label="What does your business do?" name="business" multiline :rows="2" required :error="errors.business" placeholder="e.g. We rent construction equipment to contractors across three regions." />
@@ -182,7 +182,7 @@ const nextSteps = [
               <input id="fax" v-model="form.fax" name="fax" type="text" tabindex="-1" autocomplete="off" />
             </div>
 
-            <div class="flex flex-col-reverse gap-4 border-t border-white/[0.06] pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex flex-col-reverse gap-4 border-t border-edge/[0.06] pt-8 sm:flex-row sm:items-center sm:justify-between">
               <p class="text-xs leading-relaxed text-fg-subtle sm:max-w-xs">
                 We only use your details to reply to you. No mailing lists.
               </p>

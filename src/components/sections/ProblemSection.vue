@@ -24,7 +24,7 @@ import { manualWork } from '@/content/general'
               v-for="(item, i) in manualWork"
               :key="item"
               v-reveal="i * 50"
-              class="rounded-full border border-dashed border-white/12 px-3.5 py-1.5 text-sm text-fg-muted"
+              class="rounded-full border border-dashed border-edge/12 px-3.5 py-1.5 text-sm text-fg-muted"
             >
               {{ item }}
             </li>

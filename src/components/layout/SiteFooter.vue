@@ -13,7 +13,7 @@ const socials = [
 </script>
 
 <template>
-  <footer class="relative border-t border-white/[0.06] bg-ink-950">
+  <footer class="relative border-t border-edge/[0.06] bg-ink-950">
     <div class="container-page grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:gap-8 md:py-20">
       <div class="md:col-span-5">
         <RouterLink to="/" class="inline-block rounded-md" :aria-label="`${site.name} — home`">
@@ -63,7 +63,7 @@ const socials = [
         </div>
       </nav>
     </div>
-    <div class="border-t border-white/[0.06]">
+    <div class="border-t border-edge/[0.06]">
       <div class="container-page flex flex-col gap-2 py-6 text-xs text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
         <p>{{ site.descriptor }}</p>

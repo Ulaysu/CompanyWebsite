@@ -49,7 +49,7 @@ const tangle = [
           <li
             v-for="t in tools"
             :key="t.label"
-            class="flex items-center gap-2.5 rounded-md border border-white/[0.06] bg-white/[0.02] px-2.5 py-1.5 text-xs text-fg-muted"
+            class="flex items-center gap-2.5 rounded-md border border-edge/[0.06] bg-edge/[0.02] px-2.5 py-1.5 text-xs text-fg-muted"
           >
             <component :is="t.icon" class="size-3.5 text-fg-subtle" />
             {{ t.label }}
@@ -98,7 +98,7 @@ const tangle = [
           <li
             v-for="r in rules"
             :key="r"
-            class="flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.025] px-2 py-1.5 text-[0.6875rem] leading-tight text-fg sm:gap-2.5 sm:px-2.5 sm:py-2 sm:text-xs"
+            class="flex items-center gap-2 rounded-md border border-edge/[0.06] bg-edge/[0.025] px-2 py-1.5 text-[0.6875rem] leading-tight text-fg sm:gap-2.5 sm:px-2.5 sm:py-2 sm:text-xs"
           >
             <span class="grid size-4 shrink-0 place-items-center rounded-full bg-accent/15">
               <Check class="size-2.5 text-accent" />
@@ -115,12 +115,12 @@ const tangle = [
       <!-- 04 visibility -->
       <div class="panel p-3.5 sm:p-4" v-reveal="240">
         <p class="eyebrow mb-4"><span class="text-fg-muted">04</span> · <span class="sm:hidden">Visibility</span><span class="hidden sm:inline">Visibility</span></p>
-        <div class="flex h-16 items-end gap-1.5 border-b border-white/[0.06] pb-px">
+        <div class="flex h-16 items-end gap-1.5 border-b border-edge/[0.06] pb-px">
           <span
             v-for="(b, i) in bars"
             :key="i"
             class="flex-1 rounded-t-sm"
-            :class="i === bars.length - 1 ? 'bg-accent/80' : 'bg-white/15'"
+            :class="i === bars.length - 1 ? 'bg-accent/80' : 'bg-edge/15'"
             :style="{ height: `${b}%` }"
           />
         </div>

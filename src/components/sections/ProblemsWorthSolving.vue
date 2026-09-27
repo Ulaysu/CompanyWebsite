@@ -6,7 +6,7 @@ import { problemStatements } from '@/content/general'
 </script>
 
 <template>
-  <section class="border-t border-white/[0.06] py-24 sm:py-32" aria-labelledby="pws-title">
+  <section class="border-t border-edge/[0.06] py-24 sm:py-32" aria-labelledby="pws-title">
     <div class="container-page">
       <SectionHeader
         eyebrow="Sound familiar?"
@@ -20,13 +20,13 @@ import { problemStatements } from '@/content/general'
           v-for="(p, i) in problemStatements"
           :key="p.quote"
           v-reveal="(i % 2) * 90"
-          class="panel group flex flex-col p-6 transition-colors duration-300 hover:border-white/12 sm:p-8"
+          class="panel group flex flex-col p-6 transition-colors duration-300 hover:border-edge/12 sm:p-8"
         >
           <span class="eyebrow">{{ p.area }}</span>
           <blockquote class="mt-5 flex-1 text-lg leading-snug font-medium tracking-tight text-fg sm:text-xl">
             <span class="text-fg-subtle">“</span>{{ p.quote }}<span class="text-fg-subtle">”</span>
           </blockquote>
-          <p class="mt-8 flex items-start gap-3 border-t border-white/[0.06] pt-5 text-sm leading-relaxed text-fg-muted">
+          <p class="mt-8 flex items-start gap-3 border-t border-edge/[0.06] pt-5 text-sm leading-relaxed text-fg-muted">
             <CornerDownRight class="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
             {{ p.response }}
           </p>

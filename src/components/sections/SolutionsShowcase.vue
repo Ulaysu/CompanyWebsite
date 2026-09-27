@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import SectionHeader from '@/components/ui/SectionHeader.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import SolutionMock from '@/components/visuals/SolutionMock.vue'
+import SolutionFigure from '@/components/visuals/SolutionFigure.vue'
 import { solutions } from '@/content/solutions'
 
 const selected = ref(0)
@@ -19,7 +19,7 @@ function onKey(e: KeyboardEvent) {
 </script>
 
 <template>
-  <section class="relative border-t border-white/[0.06] bg-ink-900/30 py-24 sm:py-32" aria-labelledby="solutions-title">
+  <section class="relative border-t border-edge/[0.06] bg-ink-900/30 py-24 sm:py-32" aria-labelledby="solutions-title">
     <div class="container-page">
       <SectionHeader
         eyebrow="Solutions"
@@ -43,8 +43,8 @@ function onKey(e: KeyboardEvent) {
             :class="[
               'group relative rounded-lg border px-3.5 py-3 text-left transition-colors duration-300 lg:px-5 lg:py-4',
               i === selected
-                ? 'border-white/12 bg-white/[0.04]'
-                : 'border-transparent hover:bg-white/[0.02]',
+                ? 'border-edge/12 bg-edge/[0.04]'
+                : 'border-transparent hover:bg-edge/[0.02]',
             ]"
             @click="selected = i"
           >
@@ -66,7 +66,7 @@ function onKey(e: KeyboardEvent) {
         <div id="sol-panel" role="tabpanel" :aria-labelledby="`sol-tab-${current.id}`" class="lg:col-span-8">
           <p class="mb-5 max-w-xl text-[0.9375rem] leading-relaxed text-fg-muted">{{ current.summary }}</p>
           <Transition name="swap" mode="out-in">
-            <SolutionMock :key="current.id" :solution="current" />
+            <SolutionFigure :key="current.id" :solution="current" hide-image-on-mobile />
           </Transition>
           <div class="mt-6 lg:hidden">
             <AppButton to="/solutions" variant="ghost" arrow>Explore example systems</AppButton>

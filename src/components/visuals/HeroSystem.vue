@@ -109,7 +109,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
               v-for="(s, i) in sources"
               :key="s.name"
               :class="[
-                'flex h-9 items-center gap-2.5 rounded-lg border border-dashed border-white/12 bg-ink-900/70 px-2.5 lg:h-12 lg:w-[13.5rem] lg:px-3',
+                'flex h-9 items-center gap-2.5 rounded-lg border border-dashed border-edge/12 bg-ink-900/70 px-2.5 lg:h-12 lg:w-[13.5rem] lg:px-3',
                 s.offset,
                 i > 2 ? 'hidden sm:flex' : '',
               ]"
@@ -132,7 +132,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
           preserveAspectRatio="none"
           fill="none"
         >
-          <path v-for="(d, i) in connectorPaths" :key="`b${i}`" :d="d" stroke="rgb(255 255 255 / 0.1)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <path v-for="(d, i) in connectorPaths" :key="`b${i}`" :d="d" class="stroke-edge/10" stroke-width="1" vector-effect="non-scaling-stroke" />
           <path
             v-for="(d, i) in connectorPaths"
             :key="`f${i}`"
@@ -150,7 +150,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
         <!-- Connector (mobile) -->
         <div class="flex justify-center lg:hidden">
           <svg width="2" height="36" viewBox="0 0 2 36" fill="none">
-            <path d="M1 0 V36" stroke="rgb(255 255 255 / 0.12)" />
+            <path d="M1 0 V36" class="stroke-edge/12" />
             <path d="M1 0 V36" stroke="var(--color-accent)" stroke-dasharray="3 9" class="animate-flow" />
           </svg>
         </div>
@@ -160,7 +160,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
           <WindowFrame label="ops.yourcompany.com / overview" live>
             <div class="flex">
               <!-- Sidebar -->
-              <aside class="hidden w-44 shrink-0 flex-col border-r border-white/[0.06] p-3 md:flex">
+              <aside class="hidden w-44 shrink-0 flex-col border-r border-edge/[0.06] p-3 md:flex">
                 <div class="mb-4 flex items-center gap-2 px-2 pt-1">
                   <span class="grid size-5 place-items-center rounded bg-accent/90 font-mono text-[0.5625rem] font-bold text-ink-950">Y</span>
                   <span class="text-xs font-medium text-fg">Your Company</span>
@@ -171,14 +171,14 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                     :key="item.label"
                     :class="[
                       'flex items-center gap-2.5 rounded-md px-2 py-1.5 text-xs',
-                      item.active ? 'bg-white/[0.06] text-fg' : 'text-fg-subtle',
+                      item.active ? 'bg-edge/[0.06] text-fg' : 'text-fg-subtle',
                     ]"
                   >
                     <component :is="item.icon" class="size-3.5" />
                     {{ item.label }}
                   </li>
                 </ul>
-                <div class="mt-auto rounded-md border border-white/[0.06] p-2.5">
+                <div class="mt-auto rounded-md border border-edge/[0.06] p-2.5">
                   <p class="flex items-center gap-1.5 text-[0.6875rem] text-fg-muted">
                     <Zap class="size-3 text-accent" /> Automations
                   </p>
@@ -193,8 +193,8 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                     <p class="text-sm font-medium text-fg">Overview</p>
                     <p class="text-[0.6875rem] text-fg-subtle">Everything in one place</p>
                   </div>
-                  <div class="flex rounded-md border border-white/[0.08] p-0.5 text-[0.625rem] text-fg-subtle">
-                    <span class="rounded bg-white/[0.07] px-2 py-0.5 text-fg">Today</span>
+                  <div class="flex rounded-md border border-edge/[0.08] p-0.5 text-[0.625rem] text-fg-subtle">
+                    <span class="rounded bg-edge/[0.07] px-2 py-0.5 text-fg">Today</span>
                     <span class="px-2 py-0.5">Week</span>
                     <span class="hidden px-2 py-0.5 sm:inline">Month</span>
                   </div>
@@ -205,7 +205,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                   <div
                     v-for="k in kpis"
                     :key="k.label"
-                    class="rounded-lg border border-white/[0.06] bg-white/[0.015] p-2.5 sm:p-3"
+                    class="rounded-lg border border-edge/[0.06] bg-edge/[0.015] p-2.5 sm:p-3"
                   >
                     <p class="truncate text-[0.625rem] text-fg-subtle sm:text-[0.6875rem]">{{ k.label }}</p>
                     <p class="mt-1 text-lg font-semibold tracking-tight text-fg sm:text-xl">
@@ -217,7 +217,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
 
                 <div class="mt-3 grid grid-cols-1 gap-3 sm:mt-4 xl:grid-cols-5">
                   <!-- Pipeline -->
-                  <div class="rounded-lg border border-white/[0.06] p-3 xl:col-span-3">
+                  <div class="rounded-lg border border-edge/[0.06] p-3 xl:col-span-3">
                     <p class="mb-3 flex items-center justify-between text-[0.6875rem] text-fg-muted">
                       Workflow
                       <span class="font-mono text-[0.625rem] text-fg-subtle">39 active</span>
@@ -225,10 +225,10 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                     <ul class="space-y-2">
                       <li v-for="(p, i) in pipeline" :key="p.label" class="grid grid-cols-[5rem_1fr_1.5rem] items-center gap-3">
                         <span class="text-[0.6875rem] text-fg-subtle">{{ p.label }}</span>
-                        <span class="h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
+                        <span class="h-1.5 overflow-hidden rounded-full bg-edge/[0.05]">
                           <span
                             class="block h-full origin-left animate-[grow_1.2s_var(--ease-out-quint)_both] rounded-full"
-                            :class="i === 4 ? 'bg-accent/80' : 'bg-white/25'"
+                            :class="i === 4 ? 'bg-accent/80' : 'bg-edge/25'"
                             :style="{ width: `${p.pct}%`, animationDelay: `${700 + i * 90}ms` }"
                           />
                         </span>
@@ -238,7 +238,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                   </div>
 
                   <!-- Activity -->
-                  <div class="rounded-lg border border-white/[0.06] p-3 xl:col-span-2">
+                  <div class="rounded-lg border border-edge/[0.06] p-3 xl:col-span-2">
                     <p class="mb-2 flex items-center justify-between text-[0.6875rem] text-fg-muted">
                       Activity
                       <span class="font-mono text-[0.625rem] text-fg-subtle">automated</span>
@@ -249,7 +249,7 @@ const connectorPaths = [24, 84, 144, 204, 264].map(
                         :key="e.id"
                         :class="['flex items-center gap-2 rounded-md py-1.5', i > 2 ? 'hidden sm:flex' : '']"
                       >
-                        <span class="grid size-5 shrink-0 place-items-center rounded-md border border-white/[0.08] bg-white/[0.03]">
+                        <span class="grid size-5 shrink-0 place-items-center rounded-md border border-edge/[0.08] bg-edge/[0.03]">
                           <component :is="e.icon" class="size-2.5 text-fg-muted" />
                         </span>
                         <span class="min-w-0 flex-1 truncate text-[0.6875rem] text-fg-muted">{{ e.text }}</span>

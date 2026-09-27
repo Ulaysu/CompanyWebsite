@@ -3,6 +3,7 @@ import { usePageMeta } from '@/composables/usePageMeta'
 import PageHero from '@/components/sections/PageHero.vue'
 import TechnologySection from '@/components/sections/TechnologySection.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
+import ImageBand from '@/components/sections/ImageBand.vue'
 import { site } from '@/config/site'
 
 usePageMeta({
@@ -37,12 +38,19 @@ const principles = [
       title="I like solving the parts of a business that existing software doesn't quite solve."
     />
 
+    <ImageBand
+      name="system"
+      alt="Isometric model of a central system connected to payments, orders, inventory, CRM, documents and reporting modules."
+      caption="The missing software layer: one system connected to the tools a business already uses."
+      class="mb-20 sm:mb-28"
+    />
+
     <section class="pb-24 sm:pb-32" aria-label="About the studio">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div class="lg:col-span-4">
           <div v-reveal class="panel p-6">
             <div class="flex items-center gap-4">
-              <span class="grid size-14 place-items-center rounded-xl border border-white/12 bg-gradient-to-b from-ink-700 to-ink-850 font-mono text-base font-semibold text-fg" aria-hidden="true">
+              <span class="grid size-14 place-items-center rounded-xl border border-edge/12 bg-gradient-to-b from-ink-700 to-ink-850 font-mono text-base font-semibold text-fg" aria-hidden="true">
                 {{ site.monogram }}
               </span>
               <div>
@@ -50,7 +58,7 @@ const principles = [
                 <p class="text-sm text-fg-subtle">Software engineer &amp; founder</p>
               </div>
             </div>
-            <dl class="mt-6 space-y-3 border-t border-white/[0.06] pt-5 text-sm">
+            <dl class="mt-6 space-y-3 border-t border-edge/[0.06] pt-5 text-sm">
               <div class="flex justify-between gap-4"><dt class="text-fg-subtle">Focus</dt><dd class="text-right text-fg-muted">Business systems &amp; automation</dd></div>
               <div class="flex justify-between gap-4"><dt class="text-fg-subtle">Works with</dt><dd class="text-right text-fg-muted">Operational businesses</dd></div>
               <div class="flex justify-between gap-4"><dt class="text-fg-subtle">Location</dt><dd class="text-right text-fg-muted">Remote · international</dd></div>
@@ -83,7 +91,7 @@ const principles = [
 
       <div class="container-page mt-20 sm:mt-28">
         <h2 v-reveal class="eyebrow mb-8">How the studio works</h2>
-        <ul class="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+        <ul class="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-edge/[0.06] bg-edge/[0.06] sm:grid-cols-2 lg:grid-cols-4">
           <li v-for="(p, i) in principles" :key="p.title" v-reveal="i * 70" class="bg-ink-950 p-6">
             <h3 class="text-[0.9375rem] font-medium text-fg">{{ p.title }}</h3>
             <p class="mt-2 text-sm leading-relaxed text-fg-muted">{{ p.body }}</p>

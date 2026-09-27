@@ -1,10 +1,14 @@
 @import 'tailwindcss';
 
+/* Theme variants: `light:` / `dark:` follow the data-theme attribute on <html>. */
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Surfaces */
+  /* Surfaces (dark by default; see [data-theme='light'] below). */
   --color-ink-950: #08080a;
   --color-ink-900: #0c0c0f;
   --color-ink-850: #111115;
@@ -16,6 +20,9 @@
   --color-fg: #ededeb;
   --color-fg-muted: #a1a1a8;
   --color-fg-subtle: #6e6e78;
+
+  /* Hairlines and tints: used as edge/[opacity] for borders, dividers and washes. */
+  --color-edge: #ffffff;
 
   /* Accent: restrained warm orange */
   --color-accent: #f2803e;
@@ -44,14 +51,42 @@
   }
 }
 
+/* Light theme: the same tokens, re-pointed. Components never hard-code a theme. */
+[data-theme='light'] {
+  color-scheme: light;
+  --color-ink-950: #f7f6f3;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #f1f0ec;
+  --color-ink-800: #ecebe6;
+  --color-ink-700: #e4e3de;
+  --color-ink-600: #d6d5cf;
+  --color-fg: #111114;
+  --color-fg-muted: #4f4f57;
+  --color-fg-subtle: #7c7c86;
+  --color-edge: #16161b;
+  --color-accent: #e46a28;
+  --color-accent-soft: #c2561a;
+  --color-positive: #1c8a5c;
+  --color-warning: #a8740f;
+  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 1px 2px rgb(20 20 30 / 0.04), 0 24px 48px -28px rgb(20 20 30 / 0.18);
+  --heading-from: #0b0b0e;
+  --heading-to: #4a4a52;
+  --grid-line: rgb(20 20 30 / 0.05);
+  --dot: rgb(20 20 30 / 0.1);
+}
+
 @layer base {
   :root {
     color-scheme: dark;
-    --hairline: rgb(255 255 255 / 0.07);
-    --hairline-strong: rgb(255 255 255 / 0.12);
+    --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+    --heading-from: #ffffff;
+    --heading-to: #b8b8bf;
+    --grid-line: rgb(255 255 255 / 0.035);
+    --dot: rgb(255 255 255 / 0.08);
   }
   html {
     background: var(--color-ink-950);
+    transition: background-color 0.3s ease;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     scroll-padding-top: 5rem;
@@ -82,9 +117,6 @@
     @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
   }
 
-  .hairline { border-color: var(--hairline); }
-  .hairline-strong { border-color: var(--hairline-strong); }
-
   .eyebrow {
     @apply font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
   }
@@ -105,14 +137,12 @@
   /* A quiet surface for panels and mock interfaces. */
   .panel {
     @apply rounded-xl border bg-ink-900;
-    border-color: var(--hairline);
-    box-shadow:
-      0 1px 0 0 rgb(255 255 255 / 0.04) inset,
-      0 24px 48px -24px rgb(0 0 0 / 0.6);
+    border-color: color-mix(in oklab, var(--color-edge) 7%, transparent);
+    box-shadow: var(--panel-shadow);
   }
 
   .text-gradient {
-    background: linear-gradient(180deg, #fff 0%, #b8b8bf 100%);
+    background: linear-gradient(180deg, var(--heading-from) 0%, var(--heading-to) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -121,12 +151,12 @@
   /* Fine technical grid used as a background texture. */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 56px 56px;
   }
   .bg-dots {
-    background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
     background-size: 18px 18px;
   }
   .mask-fade-y {
