@@ -4,6 +4,7 @@ import { RouterLink, useRoute } from 'vue-router'
 import { Menu, X, ArrowRight } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
 import AppButton from '@/components/ui/AppButton.vue'
+import ThemeToggle from '@/components/ui/ThemeToggle.vue'
 import { navigation, primaryCta, site } from '@/config/site'
 
 const route = useRoute()
@@ -39,7 +40,7 @@ watch(open, (v) => {
     :class="[
       'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300',
       scrolled || open
-        ? 'border-b border-white/[0.06] bg-ink-950/75 backdrop-blur-xl backdrop-saturate-150'
+        ? 'border-b border-edge/[0.06] bg-ink-950/75 backdrop-blur-xl backdrop-saturate-150'
         : 'border-b border-transparent',
     ]"
   >
@@ -62,10 +63,13 @@ watch(open, (v) => {
         </ul>
       </nav>
 
-      <div class="hidden md:block">
+      <div class="hidden items-center gap-3 md:flex">
+        <ThemeToggle />
         <AppButton :to="primaryCta.to" size="sm" arrow>{{ primaryCta.label }}</AppButton>
       </div>
 
+      <div class="flex items-center gap-1 md:hidden">
+      <ThemeToggle />
       <button
         type="button"
         class="-mr-2 grid size-10 place-items-center rounded-full text-fg md:hidden"
@@ -77,6 +81,7 @@ watch(open, (v) => {
         <X v-if="open" class="size-5" aria-hidden="true" />
         <Menu v-else class="size-5" aria-hidden="true" />
       </button>
+      </div>
     </div>
 
     <Transition
@@ -88,10 +93,10 @@ watch(open, (v) => {
       <div
         v-if="open"
         id="mobile-nav"
-        class="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/[0.06] bg-ink-950 md:hidden"
+        class="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-edge/[0.06] bg-ink-950 md:hidden"
       >
         <nav aria-label="Mobile" class="container-page flex h-full flex-col pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]">
-          <ul class="divide-y divide-white/[0.06]">
+          <ul class="divide-y divide-edge/[0.06]">
             <li v-for="(item, i) in navigation" :key="item.to">
               <RouterLink
                 :to="item.to"

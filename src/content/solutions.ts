@@ -1,3 +1,5 @@
+import type { ImageName } from './images'
+
 /**
  * Example systems we can custom-build. These are NOT products for sale,
  * and the data shown in each mock interface is illustrative only.
@@ -14,6 +16,9 @@ export interface SolutionRow {
 
 export interface Solution {
   id: string
+  /** Generated isometric illustration for this example system. */
+  image: ImageName
+  imageAlt: string
   title: string
   summary: string
   flow: string[]
@@ -28,6 +33,8 @@ export interface Solution {
 export const solutions: Solution[] = [
   {
     id: 'equipment-fleet',
+    image: 'fleet',
+    imageAlt: 'Isometric model of an equipment yard with containers, generators, trucks and an excavator; one telehandler is highlighted as on hire.',
     title: 'Equipment & Fleet',
     summary:
       'Know what is available, where it is, who has it, and when it needs attention, without calling around or checking three spreadsheets.',
@@ -54,6 +61,8 @@ export const solutions: Solution[] = [
   },
   {
     id: 'property-operations',
+    image: 'property',
+    imageAlt: 'Isometric model of a block of residential buildings with one unit highlighted for a lease renewal.',
     title: 'Property Operations',
     summary:
       'Bring tenants, leases, maintenance requests, and documents into one operational view, so nothing depends on someone remembering.',
@@ -80,6 +89,8 @@ export const solutions: Solution[] = [
   },
   {
     id: 'wholesale-distribution',
+    image: 'wholesale',
+    imageAlt: 'Isometric model of a warehouse with racking; allocated pallets are highlighted with a route to the loading dock.',
     title: 'Wholesale & Distribution',
     summary:
       'Move from order to invoice with stock allocated correctly, deliveries planned, and billing that happens without re-typing anything.',
@@ -106,6 +117,8 @@ export const solutions: Solution[] = [
   },
   {
     id: 'business-administration',
+    image: 'admin',
+    imageAlt: 'Isometric model of document stacks flowing into an approval step and a report, with the approved item highlighted.',
     title: 'Business Administration',
     summary:
       'Replace the approval emails, shared folders, and task lists with a workflow that moves work forward and records every decision.',

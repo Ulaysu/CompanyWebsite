@@ -26,7 +26,7 @@ usePageMeta({
           v-for="s in services"
           :key="s.id"
           :href="`#${s.id}`"
-          class="rounded-full border border-white/10 px-3.5 py-1.5 text-sm text-fg-muted transition-colors hover:border-white/20 hover:text-fg"
+          class="rounded-full border border-edge/10 px-3.5 py-1.5 text-sm text-fg-muted transition-colors hover:border-edge/20 hover:text-fg"
         >
           <span class="mr-1.5 font-mono text-xs text-fg-subtle">{{ s.number }}</span>{{ s.title }}
         </a>
@@ -37,7 +37,7 @@ usePageMeta({
       v-for="(s, i) in services"
       :id="s.id"
       :key="s.id"
-      class="border-t border-white/[0.06] py-20 sm:py-28"
+      class="border-t border-edge/[0.06] py-20 sm:py-28"
       :aria-labelledby="`${s.id}-title`"
     >
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
@@ -52,7 +52,7 @@ usePageMeta({
               <h3 class="eyebrow mb-4">What we build</h3>
               <ul class="space-y-2.5">
                 <li v-for="e in s.examples" :key="e" class="flex items-center gap-2.5 text-[0.9375rem] text-fg-muted">
-                  <span class="size-1 rounded-full bg-white/30" aria-hidden="true" />{{ e }}
+                  <span class="size-1 rounded-full bg-edge/30" aria-hidden="true" />{{ e }}
                 </li>
               </ul>
             </div>

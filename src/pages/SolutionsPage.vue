@@ -2,7 +2,7 @@
 import { ChevronRight, Minus } from 'lucide-vue-next'
 import { usePageMeta } from '@/composables/usePageMeta'
 import PageHero from '@/components/sections/PageHero.vue'
-import SolutionMock from '@/components/visuals/SolutionMock.vue'
+import SolutionFigure from '@/components/visuals/SolutionFigure.vue'
 import CtaInline from '@/components/sections/CtaInline.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
 import { solutions } from '@/content/solutions'
@@ -26,7 +26,7 @@ usePageMeta({
       v-for="(s, i) in solutions"
       :id="s.id"
       :key="s.id"
-      class="border-t border-white/[0.06] py-20 sm:py-28"
+      class="border-t border-edge/[0.06] py-20 sm:py-28"
       :aria-labelledby="`${s.id}-title`"
     >
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
@@ -37,7 +37,7 @@ usePageMeta({
 
           <ol v-reveal="140" class="mt-8 flex flex-wrap items-center gap-1.5" :aria-label="`${s.title} workflow`">
             <template v-for="(f, j) in s.flow" :key="f">
-              <li class="rounded-md border border-white/10 px-2.5 py-1 font-mono text-xs text-fg-muted">{{ f }}</li>
+              <li class="rounded-md border border-edge/10 px-2.5 py-1 font-mono text-xs text-fg-muted">{{ f }}</li>
               <ChevronRight v-if="j < s.flow.length - 1" class="size-3.5 text-fg-subtle" aria-hidden="true" />
             </template>
           </ol>
@@ -52,8 +52,8 @@ usePageMeta({
           </div>
         </div>
         <div v-reveal="120" :class="['lg:col-span-7', i % 2 ? 'lg:order-1' : '']">
-          <SolutionMock :solution="s" />
-          <p class="mt-3 font-mono text-[0.625rem] text-fg-subtle">Illustrative interface. Data shown is fictional.</p>
+          <SolutionFigure :solution="s" />
+          <p class="mt-3 font-mono text-[0.625rem] text-fg-subtle">Illustrative scene and interface. Data shown is fictional.</p>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import PageHero from '@/components/sections/PageHero.vue'
 import DifferentiatorSection from '@/components/sections/DifferentiatorSection.vue'
 import ProcessOverview from '@/components/sections/ProcessOverview.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
+import ImageBand from '@/components/sections/ImageBand.vue'
 
 usePageMeta({
   title: 'How We Work',
@@ -59,16 +60,23 @@ const faqs = [
       lede="Good operational software comes from understanding the operation first. Our process is designed to reduce risk, show progress early, and put working software into real use."
     />
 
+    <ImageBand
+      name="process"
+      :zoom="1.45"
+      alt="Isometric model of six rising steps labelled Understand, Map, Design, Build, Deploy and Improve."
+      caption="Six steps, each one building on the last."
+    />
+
     <DifferentiatorSection />
     <ProcessOverview detailed />
 
-    <section class="border-t border-white/[0.06] py-24 sm:py-32" aria-labelledby="engage-title">
+    <section class="border-t border-edge/[0.06] py-24 sm:py-32" aria-labelledby="engage-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div class="lg:col-span-4">
           <p v-reveal class="eyebrow mb-5 flex items-center gap-2"><span class="h-px w-5 bg-accent/70" />Getting started</p>
           <h2 id="engage-title" v-reveal="60" class="heading-lg text-gradient">How an engagement begins.</h2>
         </div>
-        <ol class="grid gap-px overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.06] lg:col-span-8">
+        <ol class="grid gap-px overflow-hidden rounded-xl border border-edge/[0.06] bg-edge/[0.06] lg:col-span-8">
           <li v-for="(e, i) in engagement" :key="e.title" v-reveal="i * 80" class="grid grid-cols-1 gap-3 bg-ink-950 p-6 sm:grid-cols-[3rem_1fr] sm:p-8">
             <span class="font-mono text-xs text-accent">0{{ i + 1 }}</span>
             <div>
@@ -80,13 +88,13 @@ const faqs = [
       </div>
     </section>
 
-    <section class="border-t border-white/[0.06] py-24 sm:py-32" aria-labelledby="faq-title">
+    <section class="border-t border-edge/[0.06] py-24 sm:py-32" aria-labelledby="faq-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div class="lg:col-span-4">
           <p v-reveal class="eyebrow mb-5 flex items-center gap-2"><span class="h-px w-5 bg-accent/70" />Questions</p>
           <h2 id="faq-title" v-reveal="60" class="heading-lg text-gradient">Common questions.</h2>
         </div>
-        <div class="divide-y divide-white/[0.06] border-y border-white/[0.06] lg:col-span-8">
+        <div class="divide-y divide-edge/[0.06] border-y border-edge/[0.06] lg:col-span-8">
           <details v-for="f in faqs" :key="f.q" class="group py-1">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-base font-medium text-fg [&::-webkit-details-marker]:hidden">
               {{ f.q }}

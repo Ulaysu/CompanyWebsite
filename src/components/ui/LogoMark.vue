@@ -7,7 +7,7 @@ withDefaults(defineProps<{ showDescriptor?: boolean }>(), { showDescriptor: true
 <template>
   <span class="inline-flex items-center gap-3">
     <span
-      class="relative grid size-8 shrink-0 place-items-center rounded-lg border border-white/12 bg-gradient-to-b from-ink-700 to-ink-850 font-mono text-[0.6875rem] font-semibold tracking-tight text-fg shadow-[inset_0_1px_0_rgb(255_255_255/0.08)]"
+      class="relative grid size-8 shrink-0 place-items-center rounded-lg border border-edge/12 bg-gradient-to-b from-ink-700 to-ink-850 font-mono text-[0.6875rem] font-semibold tracking-tight text-fg shadow-[inset_0_1px_0_rgb(255_255_255/0.08)]"
       aria-hidden="true"
     >
       {{ site.monogram }}
