@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Surfaces */
+  --color-ink-950: #08080a;
+  --color-ink-900: #0c0c0f;
+  --color-ink-850: #111115;
+  --color-ink-800: #16161b;
+  --color-ink-700: #1f1f26;
+  --color-ink-600: #2a2a33;
+
+  /* Text */
+  --color-fg: #ededeb;
+  --color-fg-muted: #a1a1a8;
+  --color-fg-subtle: #6e6e78;
+
+  /* Accent: restrained warm orange */
+  --color-accent: #f2803e;
+  --color-accent-soft: #f7a66f;
+
+  /* Status (used inside mock interfaces only) */
+  --color-positive: #5fc59a;
+  --color-warning: #e2b454;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-flow: flow 2.4s linear infinite;
+  --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quint) infinite;
+  --animate-fade-up: fade-up 0.9s var(--ease-out-quint) both;
+
+  @keyframes flow {
+    to { stroke-dashoffset: -24; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(0.8); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --hairline: rgb(255 255 255 / 0.07);
+    --hairline-strong: rgb(255 255 255 / 0.12);
+  }
+  html {
+    background: var(--color-ink-950);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-fg antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: clip;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
+  }
+
+  .hairline { border-color: var(--hairline); }
+  .hairline-strong { border-color: var(--hairline-strong); }
+
+  .eyebrow {
+    @apply font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
+  }
+
+  .display {
+    @apply text-[2.5rem] leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl lg:text-[4.25rem];
+  }
+  .heading-xl {
+    @apply text-[2rem] leading-[1.08] font-semibold tracking-[-0.03em] sm:text-[2.75rem] lg:text-5xl;
+  }
+  .heading-lg {
+    @apply text-2xl leading-tight font-semibold tracking-[-0.02em] sm:text-[1.75rem];
+  }
+  .lede {
+    @apply text-base leading-relaxed text-fg-muted sm:text-lg;
+  }
+
+  /* A quiet surface for panels and mock interfaces. */
+  .panel {
+    @apply rounded-xl border bg-ink-900;
+    border-color: var(--hairline);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.04) inset,
+      0 24px 48px -24px rgb(0 0 0 / 0.6);
+  }
+
+  .text-gradient {
+    background: linear-gradient(180deg, #fff 0%, #b8b8bf 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Fine technical grid used as a background texture. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+  .mask-radial {
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+}
+
+/* Scroll-reveal (see directives/reveal.ts). Content is visible without JS. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.8s var(--ease-out-quint),
+    transform 0.8s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Route transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.28s var(--ease-out-quint), transform 0.28s var(--ease-out-quint);
+}
+.page-enter-from { opacity: 0; transform: translateY(6px); }
+.page-leave-to { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+}
