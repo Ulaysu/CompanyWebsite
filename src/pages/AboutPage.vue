@@ -34,6 +34,7 @@ const principles = [
 <template>
   <div>
     <PageHero
+      photo="about"
       eyebrow="About"
       title="I like solving the parts of a business that existing software doesn't quite solve."
     />

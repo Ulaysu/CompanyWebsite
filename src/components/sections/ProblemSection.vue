@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ProblemFlow from '@/components/visuals/ProblemFlow.vue'
 import { manualWork } from '@/content/general'
+import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 </script>
 
 <template>
@@ -18,7 +19,13 @@ import { manualWork } from '@/content/general'
           </div>
         </div>
 
-        <div class="lg:col-span-5 lg:col-start-8 lg:pt-12">
+        <div class="lg:col-span-5 lg:col-start-8 lg:pt-4">
+          <figure v-reveal class="relative mb-6 aspect-[16/9] overflow-hidden rounded-xl border border-edge/[0.07]">
+            <PhotoBackdrop name="messy" fade="band" sizes="(min-width: 1024px) 480px, 100vw" alt="" />
+            <figcaption class="absolute bottom-4 left-4 font-mono text-[0.6875rem] tracking-wide text-fg-muted">
+              Where the work actually happens
+            </figcaption>
+          </figure>
           <ul class="flex flex-wrap gap-2">
             <li
               v-for="(item, i) in manualWork"

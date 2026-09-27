@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import AppButton from '@/components/ui/AppButton.vue'
 import HeroSystem from '@/components/visuals/HeroSystem.vue'
-import ThemedImage from '@/components/ui/ThemedImage.vue'
+import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 import { site } from '@/config/site'
 </script>
 
 <template>
   <section class="relative overflow-hidden pt-28 pb-20 sm:pt-36 lg:pb-32" aria-labelledby="hero-title">
-    <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-[44rem] opacity-80 [mask-image:radial-gradient(ellipse_75%_70%_at_60%_30%,#000_35%,transparent_80%)] sm:h-[48rem]">
-      <ThemedImage name="field" alt="" sizes="100vw" img-class="h-full w-full object-cover object-[70%_50%]" />
+    <div class="absolute inset-x-0 top-0 h-[46rem] sm:h-[50rem]">
+      <PhotoBackdrop name="hero" eager fade="hero" />
     </div>
     <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-edge/15 to-transparent" />
 

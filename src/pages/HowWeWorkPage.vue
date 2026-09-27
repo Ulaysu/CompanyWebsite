@@ -55,6 +55,7 @@ const faqs = [
 <template>
   <div>
     <PageHero
+      photo="process"
       eyebrow="How we work"
       title="Understand the problem. Build the smallest system that solves it."
       lede="Good operational software comes from understanding the operation first. Our process is designed to reduce risk, show progress early, and put working software into real use."

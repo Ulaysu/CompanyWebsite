@@ -1,4 +1,5 @@
 import type { ImageName } from './images'
+import type { PhotoName } from './photos'
 
 /**
  * Example systems we can custom-build. These are NOT products for sale,
@@ -18,6 +19,8 @@ export interface Solution {
   id: string
   /** Generated isometric illustration for this example system. */
   image: ImageName
+  /** Real photograph of this kind of operation. */
+  photo: PhotoName
   imageAlt: string
   title: string
   summary: string
@@ -33,6 +36,7 @@ export interface Solution {
 export const solutions: Solution[] = [
   {
     id: 'equipment-fleet',
+    photo: 'fleet',
     image: 'fleet',
     imageAlt: 'Isometric model of an equipment yard with containers, generators, trucks and an excavator; one telehandler is highlighted as on hire.',
     title: 'Equipment & Fleet',
@@ -61,6 +65,7 @@ export const solutions: Solution[] = [
   },
   {
     id: 'property-operations',
+    photo: 'property',
     image: 'property',
     imageAlt: 'Isometric model of a block of residential buildings with one unit highlighted for a lease renewal.',
     title: 'Property Operations',
@@ -89,6 +94,7 @@ export const solutions: Solution[] = [
   },
   {
     id: 'wholesale-distribution',
+    photo: 'wholesale',
     image: 'wholesale',
     imageAlt: 'Isometric model of a warehouse with racking; allocated pallets are highlighted with a route to the loading dock.',
     title: 'Wholesale & Distribution',
@@ -117,6 +123,7 @@ export const solutions: Solution[] = [
   },
   {
     id: 'business-administration',
+    photo: 'admin',
     image: 'admin',
     imageAlt: 'Isometric model of document stacks flowing into an approval step and a report, with the approved item highlighted.',
     title: 'Business Administration',

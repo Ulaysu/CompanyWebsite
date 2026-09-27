@@ -4,6 +4,7 @@ import SectionHeader from '@/components/ui/SectionHeader.vue'
 import AppButton from '@/components/ui/AppButton.vue'
 import SolutionFigure from '@/components/visuals/SolutionFigure.vue'
 import { solutions } from '@/content/solutions'
+import { photoSrc } from '@/content/photos'
 
 const selected = ref(0)
 const current = computed(() => solutions[selected.value]!)
@@ -53,9 +54,25 @@ function onKey(e: KeyboardEvent) {
               class="absolute top-4 bottom-4 left-0 hidden w-px bg-accent lg:block"
               aria-hidden="true"
             />
-            <span :class="['block text-sm font-medium lg:text-base', i === selected ? 'text-fg' : 'text-fg-muted']">{{ s.title }}</span>
-            <span class="mt-1 hidden font-mono text-[0.6875rem] leading-relaxed text-fg-subtle lg:block">
-              {{ s.flow.join(' → ') }}
+            <span class="flex items-center gap-4">
+              <img
+                :src="photoSrc(s.photo)"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="56"
+                height="56"
+                :class="[
+                  'hidden size-14 shrink-0 rounded-md object-cover transition-[filter,opacity] duration-300 lg:block',
+                  i === selected ? 'opacity-100 grayscale-[0.3]' : 'opacity-60 grayscale',
+                ]"
+              />
+              <span class="min-w-0">
+                <span :class="['block text-sm font-medium lg:text-base', i === selected ? 'text-fg' : 'text-fg-muted']">{{ s.title }}</span>
+                <span class="mt-1 hidden font-mono text-[0.6875rem] leading-relaxed text-fg-subtle lg:block">
+                  {{ s.flow.join(' → ') }}
+                </span>
+              </span>
             </span>
           </button>
           <div class="mt-4 hidden lg:block">
