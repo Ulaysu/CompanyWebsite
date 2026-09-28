@@ -58,6 +58,8 @@ Navigation: Work, Products, Approach, About, Contact. Africa is the origin story
 
 Retired URLs (`/what-we-build`, `/work-with-us`, `/products/<slug>`, `/work/sweetland-farms`, `/services`, `/solutions`, `/how-we-work`) redirect via `vercel.json` (Vercel), `public/_redirects` (Netlify/Cloudflare Pages) and client-side.
 
+The hero globe (`public/images/globe-dark-*.webp`), centred on Africa with arcs travelling from The Gambia to the rest of the world, is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
+
 ## Design
 
 Warm near-black and paper surfaces. Geist for type, with Instrument Serif as the brand's second voice (the philosophy, CodeDream, a few editorial words). One warm accent (`--color-accent`), reserved for the mark, live status and focus. Sharp corners and hairlines rather than cards; no gradient text. Motion is limited to headline word reveals, image shutter reveals, rules that draw themselves and quiet hover states, all disabled under `prefers-reduced-motion`.
