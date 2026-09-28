@@ -3,11 +3,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/services", "destination": "/what-we-build", "permanent": true },
-    { "source": "/solutions", "destination": "/products", "permanent": true },
-    { "source": "/how-we-work", "destination": "/what-we-build", "permanent": true },
-    { "source": "/work", "destination": "/products", "permanent": true },
-    { "source": "/work/:slug", "destination": "/products/:slug", "permanent": true },
-    { "source": "/contact", "destination": "/work-with-us", "permanent": true }
+    { "source": "/what-we-build", "destination": "/approach", "permanent": true },
+    { "source": "/services", "destination": "/approach", "permanent": true },
+    { "source": "/how-we-work", "destination": "/approach", "permanent": true },
+    { "source": "/solutions", "destination": "/work", "permanent": true },
+    { "source": "/work-with-us", "destination": "/contact", "permanent": true },
+    { "source": "/products/kujaaburun", "destination": "/work/kujaaburun", "permanent": true },
+    { "source": "/products/sweetland-farms", "destination": "/work/sweetland-farms-os", "permanent": true },
+    { "source": "/work/sweetland-farms", "destination": "/work/sweetland-farms-os", "permanent": true }
   ]
 }

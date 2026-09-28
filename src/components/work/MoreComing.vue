@@ -14,15 +14,15 @@ withDefaults(defineProps<{ nextIndex: number; compact?: boolean }>(), { compact:
     <div :class="compact ? '' : 'lg:col-span-7'">
       <p class="font-mono text-[0.6875rem] tracking-[0.16em] text-fg-subtle uppercase">{{ String(nextIndex).padStart(2, '0') }} / In the works</p>
       <p class="mt-6 font-semibold tracking-[-0.045em] text-fg" :class="compact ? 'text-5xl' : 'text-5xl sm:text-7xl'">
-        More coming<span class="animate-pulse-dot text-accent">.</span>
+        More coming<span class="text-fg-subtle">.</span>
       </p>
     </div>
     <div :class="compact ? '' : 'lg:col-span-5'">
       <p class="text-lg leading-relaxed text-fg-muted">
-        Building our own products is the surest way to prove what SOFORR can do. More are on the way, and they will
-        appear here when they are real.
+        Building our own products is the surest way to prove what SOFORR can do. More are on the way. They will
+        appear here when they are real, not before.
       </p>
-      <RouterLink to="/work-with-us" class="mt-6 inline-block border-b border-edge/30 pb-1 text-sm font-medium text-fg transition-colors hover:border-accent">
+      <RouterLink to="/contact" class="mt-6 inline-block border-b border-edge/30 pb-1 text-sm font-medium text-fg transition-colors hover:border-fg">
         Have a problem we should build around? Tell us.
       </RouterLink>
     </div>

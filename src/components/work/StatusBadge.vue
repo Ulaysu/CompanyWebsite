@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ProductStatus } from '@/content/products'
+import type { ProjectStatus } from '@/content/work'
 
-defineProps<{ status: ProductStatus }>()
+defineProps<{ status: ProjectStatus }>()
 </script>
 
 <template>

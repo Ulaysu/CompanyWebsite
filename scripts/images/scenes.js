@@ -68,4 +68,3 @@ export function system(canvas, theme) {
   s.render()
 }
 
-export { globe } from './globe.js'

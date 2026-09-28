@@ -32,7 +32,7 @@ export const createApp = ViteSSG(
             '@type': 'Organization',
             name: site.name,
             description: site.description,
-            slogan: site.tagline,
+            slogan: site.headline,
             url: site.url,
             email: site.email,
             founder: { '@type': 'Person', name: founder.name, alternateName: founder.handle, jobTitle: founder.role },

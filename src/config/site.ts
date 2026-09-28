@@ -2,14 +2,19 @@
  * Brand + site configuration.
  *
  * Everything that identifies the company lives here, so components never
- * hard-code the name, the philosophy or the navigation.
+ * hard-code the name, the positioning or the navigation.
  */
 export const site = {
   name: 'SOFORR',
   descriptor: 'Technology company',
-  tagline: 'Building world-class technology from Africa to the world.',
+  /** The primary positioning line. */
+  headline: 'We build technology for ideas worth building.',
+  summary: 'We build products, platforms and systems for people and organisations solving problems that matter.',
+  /** Origin and scope, stated once and quietly. */
+  origin: 'Founded in The Gambia. Building globally.',
+  originShort: 'Founded in The Gambia · Building globally',
   description:
-    'SOFORR is a technology company building products, platforms, systems and infrastructure that solve real problems. Founded in The Gambia, building from Africa to the world.',
+    'SOFORR is a technology company. We build products, platforms and systems for people and organisations solving problems that matter. Founded in The Gambia, building globally.',
 
   /** The philosophy the company is named after. */
   philosophy: {
@@ -23,12 +28,9 @@ export const site = {
 
   /**
    * TODO(owner): replace with the real inbox before launch.
-   * Shown on the Work with us page and used as the fallback when no form endpoint is configured.
+   * Shown on the Contact page and used as the fallback when no form endpoint is configured.
    */
   email: 'hello@example.com',
-
-  /** One honest line about where the company is and who it builds for. */
-  basedIn: 'Rooted in The Gambia · Building for the world',
 
   /**
    * Company social profiles. Leave `null` to hide.
@@ -42,11 +44,11 @@ export const site = {
 } as const
 
 export const navigation = [
-  { label: 'Home', to: '/' },
-  { label: 'What we build', to: '/what-we-build' },
+  { label: 'Work', to: '/work' },
   { label: 'Products', to: '/products' },
+  { label: 'Approach', to: '/approach' },
   { label: 'About', to: '/about' },
-  { label: 'Work with us', to: '/work-with-us' },
+  { label: 'Contact', to: '/contact' },
 ] as const
 
-export const primaryCta = { label: 'Start a conversation', to: '/work-with-us' } as const
+export const primaryCta = { label: 'Start a conversation', to: '/contact' } as const

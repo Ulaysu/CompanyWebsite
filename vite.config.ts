@@ -20,9 +20,12 @@ export default defineConfig(({ mode }) => {
       formatting: 'minify',
       dirStyle: 'nested',
       includedRoutes(paths) {
-        // Redirect-only routes (see src/routes.ts) are served by vercel.json / public/_redirects, not pre-rendered.
-        const redirectOnly = ['/services', '/solutions', '/how-we-work', '/work', '/contact']
-        renderedPaths = paths.filter((p) => !p.includes(':') && !redirectOnly.includes(p) && !p.startsWith('/work/'))
+        // Redirect-only routes (see `redirects` in src/routes.ts) are served by vercel.json / public/_redirects, not pre-rendered.
+        const redirectOnly = [
+          '/what-we-build', '/services', '/how-we-work', '/solutions', '/work-with-us',
+          '/products/kujaaburun', '/products/sweetland-farms', '/work/sweetland-farms',
+        ]
+        renderedPaths = paths.filter((p) => !p.includes(':') && !redirectOnly.includes(p))
         return [...renderedPaths, '/404']
       },
       onFinished() {

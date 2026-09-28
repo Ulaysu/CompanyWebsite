@@ -13,7 +13,7 @@ useHead({ title: `Page not found — ${site.name}`, meta: [{ name: 'robots', con
     <p class="lede mt-4 max-w-md">The link may be out of date. Everything else is where you'd expect it.</p>
     <div class="mt-8 flex flex-wrap gap-3">
       <AppButton to="/" arrow>Back to home</AppButton>
-      <AppButton to="/products" variant="secondary">See our products</AppButton>
+      <AppButton to="/work" variant="secondary">See the work</AppButton>
     </div>
   </div></section>
 </template>

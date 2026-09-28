@@ -1,8 +1,8 @@
-# SOFORR — Building world-class technology from Africa to the world
+# SOFORR — We build technology for ideas worth building
 
 *Duniyai ka Soforr.* (Jola-Bulluf: “This world is all about helping one another.”)
 
-Website for SOFORR, a technology company founded in The Gambia by Sulayman Sanyang (CodeDream). Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
+Website for SOFORR, a technology company founded in The Gambia by Sulayman Sanyang (CodeDream), building globally. Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
 
 ## Commands
 
@@ -36,31 +36,31 @@ The site has a dark and a light theme. The first visit follows the system settin
 
 ## Illustrations
 
-The images in `public/images/` are generated in code, not stock or AI imagery. Isometric "architectural model" scenes and an abstract line field are drawn on a canvas by `scripts/images/scenes.js` (with `engine.js`), then exported as WebP in dark and light versions, two widths each. Edit a scene and run `node scripts/generate-images.mjs <scene>` to re-render it. `ThemedImage.vue` shows the variant for the current theme, and only that one is downloaded. To use a photo or an AI-generated image instead, drop files with the same names (`{name}-{dark|light}-{width}.webp`) into `public/images/`, or register a new entry in `src/content/images.ts`.
+The images in `public/images/` are generated in code, not stock or AI imagery. Isometric "architectural model" scenes drawn on a canvas by `scripts/images/scenes.js` (with `engine.js`), then exported as WebP in dark and light versions, two widths each. Edit a scene and run `node scripts/generate-images.mjs <scene>` to re-render it. `ThemedImage.vue` shows the variant for the current theme, and only that one is downloaded. To use a photo or an AI-generated image instead, drop files with the same names (`{name}-{dark|light}-{width}.webp`) into `public/images/`, or register a new entry in `src/content/images.ts`.
 
 ## Photography
 
-Real photos (page headers, products, Built from Africa, final call to action) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
+Real photos (page headers and project imagery, each tied to the place the work happens) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
 
 To swap a photo, change its `unsplash` ID in `photos.json` and run `node scripts/fetch-photos.mjs <key>`. To use your own photo, save it over `public/photos/<key>-<width>.webp` for each width listed.
 
 ## Story and content
 
-The homepage tells one story, in order: hero → 01 Belief → 02 Vision → 03 What we build → 04 Products → 05 Built from Africa → 06 How we build → 07 Work with us → 08 Founder → final call to action.
+The homepage tells one story, in order: hero (what we do) → 01 Why we exist (Duniyai ka Soforr) → 02 What we build → 03 Work, shown by place → 04 How we build → 05 Engineering → 06 Partner work → 07 Founder → 08 Principles → final call to action.
+
+Navigation: Work, Products, Approach, About, Contact. Africa is the origin story (philosophy, founder, footer), not the headline; the global scope is shown by where the work actually is.
 
 - `src/config/site.ts`: name, tagline, the philosophy (*Duniyai ka Soforr*), email, socials, navigation.
-- `src/content/company.ts`: belief, vision, build areas, Built from Africa, process, engineering focus, stack, partnership, principles, founder.
-- `src/content/products.ts`: SOFORR's products and initiatives. **To add one**, append an entry; a page at `/products/<slug>` is generated automatically. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist.
+- `src/content/company.ts`: philosophy, what we build, geography, process, engineering practices (with the tools behind them), partner work, principles, founder.
+- `src/content/work.ts`: SOFORR's products and partner systems, each with a `place` (name, region, IANA time zone for the live local time). **To add one**, append an entry; a page at `/work/<slug>` is generated automatically. Products marked `SOFORR product` also appear on `/products`. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist.
 
 **Founder portrait.** To replace it, run `node scripts/add-founder-photo.mjs path/to/photo.jpg`. Set `founder.photo` to `null` to show a designed placeholder frame instead.
 
-Retired URLs (`/work`, `/work/<slug>`, `/contact`, `/services`, `/solutions`, `/how-we-work`) redirect via `vercel.json` (Vercel), `public/_redirects` (Netlify/Cloudflare Pages) and client-side.
-
-The Africa-centred globe (`public/images/globe-dark-*.webp`), with arcs travelling from The Gambia, is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
+Retired URLs (`/what-we-build`, `/work-with-us`, `/products/<slug>`, `/work/sweetland-farms`, `/services`, `/solutions`, `/how-we-work`) redirect via `vercel.json` (Vercel), `public/_redirects` (Netlify/Cloudflare Pages) and client-side.
 
 ## Design
 
-Warm near-black and paper surfaces, a single laterite accent (`--color-accent`), Geist for type, and Instrument Serif used only for the philosophy and a few editorial accents. Sharp corners and hairlines rather than rounded cards; no gradient text.
+Warm near-black and paper surfaces. Geist for type, with Instrument Serif as the brand's second voice (the philosophy, CodeDream, a few editorial words). One warm accent (`--color-accent`), reserved for the mark, live status and focus. Sharp corners and hairlines rather than cards; no gradient text. Motion is limited to headline word reveals, image shutter reveals, rules that draw themselves and quiet hover states, all disabled under `prefers-reduced-motion`.
 
 ## Structure
 

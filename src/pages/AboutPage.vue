@@ -1,60 +1,81 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { usePageMeta } from '@/composables/usePageMeta'
 import PageHero from '@/components/sections/PageHero.vue'
-import BeliefSection from '@/components/sections/BeliefSection.vue'
-import VisionSection from '@/components/sections/VisionSection.vue'
-import AfricaWorldSection from '@/components/sections/AfricaWorldSection.vue'
+import SectionLabel from '@/components/ui/SectionLabel.vue'
+import LocalTime from '@/components/ui/LocalTime.vue'
+import PhilosophySection from '@/components/sections/PhilosophySection.vue'
 import FounderSection from '@/components/sections/FounderSection.vue'
+import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import { direction, founder, principles } from '@/content/company'
+import { direction, founder } from '@/content/company'
+import { projects } from '@/content/work'
 import { site } from '@/config/site'
 
 usePageMeta({
   title: 'About',
-  description: `${site.name} is a technology company founded in The Gambia by ${founder.name} (${founder.handle}), building world-class technology from Africa to the world.`,
+  description: `${site.name} is a technology company founded in The Gambia by ${founder.name} (${founder.handle}). It builds products, platforms and systems wherever the problem is.`,
 })
 </script>
 
 <template>
   <div>
     <PageHero
-      label="About SOFORR"
-      title="A technology company built on helping one another."
-      :lede="`SOFORR was founded in The Gambia by ${founder.name}, known online as ${founder.handle}. We build products, platforms, systems and infrastructure, from Africa to the world.`"
-      photo="city"
+      label="About"
+      title="A technology company named after an idea."
+      :lede="`SOFORR was founded in The Gambia by ${founder.name}, known as ${founder.handle}. It builds products, platforms and systems for people and organisations, wherever the problem is.`"
+      photo="builders"
     />
 
-    <BeliefSection index="" />
-    <VisionSection index="" label="Why we exist" />
-    <AfricaWorldSection index="" />
+    <PhilosophySection index="" />
 
-    <section class="section" aria-labelledby="principles-title">
-      <div class="container-page">
-        <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />How we think</p>
-        <h2 id="principles-title" v-reveal="60" class="heading-xl mt-8">Principles we build by.</h2>
-        <ol class="mt-14 grid grid-cols-1 gap-x-16 gap-y-12 sm:mt-20 md:grid-cols-2">
-          <li v-for="(p, i) in principles" :key="p.title" v-reveal="(i % 2) * 90" class="border-t border-edge/10 pt-8">
-            <span class="font-mono text-xs text-accent">0{{ i + 1 }}</span>
-            <h3 class="mt-5 text-2xl font-semibold tracking-[-0.03em] text-fg sm:text-3xl">{{ p.title }}</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-fg-muted">{{ p.body }}</p>
-          </li>
-        </ol>
+    <!-- Origin and scope, stated once. -->
+    <section class="section border-t border-edge/[0.07]" aria-labelledby="origin-title">
+      <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <SectionLabel label="Origin & scope" />
+          <h2 id="origin-title" v-reveal="60" class="heading-xl mt-8">
+            Founded in The Gambia.<br /><span class="text-fg-muted">Building globally.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7">
+          <p v-reveal class="text-xl leading-relaxed text-fg">
+            The Gambia is where SOFORR started, and where its philosophy comes from. It is not the limit of what the
+            company builds or who it builds for.
+          </p>
+          <p v-reveal="60" class="mt-5 text-lg leading-relaxed text-fg-muted">
+            Today the work spans a travel platform originating in The Gambia and an operational system for a farm in
+            Maine. Different industries and environments, held to the same engineering standard.
+          </p>
+          <ul class="mt-10 border-t border-edge/15">
+            <li v-for="p in projects" :key="p.slug" v-reveal class="border-b border-edge/10">
+              <RouterLink :to="`/work/${p.slug}`" class="group grid grid-cols-[1fr_auto] items-baseline gap-4 py-5">
+                <span>
+                  <span class="block text-xl font-semibold tracking-[-0.02em] text-fg">{{ p.place.name }}</span>
+                  <span class="mt-1 block text-[0.9375rem] text-fg-muted group-hover:text-fg">{{ p.name }} · {{ p.kind }}</span>
+                </span>
+                <span class="font-mono text-[0.6875rem] text-fg-subtle"><LocalTime :time-zone="p.place.timeZone" /></span>
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <FounderSection index="" />
+    <PrinciplesSection index="" />
 
-    <section class="section" aria-labelledby="direction-title">
+    <section class="section border-t border-edge/[0.07]" aria-labelledby="direction-title">
       <div class="container-page grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Direction</p>
+          <SectionLabel label="Direction" />
           <h2 id="direction-title" v-reveal="60" class="heading-xl mt-8">{{ direction.title }}</h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7 lg:pt-16">
           <p v-reveal class="text-xl leading-relaxed text-fg sm:text-2xl sm:leading-relaxed">{{ direction.body }}</p>
           <div v-reveal="80" class="mt-10">
-            <AppButton to="/products" variant="secondary" arrow>See what we’re building</AppButton>
+            <AppButton to="/work" variant="secondary" arrow>See the work</AppButton>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ const classes = computed(() => [
     lg: 'h-13 px-7 text-[0.9375rem]',
   }[props.size],
   {
-    primary: 'bg-fg text-ink-950 hover:bg-accent hover:text-ink-950',
+    primary: 'bg-fg text-ink-950 hover:bg-fg/85',
     secondary: 'border border-edge/20 bg-ink-950/40 text-fg backdrop-blur-md hover:border-edge/50',
     ghost: 'px-0 text-fg hover:text-fg',
   }[props.variant],

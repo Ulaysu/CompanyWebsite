@@ -1,8 +1,9 @@
-# Retired URLs (Netlify / Cloudflare Pages format). Keep in sync with src/routes.ts.
-/services                 /what-we-build              301
-/solutions                /products                   301
-/how-we-work              /what-we-build              301
-/work                     /products                   301
-/work/kujaaburun          /products/kujaaburun        301
-/work/sweetland-farms     /products/sweetland-farms   301
-/contact                  /work-with-us               301
+# Retired URLs (Netlify / Cloudflare Pages format). Keep in sync with src/routes.ts and vercel.json.
+/what-we-build              /approach                   301
+/services                   /approach                   301
+/how-we-work                /approach                   301
+/solutions                  /work                       301
+/work-with-us               /contact                    301
+/products/kujaaburun        /work/kujaaburun            301
+/products/sweetland-farms   /work/sweetland-farms-os    301
+/work/sweetland-farms       /work/sweetland-farms-os    301

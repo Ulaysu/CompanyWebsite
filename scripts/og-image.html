@@ -8,30 +8,22 @@
   @font-face { font-family: Serif; font-style: italic; src: url('../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2') format('woff2'); }
   * { margin: 0; box-sizing: border-box; }
   body { width: 1200px; height: 630px; background: #0a0a0a; color: #f4efe8; font-family: Geist, sans-serif; position: relative; overflow: hidden; }
-  .grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgb(255 255 255 / .04) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / .04) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 70% 90% at 85% 50%, #000 20%, transparent 75%); }
-  .globe { position: absolute; width: 760px; right: -210px; top: 50%; transform: translateY(-50%); }
-  .fade { position: absolute; inset: 0; background: linear-gradient(90deg, #0a0a0a 0%, rgb(10 10 10 / .85) 42%, transparent 72%); }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgb(255 255 255 / .04) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / .04) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 80% at 20% 20%, #000 15%, transparent 75%); }
   .wrap { position: relative; padding: 64px 72px; height: 100%; display: flex; flex-direction: column; }
-  .eyebrow { font-family: GeistMono; font-size: 15px; letter-spacing: .16em; color: #8a857d; text-transform: uppercase; display: flex; gap: 14px; align-items: center; }
-  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: #e8723a; display: inline-block; }
-  .word { margin-top: 40px; font-size: 168px; line-height: .8; font-weight: 600; letter-spacing: -.055em; }
-  .phrase { margin-top: 34px; font-family: Serif; font-style: italic; font-size: 54px; line-height: 1; }
-  .tag { margin-top: auto; font-size: 30px; line-height: 1.2; font-weight: 500; letter-spacing: -.02em; max-width: 620px; }
-  .rail { margin-top: 22px; font-family: GeistMono; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; color: #f4efe8; display: flex; align-items: center; gap: 14px; width: 560px; }
-  .rail b { font-weight: 400; color: #e8723a; }
-  .rail span { flex: 1; height: 1px; background: rgb(255 255 255 / .2); }
+  .eyebrow { font-family: GeistMono; font-size: 16px; letter-spacing: .16em; color: #8a857d; text-transform: uppercase; display: flex; gap: 14px; align-items: center; }
+  .eyebrow b { color: #f4efe8; font-weight: 500; }
+  h1 { margin-top: auto; font-size: 92px; line-height: .96; font-weight: 600; letter-spacing: -.05em; max-width: 1000px; }
+  h1 em { font-family: Serif; font-style: italic; font-weight: 400; letter-spacing: -.02em; }
+  .foot { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / .12); display: flex; justify-content: space-between; font-family: GeistMono; font-size: 16px; letter-spacing: .04em; color: #8a857d; }
+  .foot span:last-child { font-family: Serif; font-style: italic; font-size: 28px; letter-spacing: 0; color: #f4efe8; line-height: 1; }
 </style>
 </head>
 <body>
   <div class="grid"></div>
-  <img class="globe" src="../public/images/globe-dark-1800.webp" alt="" />
-  <div class="fade"></div>
   <div class="wrap">
-    <div class="eyebrow"><i></i>Technology company / Founded in The Gambia</div>
-    <div class="word">SOFORR</div>
-    <div class="phrase">Duniyai ka Soforr.</div>
-    <div class="tag">Building world-class technology from Africa to the world.</div>
-    <div class="rail"><b>Africa</b><span></span>Technology<span></span>World</div>
+    <div class="eyebrow"><svg width="40" height="25" viewBox="0 0 32 20"><circle cx="10" cy="10" r="7.25" fill="none" stroke="#f4efe8" stroke-width="2.5"/><circle cx="22" cy="10" r="7.25" fill="none" stroke="#e8723a" stroke-width="2.5"/><path d="M 15.13 4.87 A 7.25 7.25 0 0 1 17.25 10" fill="none" stroke="#f4efe8" stroke-width="2.5"/></svg><b>SOFORR</b> / Technology company</div>
+    <h1>We build technology for ideas <em>worth building.</em></h1>
+    <div class="foot"><span>Founded in The Gambia. Building globally.</span><span>Duniyai ka Soforr.</span></div>
   </div>
 </body>
 </html>

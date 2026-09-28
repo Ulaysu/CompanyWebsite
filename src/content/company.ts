@@ -1,37 +1,25 @@
 /**
- * SOFORR's story, in the order the site tells it:
- * belief → vision → what we build → products → built from Africa → how we build
- * → work with us → founder.
+ * SOFORR's story. The homepage tells it in this order:
+ * what we do (hero) → why we exist (Duniyai ka Soforr) → what we build
+ * → the work, wherever it is → how we build → engineering → partner work
+ * → founder → principles.
  *
  * All copy lives here so it can be edited without touching components.
  * Only state what is true. No invented clients, users, metrics or partners.
  */
 
-/** 01 · Belief. The philosophy behind the name. */
-export const belief = {
+/** Why SOFORR exists: the philosophy it is named after. */
+export const philosophy = {
   title: 'Technology should help people move forward.',
-  body: [
-    'Soforr comes from Jola-Bulluf and is rooted in the idea of helping one another. Duniyai ka Soforr: this world is all about helping one another.',
-    'We think that is exactly what technology is for.',
-  ],
-  /** Each line completes “Technology should …”. */
+  origin: 'Soforr is a Jola-Bulluf word. It carries the idea of helping one another, and it is the idea this company is named after.',
+  body: 'Most of what people achieve, they achieve with help. Technology, at its best, is a way of giving that help to more people, in more places, than any one person could reach alone.',
   lines: [
-    'connect people.',
-    'remove unnecessary barriers.',
-    'help businesses operate better.',
-    'create opportunities.',
-    'let people build what they could not build alone.',
+    'Technology connects people.',
+    'It removes barriers that should not be there.',
+    'It helps organisations operate better.',
+    'It creates opportunities.',
+    'It lets people accomplish more together than they could alone.',
   ],
-}
-
-/** 02 · Vision. Why the company exists. */
-export const vision = {
-  statement: 'World-class technology can be imagined and built from Africa. We are building it.',
-  paragraphs: [
-    'SOFORR is a technology company. We build products, platforms, systems and infrastructure that solve real problems, and we hold every one of them to the standard of the best technology companies in the world.',
-    'Some of what we build is our own. Some we build with ambitious people and organisations who have a problem worth solving. All of it starts from Africa, and none of it is meant to stay there.',
-  ],
-  stance: ['We build.', 'We experiment.', 'We solve.'],
 }
 
 export interface BuildArea {
@@ -42,112 +30,101 @@ export interface BuildArea {
   examples: string[]
 }
 
-/** 03 · What we build. Four kinds of technology, not a menu of services. */
-export const buildAreas: BuildArea[] = [
-  {
-    id: 'products',
-    title: 'Products',
-    summary: 'Our own technology products, designed around real problems.',
-    description:
-      'We find problems we understand first-hand and build products that solve them properly: from the first version to something people depend on.',
-    examples: ['Consumer products', 'Marketplaces', 'Mobile-first applications'],
-  },
-  {
-    id: 'platforms',
-    title: 'Platforms',
-    summary: 'Technology that connects people, businesses, services and opportunities.',
-    description:
-      'Platforms that bring two sides together and make it easy for them to find, trust and transact with each other, across towns and across borders.',
-    examples: ['Two-sided platforms', 'Booking and discovery', 'Service networks'],
-  },
-  {
-    id: 'systems',
-    title: 'Systems',
-    summary: 'Serious operational software for organisations that need more than off-the-shelf tools.',
-    description:
-      'Systems shaped around how an organisation actually works: operations, finance, inventory, scheduling and reporting, in one place and built to last.',
-    examples: ['Operations platforms', 'Internal tools', 'Reporting and visibility'],
-  },
-  {
-    id: 'infrastructure',
-    title: 'Infrastructure',
-    summary: 'APIs, integrations, automation and the technical foundations that let organisations operate and scale.',
-    description:
-      'The layer most people never see: well-designed APIs, reliable integrations, payment flows and automation that keep everything above them running.',
-    examples: ['APIs', 'Payments and integrations', 'Automation and background processing'],
-  },
-]
-
-/** 05 · Built from Africa. Confident, not defensive. */
-export const builtFromAfrica = {
-  title: ['Built from Africa.', 'Designed for the world.'],
-  lines: [
-    'Africa is where SOFORR is rooted.',
-    'The problems we encounter here sharpen how we think.',
-    'The constraints force us to build differently.',
-    'The opportunity is global.',
-  ],
-  closing:
-    'SOFORR is not building technology exclusively for Africa. It is building technology from Africa that can travel anywhere.',
-  points: [
+/** What SOFORR builds. Four forms of technology, not a menu of services. */
+export const whatWeBuild = {
+  title: 'We build technology.',
+  lede: 'Sometimes it is our own product. Sometimes we build it with a partner. The common thread is ownership: of the problem, and of the outcome.',
+  areas: [
     {
-      title: 'Mobile first, by default',
-      body: 'Most people meet software on a phone. We design for that first, and it makes products better everywhere.',
+      id: 'products',
+      title: 'Products',
+      summary: 'Our own technology products, designed around real problems.',
+      description:
+        'We find problems we understand closely and build products that solve them properly, from the first version to something people depend on.',
+      examples: ['Consumer products', 'Marketplaces', 'Mobile-first applications'],
     },
     {
-      title: 'Resilient to real conditions',
-      body: 'Variable connectivity and many ways to pay are design inputs for us, not edge cases.',
+      id: 'platforms',
+      title: 'Platforms',
+      summary: 'Technology that connects people, businesses, services and opportunities.',
+      description:
+        'Platforms that bring two sides together and make it easy for them to find, trust and transact with each other.',
+      examples: ['Two-sided platforms', 'Booking and discovery', 'Service networks'],
     },
     {
-      title: 'Built to cross borders',
-      body: 'Cloud infrastructure, international standards and products designed to travel from the first commit.',
+      id: 'systems',
+      title: 'Systems',
+      summary: 'Operational software built around how organisations actually work.',
+      description:
+        'Systems shaped around the real work of an organisation: operations, inventory, scheduling, finance and reporting, in one place and built to last.',
+      examples: ['Operations systems', 'Internal tools', 'Reporting and visibility'],
     },
-  ],
+    {
+      id: 'infrastructure',
+      title: 'Infrastructure',
+      summary: 'APIs, integrations, automation and technical foundations.',
+      description:
+        'The layer most people never see: well-designed APIs, reliable integrations, payment flows and automation that keep everything above them running.',
+      examples: ['APIs', 'Payments and integrations', 'Automation and background processing'],
+    },
+  ] as BuildArea[],
 }
 
-/** 06 · How we build. */
+/** The geography of the work. Global because of the evidence, not the adjectives. */
+export const geography = {
+  title: 'Built wherever the problem is.',
+  lede: 'From a tourism platform originating in The Gambia to operational technology for a farm in Maine.',
+  contrast: ['Different industries.', 'Different environments.', 'The same engineering discipline.'],
+  next: 'More places to come.',
+}
+
+/** How we build. The same loop for our own products and for partner work. */
 export const buildProcess = [
-  { title: 'Understand', body: 'The problem, the people it affects and the constraints it lives with.' },
-  { title: 'Design', body: 'The product and its architecture, and what the first version must do.' },
-  { title: 'Build', body: 'Working software in short cycles, so progress is visible early.' },
-  { title: 'Deploy', body: 'Into production on infrastructure that is reproducible and observable.' },
-  { title: 'Improve', body: 'Continuously, as real usage shows what matters next.' },
+  { title: 'Understand', body: 'The actual problem, the people it affects and the constraints it has to live with. Not just the request.' },
+  { title: 'Design', body: 'The right solution, and the smallest first version that proves it.' },
+  { title: 'Build', body: 'Working software, in short cycles, so progress is visible early and often.' },
+  { title: 'Deploy', body: 'Properly: reproducible, secure and observable from the first release.' },
+  { title: 'Improve', body: 'Observe what really happens in production, then act on it. Continuously.' },
 ]
 
-export const engineeringFocus = [
-  { title: 'Strong architecture', body: 'Clear boundaries and simple designs that stay understandable as they grow.' },
-  { title: 'Reliable APIs', body: 'Contracts designed deliberately, versioned carefully and documented properly.' },
-  { title: 'Data', body: 'Relational foundations, careful modelling and migrations you can trust.' },
-  { title: 'Integrations', body: 'Third-party systems connected so they fail gracefully and recover on their own.' },
-  { title: 'Automation', body: 'Work that should run itself, scheduled and processed in the background.' },
-  { title: 'Payments', body: 'Payment flows that work across providers and markets, handled with care.' },
-  { title: 'Cloud infrastructure', body: 'Containerised, reproducible deployments that scale when they need to.' },
-  { title: 'Security', body: 'Authentication, authorisation and sensible handling of money and personal data.' },
-  { title: 'Observability', body: 'Logging, metrics and alerts, so problems are found before users find them.' },
-  { title: 'Maintainability', body: 'Code that the next engineer, and the next year, can work with.' },
-]
+export interface Practice {
+  title: string
+  body: string
+  /** The tools that do the work. Only list what we actually use. */
+  tools?: string[]
+}
 
-export const stack = [
-  { group: 'Language & runtime', items: ['C#', '.NET', 'ASP.NET Core'] },
-  { group: 'Data', items: ['PostgreSQL', 'SQL Server'] },
-  { group: 'Interfaces', items: ['REST APIs', 'Webhooks', 'Third-party APIs', 'Payment integrations'] },
-  { group: 'Delivery', items: ['Docker', 'Git', 'CI/CD', 'Cloud infrastructure', 'Background processing'] },
-]
+/** Engineering, presented as practices with the tools behind them. */
+export const engineering = {
+  title: 'We care about what happens after launch.',
+  lede: 'Launch is the start. We build systems that survive real use, evolve without being rewritten and scale when they need to.',
+  practices: [
+    { title: 'Architecture', body: 'Clear boundaries and simple designs that stay understandable as a system grows.', tools: ['C#', '.NET', 'ASP.NET Core'] },
+    { title: 'Data', body: 'Careful relational modelling and migrations you can trust with real records.', tools: ['PostgreSQL', 'SQL Server'] },
+    { title: 'APIs & integrations', body: 'Contracts designed deliberately. Integrations that fail gracefully and recover on their own.', tools: ['REST APIs', 'Webhooks', 'Third-party APIs'] },
+    { title: 'Payments', body: 'Money handled with care, across providers and currencies.', tools: ['Payment integrations'] },
+    { title: 'Automation', body: 'Work that should run itself, scheduled and processed reliably in the background.', tools: ['Background processing'] },
+    { title: 'Delivery', body: 'Every change built, checked and shipped the same way, every time.', tools: ['Git', 'CI/CD', 'Docker'] },
+    { title: 'Cloud & security', body: 'Reproducible infrastructure, sensible defaults, and personal data treated with respect.', tools: ['Cloud infrastructure'] },
+    { title: 'Observability', body: 'Logs, metrics and alerts, so problems are found before users find them.' },
+    { title: 'Maintainability', body: 'Code that the next engineer, and the next year, can work with.' },
+  ] as Practice[],
+}
 
-/** 07 · Work with us. Selective, not a quote form. */
+/** Partner work. Selective, and framed around outcomes. */
 export const partnership = {
-  title: 'Have a problem worth building around?',
-  body: [
-    'Alongside our own products, SOFORR works selectively with organisations that need technology to solve meaningful operational or business problems.',
-    'We build for partners the way we build for ourselves: properly, to last, and with ownership of the outcome.',
-  ],
+  label: 'Partner work',
+  title: 'Alongside our own products, we work with organisations that have important problems worth solving.',
+  body: 'We take on partner work selectively, and treat it the way we treat our own products: we own the problem with you, build it properly and stay for what happens after launch.',
+  flow: ['Problem', 'Technology', 'Outcome'],
   areas: [
-    { title: 'Custom systems', body: 'Software shaped around how your organisation actually works.' },
-    { title: 'Business automation', body: 'Workflows that run themselves, so people can do the work only people can do.' },
-    { title: 'APIs & integrations', body: 'Connecting the systems you already depend on, reliably.' },
-    { title: 'Internal platforms', body: 'The tools your teams use every day, built to fit them.' },
-    { title: 'Payment systems', body: 'Collecting, reconciling and moving money across providers.' },
-    { title: 'Data & operational tools', body: 'Visibility into what is happening, and what to do about it.' },
+    'Custom systems',
+    'Operational software',
+    'Automation',
+    'APIs & integrations',
+    'Internal platforms',
+    'Payment systems',
+    'Data and operational tools',
   ],
   fit: [
     'A real problem, not just a feature list',
@@ -156,41 +133,28 @@ export const partnership = {
   ],
 }
 
-/** How SOFORR works, stated once. Used on the About page. */
 export const principles = [
-  {
-    title: 'Build, don’t just advise.',
-    body: 'Ideas get clearer once they run. We would rather put working software in front of people than another slide deck.',
-  },
-  {
-    title: 'Global standards, local insight.',
-    body: 'Where we come from shapes what we notice. It never lowers the bar.',
-  },
-  {
-    title: 'Products that compound.',
-    body: 'We build technology that becomes more valuable with every user, every data point and every release.',
-  },
-  {
-    title: 'Own the outcome.',
-    body: 'From the first conversation to production and beyond, we take responsibility for what we ship.',
-  },
+  { title: 'Build, don’t just advise.', body: 'The best way to understand technology is to build it.' },
+  { title: 'Own the outcome.', body: 'We care about whether the system actually works.' },
+  { title: 'Global standards, real-world constraints.', body: 'Good engineering has to survive reality.' },
+  { title: 'Products that compound.', body: 'What we build should become more valuable over time.' },
+  { title: 'Help one another.', body: 'Duniyai ka Soforr.' },
 ]
 
-/** 08 · Founder. CodeDream → Founder → SOFORR. */
+/** The founder. CodeDream is the person; SOFORR is the company. */
 export const founder = {
   name: 'Sulayman Sanyang',
   role: 'Founder & Software Engineer',
   handle: 'CodeDream',
   origin: 'The Gambia',
-  /** Approximate coordinates of The Gambia, shown as a quiet detail beside the portrait. */
-  coordinates: '13.4° N · 16.6° W',
-  chain: ['CodeDream', 'Founder', 'SOFORR'],
+  title: 'The person behind SOFORR.',
   story: [
-    'Sulayman Sanyang is a Gambian software engineer. Online, he is known as CodeDream: the name under which he has written software, built products and worked with international teams on problems across very different domains.',
-    'He built his foundation in computer science and software engineering in The Gambia. Along the way, the ambition outgrew writing software for others. The goal became building technology companies that can compete with anyone, anywhere.',
-    'SOFORR is that company. It exists to build serious technology from Africa, starting with its own products, and to take it to the world.',
+    'Sulayman Sanyang built his foundation in computer science and software engineering in The Gambia. Online, he is known as CodeDream.',
+    'He started with software: writing it, shipping products and working with international teams on problems across very different domains.',
+    'The ambition grew from writing software to building technology products, and the companies that make them. SOFORR is the company he created to pursue it.',
   ],
-  statement: 'World-class technology can be imagined and built from Africa. SOFORR exists to prove it, one product at a time.',
+  /** A line in the company's voice, not a quote. */
+  statement: 'A founder from The Gambia, building a technology company with global ambition.',
   /**
    * Portrait. Set to `null` to show a designed placeholder frame instead.
    * To replace it: `node scripts/add-founder-photo.mjs path/to/photo.jpg`.
@@ -199,8 +163,8 @@ export const founder = {
   photoAlt: 'Portrait of Sulayman Sanyang, founder of SOFORR.',
 }
 
-/** Where the company is going. Closes the About page story. */
+/** Where the company is going. Closes the About page. */
 export const direction = {
   title: 'Where we’re going.',
-  body: 'A global technology company whose products are used well beyond the place they were made. We are at the start of that road, building one real product at a time.',
+  body: 'A technology company whose products and systems are used well beyond the place they were made. We are early on that road, and building one real thing at a time.',
 }

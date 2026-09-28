@@ -4,10 +4,9 @@ import { ArrowUpRight } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
 import { navigation, primaryCta, site } from '@/config/site'
 import { founder } from '@/content/company'
-import { products } from '@/content/products'
+import { projects } from '@/content/work'
 
 const year = new Date().getFullYear()
-const links = navigation.filter((n) => n.to !== '/')
 const socials = [
   { label: 'GitHub', href: site.social.github },
   { label: 'LinkedIn', href: site.social.linkedin },
@@ -23,26 +22,23 @@ const socials = [
           <LogoMark />
         </RouterLink>
         <p class="serif mt-10 text-4xl leading-none text-fg italic sm:text-5xl">{{ site.philosophy.phrase }}</p>
-        <p class="mt-3 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
-          {{ site.philosophy.language }}: “{{ site.philosophy.meaning }}”
-        </p>
-        <p class="mt-8 max-w-sm text-lg leading-snug font-medium tracking-[-0.015em] text-fg">{{ site.tagline }}</p>
+        <p class="mt-4 max-w-sm text-lg leading-snug text-fg-muted">“{{ site.philosophy.meaning }}”</p>
       </div>
 
       <nav aria-label="Footer" class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-6">
         <div>
           <h2 class="eyebrow mb-5">Company</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="item in links" :key="item.to">
+            <li v-for="item in navigation" :key="item.to">
               <RouterLink :to="item.to" class="text-fg-muted transition-colors hover:text-fg">{{ item.label }}</RouterLink>
             </li>
           </ul>
         </div>
         <div>
-          <h2 class="eyebrow mb-5">Products</h2>
+          <h2 class="eyebrow mb-5">Work</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="p in products" :key="p.slug">
-              <RouterLink :to="`/products/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
+            <li v-for="p in projects" :key="p.slug">
+              <RouterLink :to="`/work/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
             </li>
           </ul>
         </div>
@@ -62,9 +58,9 @@ const socials = [
             </li>
           </ul>
           <h2 class="eyebrow mt-10 mb-3">Founder</h2>
-          <p class="text-sm text-fg-muted">
-            <RouterLink to="/about#founder" class="transition-colors hover:text-fg">{{ founder.name }} <span class="text-fg-subtle">/</span> {{ founder.handle }}</RouterLink>
-          </p>
+          <RouterLink to="/about#founder" class="text-sm text-fg-muted transition-colors hover:text-fg">
+            {{ founder.name }} <span class="text-fg-subtle">/</span> {{ founder.handle }}
+          </RouterLink>
         </div>
       </nav>
     </div>
@@ -77,7 +73,7 @@ const socials = [
     <div class="relative border-t border-edge/[0.08]">
       <div class="container-page flex flex-col gap-2 py-6 font-mono text-[0.6875rem] tracking-wide text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
-        <p class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />{{ site.basedIn }}</p>
+        <p>{{ site.originShort }}</p>
       </div>
     </div>
   </footer>
