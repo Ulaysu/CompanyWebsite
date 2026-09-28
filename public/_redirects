@@ -1,4 +1,8 @@
-# Retired URLs from the previous site (Netlify / Cloudflare Pages format).
-/services     /what-we-build  301
-/solutions    /work           301
-/how-we-work  /what-we-build  301
+# Retired URLs (Netlify / Cloudflare Pages format). Keep in sync with src/routes.ts.
+/services                 /what-we-build              301
+/solutions                /products                   301
+/how-we-work              /what-we-build              301
+/work                     /products                   301
+/work/kujaaburun          /products/kujaaburun        301
+/work/sweetland-farms     /products/sweetland-farms   301
+/contact                  /work-with-us               301

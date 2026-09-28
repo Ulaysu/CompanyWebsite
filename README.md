@@ -1,6 +1,8 @@
-# Sulayman Sanyang — Technology, built from Africa
+# SOFORR — Building world-class technology from Africa to the world
 
-Website for a technology company building world-class software from Africa, for the world. Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
+*Duniyai ka Soforr.* (Jola-Bulluf: “This world is all about helping one another.”)
+
+Website for SOFORR, a technology company founded in The Gambia by Sulayman Sanyang (CodeDream). Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
 
 ## Commands
 
@@ -26,7 +28,7 @@ Copy `.env.example` to `.env` and set:
 **Before launch**, update `src/config/site.ts`:
 
 - `email`: currently the placeholder `hello@example.com`
-- `social.github` / `social.linkedin`: currently `null`, which hides them
+- `social.github` / `social.linkedin` / `social.x`: currently `null`, which hides them. Add the real SOFORR accounts.
 
 ## Themes
 
@@ -38,33 +40,38 @@ The images in `public/images/` are generated in code, not stock or AI imagery. I
 
 ## Photography
 
-Real photos (hero, page headers, solution headers, problem section, final call to action) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
+Real photos (page headers, products, Built from Africa, final call to action) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
 
 To swap a photo, change its `unsplash` ID in `photos.json` and run `node scripts/fetch-photos.mjs <key>`. To use your own photo, save it over `public/photos/<key>-<width>.webp` for each width listed.
 
 ## Story and content
 
-The homepage tells one story, in order: hero → 01 The company → 02 The work → 03 What we build → 04 Africa → World → 05 Engineering → 06 Principles → Build with us.
+The homepage tells one story, in order: hero → 01 Belief → 02 Vision → 03 What we build → 04 Products → 05 Built from Africa → 06 How we build → 07 Work with us → 08 Founder → final call to action.
 
-- `src/content/company.ts`: manifesto, capabilities, Africa → World copy, engineering, principles and engagement steps.
-- `src/content/work.ts`: the portfolio. **To add a project**, append an entry. A page at `/work/<slug>` is generated automatically. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist; the project page shows an honest placeholder for outcomes.
+- `src/config/site.ts`: name, tagline, the philosophy (*Duniyai ka Soforr*), email, socials, navigation.
+- `src/content/company.ts`: belief, vision, build areas, Built from Africa, process, engineering focus, stack, partnership, principles, founder.
+- `src/content/products.ts`: SOFORR's products and initiatives. **To add one**, append an entry; a page at `/products/<slug>` is generated automatically. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist.
 
-**Founder portrait.** The About page founder section shows a designed frame until a real photo is added. To add one, run `node scripts/add-founder-photo.mjs path/to/photo.jpg` (it writes 4:5 WebP crops to `public/photos/founder-*.webp`), then set `founder.photo` to `'founder'` in `src/content/company.ts`. The founder bio and statement live in the same file.
+**Founder portrait.** To replace it, run `node scripts/add-founder-photo.mjs path/to/photo.jpg`. Set `founder.photo` to `null` to show a designed placeholder frame instead.
 
-Retired URLs (`/services`, `/solutions`, `/how-we-work`) redirect client-side, and via `public/_redirects` on Netlify/Cloudflare Pages.
+Retired URLs (`/work`, `/work/<slug>`, `/contact`, `/services`, `/solutions`, `/how-we-work`) redirect via `vercel.json` (Vercel), `public/_redirects` (Netlify/Cloudflare Pages) and client-side.
 
-The Africa-centred globe (`public/images/globe-dark-*.webp`) is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
+The Africa-centred globe (`public/images/globe-dark-*.webp`), with arcs travelling from The Gambia, is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
+
+## Design
+
+Warm near-black and paper surfaces, a single laterite accent (`--color-accent`), Geist for type, and Instrument Serif used only for the philosophy and a few editorial accents. Sharp corners and hairlines rather than rounded cards; no gradient text.
 
 ## Structure
 
 ```
 src/
   config/site.ts        Brand name, descriptor, email, socials, navigation. Rebrand here.
-  content/              All copy and data: services, solutions, process, problems, capabilities, images
+  content/              All copy and data: company story, products, photos, images
   components/
-    ui/                 Primitives: AppButton, SectionHeader, WindowFrame, StatusPill, FormField, ...
+    ui/                 Primitives: AppButton, LogoMark, PhotoBackdrop, FormField, ...
     layout/             SiteHeader (incl. mobile nav), SiteFooter
-    visuals/            CSS/SVG product-interface visuals (no images)
+    products/           ProductFeature, ProductCard, MoreComing, StatusBadge
     sections/           Page sections composed from the above
   pages/                One file per route
   composables/          usePageMeta (SEO/OG), motion helpers
@@ -72,4 +79,4 @@ src/
   style.css             Design tokens (@theme) and base styles
 ```
 
-To change the positioning, services, industries or copy, edit `src/content/*` and `src/config/site.ts`. You shouldn't need to touch any components. The data shown in the mock interfaces is illustrative and says so on the page.
+To change the copy, edit `src/content/*` and `src/config/site.ts`. You shouldn't need to touch any components.

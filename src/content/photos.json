@@ -4,50 +4,101 @@
     "hero": {
       "unsplash": "1573164713988-8665fc963095",
       "alt": "An engineer with a laptop walking along a row of server racks lit in blue.",
-      "widths": [1000, 2000],
+      "widths": [
+        1000,
+        2000
+      ],
       "position": "78% 40%"
     },
     "earth": {
       "unsplash": "1451187580459-43490279c0fa",
       "alt": "Earth at night seen from orbit, with city lights along the horizon.",
-      "widths": [1000, 2000],
+      "widths": [
+        1000,
+        2000
+      ],
       "position": "50% 70%"
     },
     "builders": {
       "unsplash": "1531482615713-2afd69097998",
       "alt": "Two developers working through code together at a laptop.",
-      "widths": [800, 1600],
+      "widths": [
+        800,
+        1600
+      ],
       "position": "55% 45%"
     },
     "city": {
       "unsplash": "1596005554384-d293674c91d7",
       "alt": "Nairobi's skyline at night, reflected in water.",
-      "widths": [1000, 2000],
+      "widths": [
+        1000,
+        2000
+      ],
       "position": "50% 50%"
     },
     "circuit": {
       "unsplash": "1550751827-4bd374c3f58b",
       "alt": "Close-up of a circuit board lit in cyan.",
-      "widths": [800, 1600],
+      "widths": [
+        800,
+        1600
+      ],
       "position": "50% 50%"
     },
     "servers": {
       "unsplash": "1558494949-ef010cbdcc31",
       "alt": "Server racks with neatly routed network cables.",
-      "widths": [1000, 2000],
+      "widths": [
+        1000,
+        2000
+      ],
       "position": "50% 50%"
-    },
-    "kujaaburun": {
-      "unsplash": "1547471080-7cc2caa01a7e",
-      "alt": "A lone acacia tree on open savannah at golden hour.",
-      "widths": [800, 1600],
-      "position": "50% 55%"
     },
     "sweetland": {
       "unsplash": "1625246333195-78d9c38ad449",
       "alt": "Rows of young maize plants growing in dark soil.",
-      "widths": [800, 1600],
+      "widths": [
+        800,
+        1600
+      ],
       "position": "50% 60%"
+    },
+    "kujaaburun": {
+      "unsplash": "1448099940878-e0c48ea3a165",
+      "alt": "Aerial view of a river winding through mangrove forest in The Gambia.",
+      "widths": [
+        800,
+        1600
+      ],
+      "position": "50% 50%"
+    },
+    "lagos": {
+      "unsplash": "1618828665347-d870c38c95c7",
+      "alt": "Civic Towers and the Lagos lagoon in Lekki, Lagos, seen from above.",
+      "widths": [
+        800,
+        1600
+      ],
+      "position": "50% 62%"
+    },
+    "bridge": {
+      "unsplash": "1744907895363-d351aa6019ef",
+      "alt": "Aerial view of traffic on a bridge over the lagoon in Lagos.",
+      "widths": [
+        1000,
+        2000
+      ],
+      "position": "50% 50%"
+    },
+    "flight": {
+      "unsplash": "1721402495451-41724ae641a4",
+      "alt": "The view from an aircraft window on approach to Kigali, Rwanda.",
+      "widths": [
+        1000,
+        2000
+      ],
+      "position": "50% 50%"
     }
   }
 }

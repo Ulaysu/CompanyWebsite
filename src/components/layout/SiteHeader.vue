@@ -47,16 +47,17 @@ watch(open, (v) => {
   >
     <div class="container-page flex h-16 items-center justify-between gap-6">
       <RouterLink to="/" class="-m-1 rounded-md p-1" :aria-label="`${site.name} — home`">
-        <LogoMark :show-descriptor="true" descriptor-class="md:max-lg:hidden" />
+        <LogoMark :show-descriptor="true" descriptor-class="md:max-xl:hidden" />
       </RouterLink>
 
       <nav aria-label="Primary" class="hidden md:block">
-        <ul class="flex items-center gap-1">
+        <ul class="flex items-center gap-0.5 lg:gap-1">
           <li v-for="item in navigation" :key="item.to">
             <RouterLink
               :to="item.to"
-              class="rounded-full px-3 py-2 text-sm whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-3.5"
-              active-class="!text-fg"
+              class="px-2.5 py-2 text-[0.8125rem] whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-3.5 lg:text-sm"
+              :active-class="item.to === '/' ? '' : '!text-fg'"
+              exact-active-class="!text-fg"
             >
               {{ item.label }}
             </RouterLink>
@@ -73,7 +74,7 @@ watch(open, (v) => {
       <ThemeToggle />
       <button
         type="button"
-        class="-mr-2 grid size-10 place-items-center rounded-full text-fg md:hidden"
+        class="-mr-2 grid size-10 place-items-center text-fg md:hidden"
         :aria-expanded="open"
         aria-controls="mobile-nav"
         :aria-label="open ? 'Close menu' : 'Open menu'"
@@ -102,7 +103,8 @@ watch(open, (v) => {
               <RouterLink
                 :to="item.to"
                 class="flex items-center justify-between py-5 text-2xl font-medium tracking-tight text-fg-muted"
-                active-class="!text-fg"
+                :active-class="item.to === '/' ? '' : '!text-fg'"
+                exact-active-class="!text-fg"
                 :style="{ animationDelay: `${i * 40}ms` }"
               >
                 {{ item.label }}
@@ -112,7 +114,7 @@ watch(open, (v) => {
           </ul>
           <div class="mt-auto space-y-5 pt-10">
             <p class="text-sm leading-relaxed text-fg-muted">
-              Have something worth building? Tell us about it.
+              Have something worth building? Tell us about the problem, opportunity or idea.
             </p>
             <AppButton :to="primaryCta.to" size="lg" arrow class="w-full">{{ primaryCta.label }}</AppButton>
             <a :href="`mailto:${site.email}`" class="block text-center font-mono text-xs text-fg-subtle">{{ site.email }}</a>

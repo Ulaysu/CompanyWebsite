@@ -25,7 +25,7 @@ const describedBy = computed(() =>
 )
 
 const fieldClass =
-  'block w-full rounded-lg border bg-ink-950/60 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none focus:border-edge/25 focus:shadow-[0_0_0_4px_rgb(242_128_62/0.12)]'
+  'block w-full border bg-ink-950/60 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none focus:border-edge/25 focus:shadow-[0_0_0_3px_rgb(232_114_58/0.14)]'
 </script>
 
 <template>

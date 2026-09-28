@@ -7,98 +7,107 @@
 @theme {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Used sparingly: the Jola-Bulluf phrase and a few editorial accents. */
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
 
-  /* Surfaces: deep navy, near-black (dark by default; see [data-theme='light'] below). */
-  --color-ink-950: #060910;
-  --color-ink-900: #0a0e17;
-  --color-ink-850: #0e131e;
-  --color-ink-800: #131a27;
-  --color-ink-700: #1b2333;
-  --color-ink-600: #263045;
+  /* Surfaces: warm near-black (dark by default; see [data-theme='light'] below). */
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #111110;
+  --color-ink-850: #161615;
+  --color-ink-800: #1d1c1b;
+  --color-ink-700: #272624;
+  --color-ink-600: #34322f;
 
-  /* Text */
-  --color-fg: #eef2f7;
-  --color-fg-muted: #9ba7b9;
-  --color-fg-subtle: #677387;
+  /* Text: warm white, never pure. */
+  --color-fg: #f4efe8;
+  --color-fg-muted: #aaa49b;
+  --color-fg-subtle: #77726a;
 
   /* Hairlines and tints: used as edge/[opacity] for borders, dividers and washes. */
   --color-edge: #ffffff;
 
-  /* Accents: warm orange (Africa, origin), used sparingly; cool cyan (signal, network). */
-  --color-accent: #f2803e;
-  --color-accent-soft: #f7a66f;
-  --color-signal: #5ccfe6;
+  /* Accent: laterite, the colour of West African earth. Used sparingly. */
+  --color-accent: #e8723a;
+  --color-accent-soft: #f29a68;
+  /* Secondary signal: warm sand, for quiet technical details. */
+  --color-signal: #d5c2a0;
 
   /* Status */
-  --color-positive: #5fc59a;
+  --color-positive: #7cc49a;
   --color-warning: #e2b454;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --animate-flow: flow 2.4s linear infinite;
   --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quint) infinite;
-  --animate-fade-up: fade-up 0.9s var(--ease-out-quint) both;
+  --animate-fade-up: fade-up 1s var(--ease-out-quint) both;
+  --animate-travel: travel 4.8s var(--ease-out-quint) infinite;
+  --animate-drift: drift 24s ease-in-out infinite alternate;
 
-  @keyframes flow {
-    to { stroke-dashoffset: -24; }
-  }
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.35; transform: scale(0.8); }
   }
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
+    from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
     to { opacity: 1; transform: none; filter: none; }
+  }
+  /* A signal travelling along the Africa → Technology → World line. */
+  @keyframes travel {
+    0% { left: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+  @keyframes drift {
+    from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    to { transform: translate3d(-1.5%, 1%, 0) rotate(-4deg) scale(1.03); }
   }
 }
 
 /* Light theme: the same tokens, re-pointed. Components never hard-code a theme. */
 [data-theme='light'] {
   color-scheme: light;
-  --color-ink-950: #f5f7fa;
-  --color-ink-900: #ffffff;
-  --color-ink-850: #eef1f5;
-  --color-ink-800: #e7ebf1;
-  --color-ink-700: #dde2ea;
-  --color-ink-600: #cbd2dd;
-  --color-fg: #0a1220;
-  --color-fg-muted: #46536a;
-  --color-fg-subtle: #75819a;
-  --color-edge: #0a1220;
-  --color-accent: #e0692a;
-  --color-accent-soft: #bf5519;
-  --color-signal: #0b8bab;
-  --color-positive: #1c8a5c;
+  --color-ink-950: #f5f2ec;
+  --color-ink-900: #fbf9f5;
+  --color-ink-850: #eeeae3;
+  --color-ink-800: #e6e1d8;
+  --color-ink-700: #dad4c9;
+  --color-ink-600: #c8c0b3;
+  --color-fg: #141312;
+  --color-fg-muted: #57524b;
+  --color-fg-subtle: #837d73;
+  --color-edge: #141312;
+  --color-accent: #c85a24;
+  --color-accent-soft: #a8481a;
+  --color-signal: #86683a;
+  --color-positive: #2a7d52;
   --color-warning: #a8740f;
-  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 1px 2px rgb(10 18 32 / 0.04), 0 24px 48px -28px rgb(10 18 32 / 0.18);
-  --heading-from: #07101e;
-  --heading-to: #3c4a63;
-  --grid-line: rgb(10 18 32 / 0.05);
-  --dot: rgb(10 18 32 / 0.1);
+  --panel-shadow: 0 1px 2px rgb(20 19 18 / 0.04), 0 24px 48px -28px rgb(20 19 18 / 0.16);
+  --grid-line: rgb(20 19 18 / 0.05);
+  --dot: rgb(20 19 18 / 0.1);
 }
 
 /*
- * Always-dark surfaces (hero, Africa → World, closing call to action) keep the
- * dark tokens even when the rest of the page is light.
+ * Always-dark surfaces (hero, products, Africa, founder, closing call to action)
+ * keep the dark tokens even when the rest of the page is light.
  */
 .surface-dark {
   color-scheme: dark;
-  --color-ink-950: #060910;
-  --color-ink-900: #0a0e17;
-  --color-ink-850: #0e131e;
-  --color-ink-800: #131a27;
-  --color-ink-700: #1b2333;
-  --color-ink-600: #263045;
-  --color-fg: #eef2f7;
-  --color-fg-muted: #a9b4c4;
-  --color-fg-subtle: #7a869a;
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #111110;
+  --color-ink-850: #161615;
+  --color-ink-800: #1d1c1b;
+  --color-ink-700: #272624;
+  --color-ink-600: #34322f;
+  --color-fg: #f4efe8;
+  --color-fg-muted: #b0aaa1;
+  --color-fg-subtle: #7f7a72;
   --color-edge: #ffffff;
-  --color-accent: #f2803e;
-  --color-accent-soft: #f7a66f;
-  --color-signal: #5ccfe6;
-  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
-  --heading-from: #ffffff;
-  --heading-to: #c3cad6;
+  --color-accent: #e8723a;
+  --color-accent-soft: #f29a68;
+  --color-signal: #d5c2a0;
+  --color-positive: #7cc49a;
+  --panel-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
   --grid-line: rgb(255 255 255 / 0.035);
   --dot: rgb(255 255 255 / 0.08);
   background-color: var(--color-ink-950);
@@ -108,9 +117,7 @@
 @layer base {
   :root {
     color-scheme: dark;
-    --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
-    --heading-from: #ffffff;
-    --heading-to: #b9c2d0;
+    --panel-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
     --grid-line: rgb(255 255 255 / 0.035);
     --dot: rgb(255 255 255 / 0.08);
   }
@@ -133,7 +140,7 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
   h1, h2, h3, h4 {
     text-wrap: balance;
@@ -144,30 +151,40 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-[80rem] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
   }
   /* Generous vertical rhythm between story sections. */
   .section {
-    @apply py-24 sm:py-32 lg:py-40;
+    @apply py-24 sm:py-32 lg:py-44;
   }
 
   .eyebrow {
     @apply font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
   }
 
+  /* The wordmark set as display type. */
+  .wordmark {
+    @apply font-semibold tracking-[-0.055em];
+    font-feature-settings: 'ss01';
+  }
+
   .display {
     @apply text-[2.75rem] leading-[0.98] font-semibold tracking-[-0.045em] sm:text-7xl lg:text-[5.75rem];
   }
-  /* Large statement copy, e.g. the manifesto. */
+  /* Large statement copy. */
   .statement {
     @apply text-[1.75rem] leading-[1.12] font-medium tracking-[-0.03em] sm:text-[2.5rem] lg:text-[3.25rem];
   }
-  /* Section index, e.g. "01 — The company". */
+  /* Editorial serif, used for the philosophy and a few quiet accents. */
+  .serif {
+    @apply font-serif font-normal tracking-[-0.01em];
+  }
+  /* Section index, e.g. "01 — Belief". */
   .index-label {
     @apply flex items-center gap-3 font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
   }
   .heading-xl {
-    @apply text-[2.125rem] leading-[1.04] font-semibold tracking-[-0.035em] sm:text-5xl lg:text-[3.5rem];
+    @apply text-[2.25rem] leading-[1.02] font-semibold tracking-[-0.04em] sm:text-5xl lg:text-[4rem];
   }
   .heading-lg {
     @apply text-2xl leading-tight font-semibold tracking-[-0.02em] sm:text-[1.75rem];
@@ -176,18 +193,16 @@
     @apply text-base leading-relaxed text-fg-muted sm:text-lg;
   }
 
-  /* A quiet surface for panels and mock interfaces. */
+  /* A quiet surface for forms. */
   .panel {
-    @apply rounded-xl border bg-ink-900;
-    border-color: color-mix(in oklab, var(--color-edge) 7%, transparent);
+    @apply border bg-ink-900;
+    border-color: color-mix(in oklab, var(--color-edge) 8%, transparent);
     box-shadow: var(--panel-shadow);
   }
 
+  /* Kept for older markup: headings are solid colour now, no gradients. */
   .text-gradient {
-    background: linear-gradient(180deg, var(--heading-from) 0%, var(--heading-to) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--color-fg);
   }
 
   /* Fine technical grid used as a background texture. */
@@ -195,17 +210,27 @@
     background-image:
       linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
       linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 56px 56px;
+    background-size: 64px 64px;
   }
   .bg-dots {
     background-image: radial-gradient(var(--dot) 1px, transparent 1px);
     background-size: 18px 18px;
   }
-  .mask-fade-y {
-    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  }
   .mask-radial {
     mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  /* Corner ticks for technical frames: add to a relative element. */
+  .frame-ticks {
+    background:
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top left / 12px 1px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top left / 1px 12px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top right / 12px 1px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top right / 1px 12px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom left / 12px 1px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom left / 1px 12px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom right / 12px 1px,
+      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom right / 1px 12px;
+    background-repeat: no-repeat;
   }
 }
 
