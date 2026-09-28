@@ -2,8 +2,8 @@
 import { RouterLink } from 'vue-router'
 import { ArrowUpRight } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
-import { navigation, site } from '@/config/site'
-import { services } from '@/content/services'
+import { navigation, primaryCta, site } from '@/config/site'
+import { projects } from '@/content/work'
 
 const year = new Date().getFullYear()
 const socials = [
@@ -13,24 +13,22 @@ const socials = [
 </script>
 
 <template>
-  <footer class="relative border-t border-edge/[0.06] bg-ink-950">
-    <div class="container-page grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:gap-8 md:py-20">
+  <footer class="surface-dark relative border-t border-edge/[0.08]">
+    <div class="container-page grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:gap-8 md:py-24">
       <div class="md:col-span-5">
         <RouterLink to="/" class="inline-block rounded-md" :aria-label="`${site.name} — home`">
           <LogoMark />
         </RouterLink>
-        <p class="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-fg-muted">
-          “{{ site.tagline }}”
-        </p>
+        <p class="mt-8 max-w-sm text-2xl font-semibold tracking-[-0.03em] text-fg">{{ site.tagline }}</p>
         <p class="mt-6 flex items-center gap-2 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
-          <span class="size-1.5 rounded-full bg-positive" aria-hidden="true" />
-          {{ site.availability }}
+          <span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+          {{ site.basedIn }}
         </p>
       </div>
 
       <nav aria-label="Footer" class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
         <div>
-          <h2 class="eyebrow mb-4">Studio</h2>
+          <h2 class="eyebrow mb-4">Company</h2>
           <ul class="space-y-3 text-sm">
             <li v-for="item in navigation" :key="item.to">
               <RouterLink :to="item.to" class="text-fg-muted transition-colors hover:text-fg">{{ item.label }}</RouterLink>
@@ -38,10 +36,10 @@ const socials = [
           </ul>
         </div>
         <div>
-          <h2 class="eyebrow mb-4">Services</h2>
+          <h2 class="eyebrow mb-4">Now building</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="s in services" :key="s.id">
-              <RouterLink :to="`/services#${s.id}`" class="text-fg-muted transition-colors hover:text-fg">{{ s.title }}</RouterLink>
+            <li v-for="p in projects" :key="p.slug">
+              <RouterLink :to="`/work/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
             </li>
           </ul>
         </div>
@@ -49,7 +47,7 @@ const socials = [
           <h2 class="eyebrow mb-4">Contact</h2>
           <ul class="space-y-3 text-sm">
             <li>
-              <RouterLink to="/contact" class="text-fg-muted transition-colors hover:text-fg">Start a conversation</RouterLink>
+              <RouterLink :to="primaryCta.to" class="text-fg-muted transition-colors hover:text-fg">{{ primaryCta.label }}</RouterLink>
             </li>
             <li>
               <a :href="`mailto:${site.email}`" class="break-all text-fg-muted transition-colors hover:text-fg">{{ site.email }}</a>
@@ -63,7 +61,7 @@ const socials = [
         </div>
       </nav>
     </div>
-    <div class="border-t border-edge/[0.06]">
+    <div class="border-t border-edge/[0.08]">
       <div class="container-page flex flex-col gap-2 py-6 text-xs text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
         <p>{{ site.descriptor }}</p>

@@ -10,19 +10,15 @@ import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('..', import.meta.url))
 const outDir = join(root, 'public', 'images')
 
-/** name → [render width, render height, output widths, webp quality] */
+/** name → [render width, render height, output widths, webp quality, themes] */
 const SCENES = {
-  field: [2000, 1100, [1000, 2000], 0.7],
-  fleet: [2000, 1250, [800, 1600]],
-  property: [2000, 1250, [800, 1600]],
-  wholesale: [2000, 1250, [800, 1600]],
-  admin: [2000, 1250, [800, 1600]],
   system: [2400, 1300, [1000, 2000]],
-  process: [2400, 1100, [1000, 2000]],
+  // Always shown on a dark section, so only a dark version is rendered.
+  globe: [2000, 2000, [900, 1800], 0.86, ['dark']],
 }
 
 const only = process.argv.slice(2)
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.woff2': 'font/woff2' }
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json', '.woff2': 'font/woff2' }
 
 // Serve the repo root so the page can import ES modules and fonts.
 const server = createServer(async (req, res) => {
@@ -46,9 +42,9 @@ page.on('pageerror', (e) => console.error('page error:', e.message))
 await page.goto(`http://localhost:${port}/scripts/images/render.html`)
 await page.waitForFunction(() => window.ready)
 
-for (const [name, [w, h, sizes, quality = 0.84]] of Object.entries(SCENES)) {
+for (const [name, [w, h, sizes, quality = 0.84, themes = ['dark', 'light']]] of Object.entries(SCENES)) {
   if (only.length && !only.includes(name)) continue
-  for (const theme of ['dark', 'light']) {
+  for (const theme of themes) {
     const urls = await page.evaluate(
       ([n, t, w, h, sizes, q]) => window.exportScene(n, t, w, h, sizes, q),
       [name, theme, w, h, sizes, quality],

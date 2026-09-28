@@ -4,22 +4,24 @@ import { Mail, CheckCircle2, ArrowRight, Loader2 } from 'lucide-vue-next'
 import { usePageMeta } from '@/composables/usePageMeta'
 import FormField from '@/components/ui/FormField.vue'
 import AppButton from '@/components/ui/AppButton.vue'
+import PageHero from '@/components/sections/PageHero.vue'
 import { site } from '@/config/site'
 
 usePageMeta({
-  title: 'Contact',
+  title: 'Build with us',
   description:
-    "Tell us what isn't working. You don't need to know exactly what software you need — start with the problem.",
+    'Have something worth building? A product idea, a business system, or technology that needs to become something more. Tell us about it.',
 })
+
+const kinds = ['A new product or platform', 'A business system', 'APIs & integrations', 'Automation & intelligence', 'Not sure yet'] as const
 
 const form = reactive({
   name: '',
   email: '',
-  company: '',
-  website: '',
-  business: '',
-  process: '',
-  difficulty: '',
+  organisation: '',
+  kind: '' as '' | (typeof kinds)[number],
+  idea: '',
+  stage: '',
   other: '',
   // Honeypot: real people never see or fill this field.
   fax: '',
@@ -33,12 +35,11 @@ const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
 
 const labels: Record<Exclude<Field, 'fax'>, string> = {
   name: 'Name',
-  email: 'Work email',
-  company: 'Company',
-  website: 'Website',
-  business: 'What does your business do?',
-  process: 'What process are you trying to improve?',
-  difficulty: 'What is currently difficult or manual?',
+  email: 'Email',
+  organisation: 'Company or organisation',
+  kind: 'What are you building?',
+  idea: 'Tell us about it',
+  stage: 'Where is it today?',
   other: 'Anything else we should know?',
 }
 
@@ -46,9 +47,7 @@ function validate() {
   for (const k of Object.keys(errors) as Field[]) delete errors[k]
   if (!form.name.trim()) errors.name = 'Please tell us your name.'
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) errors.email = 'Please enter a valid email address.'
-  if (!form.business.trim()) errors.business = 'A sentence is enough.'
-  if (!form.process.trim()) errors.process = 'Which process would you like to improve?'
-  if (!form.difficulty.trim()) errors.difficulty = 'What is slow, manual or unclear today?'
+  if (!form.idea.trim()) errors.idea = 'A few sentences is plenty.'
   return Object.keys(errors).length === 0
 }
 
@@ -73,7 +72,7 @@ async function submit(e: Event) {
 
   if (!endpoint) {
     // No backend configured: open the visitor's email client with everything pre-filled.
-    const subject = `New conversation — ${form.company.trim() || form.name.trim()}`
+    const subject = `Build with us — ${form.organisation.trim() || form.name.trim()}`
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody.value)}`
     status.value = 'mailto'
     return
@@ -95,29 +94,24 @@ async function submit(e: Event) {
 }
 
 const nextSteps = [
-  { title: 'We read it properly', body: 'Every message is read by the engineer who would build the system.' },
-  { title: 'We reply with questions', body: 'Usually a few, to understand how the process works today.' },
-  { title: 'We suggest a first step', body: 'Often a short call, then a clear view of what should be built.' },
+  { title: 'We read it properly', body: 'Every message is read by the people who would build it.' },
+  { title: 'We reply with questions', body: 'Usually a few, to understand the idea and who it’s for.' },
+  { title: 'We suggest a first step', body: 'Often a short call, then a clear view of what to build first.' },
 ]
 </script>
 
 <template>
-  <div class="relative">
-    <div aria-hidden="true" class="bg-grid mask-radial pointer-events-none absolute inset-x-0 top-0 h-[40rem] opacity-60" />
+  <div>
+    <PageHero
+      label="Build with us"
+      title="Have something worth building?"
+      lede="A product idea, a business system, or technology that needs to become something more. Tell us about it. You don’t need a specification, just the ambition."
+    />
 
-    <section class="container-page relative grid grid-cols-1 gap-14 pt-32 pb-24 sm:pt-40 sm:pb-32 lg:grid-cols-12 lg:gap-12" aria-labelledby="page-title">
-      <div class="lg:col-span-5">
+    <section class="container-page grid grid-cols-1 gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-12" aria-label="Contact form">
+      <div class="lg:col-span-4">
         <div class="lg:sticky lg:top-28">
-          <p class="eyebrow flex animate-fade-up items-center gap-2"><span class="h-px w-5 bg-accent/70" aria-hidden="true" />Contact</p>
-          <h1 id="page-title" class="text-gradient mt-6 animate-fade-up text-[2.375rem] leading-[1.04] font-semibold tracking-[-0.035em] [animation-delay:80ms] sm:text-6xl">
-            Tell us what isn't working.
-          </h1>
-          <p class="lede mt-6 max-w-md animate-fade-up [animation-delay:160ms]">
-            You don't need to know exactly what software you need. Start with the problem. We'll help
-            you work out what should be built.
-          </p>
-
-          <ol class="mt-12 hidden space-y-6 border-l border-edge/[0.08] pl-6 lg:block">
+          <ol class="space-y-6 border-l border-edge/[0.1] pl-6">
             <li v-for="(s, i) in nextSteps" :key="s.title" class="relative">
               <span class="absolute top-1.5 -left-[27.5px] size-1.5 rounded-full bg-accent" aria-hidden="true" />
               <p class="text-sm font-medium text-fg"><span class="mr-2 font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span>{{ s.title }}</p>
@@ -125,7 +119,7 @@ const nextSteps = [
             </li>
           </ol>
 
-          <div class="mt-10 flex items-center gap-4 rounded-xl border border-edge/[0.08] p-4">
+          <div class="mt-10 flex items-center gap-4 rounded-xl border border-edge/[0.1] p-4">
             <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-edge/10 bg-edge/[0.03]">
               <Mail class="size-4 text-fg-muted" aria-hidden="true" />
             </span>
@@ -134,20 +128,21 @@ const nextSteps = [
               <a :href="`mailto:${site.email}`" class="block truncate font-medium text-fg underline-offset-4 hover:underline">{{ site.email }}</a>
             </div>
           </div>
+          <p class="mt-6 font-mono text-xs text-fg-subtle">{{ site.basedIn }}</p>
         </div>
       </div>
 
-      <div class="lg:col-span-7">
-        <div class="panel p-5 sm:p-8">
+      <div class="lg:col-span-8">
+        <div class="panel p-5 sm:p-10">
           <div v-if="status === 'sent' || status === 'mailto'" class="py-10 text-center" role="status" aria-live="polite">
             <CheckCircle2 class="mx-auto size-10 text-accent" aria-hidden="true" />
             <h2 class="mt-5 text-2xl font-semibold tracking-tight text-fg">
-              {{ status === 'sent' ? 'Thank you — message received.' : 'Your email is ready to send.' }}
+              {{ status === 'sent' ? 'Thank you. Message received.' : 'Your email is ready to send.' }}
             </h2>
             <p class="mx-auto mt-3 max-w-sm text-fg-muted">
-              <template v-if="status === 'sent'">We'll read it carefully and reply personally.</template>
+              <template v-if="status === 'sent'">We’ll read it carefully and reply personally.</template>
               <template v-else>
-                We've opened your email app with your answers filled in. If nothing opened, write to
+                We’ve opened your email app with your answers filled in. If nothing opened, write to
                 <a :href="`mailto:${site.email}`" class="text-fg underline underline-offset-4">{{ site.email }}</a>.
               </template>
             </p>
@@ -156,24 +151,41 @@ const nextSteps = [
             </button>
           </div>
 
-          <form v-else novalidate class="space-y-8" @submit.prevent="submit">
+          <form v-else novalidate class="space-y-10" @submit.prevent="submit">
             <fieldset class="min-w-0 space-y-5">
               <legend class="eyebrow mb-5">About you</legend>
               <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <FormField v-model="form.name" label="Name" name="name" autocomplete="name" required :error="errors.name" />
-                <FormField v-model="form.email" label="Work email" name="email" type="email" inputmode="email" autocomplete="email" required :error="errors.email" />
-                <FormField v-model="form.company" label="Company" name="company" autocomplete="organization" />
-                <FormField v-model="form.website" label="Website" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://" />
+                <FormField v-model="form.email" label="Email" name="email" type="email" inputmode="email" autocomplete="email" required :error="errors.email" />
               </div>
+              <FormField v-model="form.organisation" label="Company or organisation" name="organisation" autocomplete="organization" />
             </fieldset>
 
-            <div class="border-t border-edge/[0.06] pt-8">
+            <div class="border-t border-edge/[0.08] pt-10">
+            <fieldset class="min-w-0">
+              <legend class="eyebrow mb-5">What are you building? <span class="ml-2 normal-case tracking-normal text-fg-subtle">Optional</span></legend>
+              <div class="flex flex-wrap gap-2">
+                <label
+                  v-for="k in kinds"
+                  :key="k"
+                  :class="[
+                    'cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent',
+                    form.kind === k ? 'border-accent/60 bg-accent/10 text-fg' : 'border-edge/15 text-fg-muted hover:border-edge/30 hover:text-fg',
+                  ]"
+                >
+                  <input v-model="form.kind" type="radio" name="kind" :value="k" class="sr-only" />
+                  {{ k }}
+                </label>
+              </div>
+            </fieldset>
+            </div>
+
+            <div class="border-t border-edge/[0.08] pt-10">
             <fieldset class="min-w-0 space-y-5">
-              <legend class="eyebrow mb-5">The problem</legend>
-              <FormField v-model="form.business" label="What does your business do?" name="business" multiline :rows="2" required :error="errors.business" placeholder="e.g. We rent construction equipment to contractors across three regions." />
-              <FormField v-model="form.process" label="What process are you trying to improve?" name="process" multiline :rows="3" required :error="errors.process" placeholder="e.g. Bookings, dispatch and returns." />
-              <FormField v-model="form.difficulty" label="What is currently difficult or manual?" name="difficulty" multiline :rows="4" required :error="errors.difficulty" placeholder="e.g. Availability lives in two spreadsheets and we double-book about once a week." />
-              <FormField v-model="form.other" label="Anything else we should know?" name="other" multiline :rows="3" hint="Tools you already use, timelines, constraints — whatever is useful." />
+              <legend class="eyebrow mb-5">The idea</legend>
+              <FormField v-model="form.idea" label="Tell us about it" name="idea" multiline :rows="5" required :error="errors.idea" placeholder="What do you want to build, who is it for, and why now?" />
+              <FormField v-model="form.stage" label="Where is it today?" name="stage" placeholder="e.g. An idea, a prototype, a live product that needs to grow" />
+              <FormField v-model="form.other" label="Anything else we should know?" name="other" multiline :rows="3" hint="Timelines, constraints, links: whatever is useful." />
             </fieldset>
             </div>
 
@@ -182,17 +194,15 @@ const nextSteps = [
               <input id="fax" v-model="form.fax" name="fax" type="text" tabindex="-1" autocomplete="off" />
             </div>
 
-            <div class="flex flex-col-reverse gap-4 border-t border-edge/[0.06] pt-8 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-xs leading-relaxed text-fg-subtle sm:max-w-xs">
-                We only use your details to reply to you. No mailing lists.
-              </p>
+            <div class="flex flex-col-reverse gap-4 border-t border-edge/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs leading-relaxed text-fg-subtle sm:max-w-xs">We only use your details to reply to you. No mailing lists.</p>
               <AppButton type="submit" size="lg" :disabled="status === 'sending'" class="w-full sm:w-auto">
                 <Loader2 v-if="status === 'sending'" class="size-4 animate-spin" aria-hidden="true" />
-                {{ status === 'sending' ? 'Sending…' : 'Start the conversation' }}
+                {{ status === 'sending' ? 'Sending…' : 'Build with us' }}
                 <ArrowRight v-if="status !== 'sending'" class="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </AppButton>
             </div>
-            <p v-if="status === 'error'" role="alert" class="text-sm text-red-300">
+            <p v-if="status === 'error'" role="alert" class="text-sm text-red-400">
               Something went wrong sending your message. Please try again, or email
               <a :href="`mailto:${site.email}`" class="underline underline-offset-4">{{ site.email }}</a>.
             </p>

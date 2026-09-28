@@ -1,6 +1,6 @@
 /**
  * Generated illustrations (see scripts/generate-images.mjs).
- * Each exists as /images/{name}-{dark|light}-{width}.webp.
+ * Each exists as /images/{name}-{theme}-{width}.webp.
  */
 export interface GeneratedImage {
   name: string
@@ -10,13 +10,14 @@ export interface GeneratedImage {
 }
 
 export const images = {
-  field: { name: 'field', widths: [1000, 2000], ratio: 2000 / 1100 },
-  fleet: { name: 'fleet', widths: [800, 1600], ratio: 2000 / 1250 },
-  property: { name: 'property', widths: [800, 1600], ratio: 2000 / 1250 },
-  wholesale: { name: 'wholesale', widths: [800, 1600], ratio: 2000 / 1250 },
-  admin: { name: 'admin', widths: [800, 1600], ratio: 2000 / 1250 },
   system: { name: 'system', widths: [1000, 2000], ratio: 2400 / 1300 },
-  process: { name: 'process', widths: [1000, 2000], ratio: 2400 / 1100 },
 } satisfies Record<string, GeneratedImage>
 
 export type ImageName = keyof typeof images
+
+/** The Africa-centred network globe. Dark only, transparent background. */
+export const globe = {
+  srcset: '/images/globe-dark-900.webp 900w, /images/globe-dark-1800.webp 1800w',
+  src: '/images/globe-dark-900.webp',
+  size: 1800,
+}

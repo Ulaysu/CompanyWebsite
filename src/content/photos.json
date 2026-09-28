@@ -1,108 +1,53 @@
 {
-  "_note": "Photos from Unsplash (Unsplash License: free for commercial use, no attribution required). Downloaded and optimised by scripts/fetch-photos.mjs into public/photos/{key}-{width}.webp.",
+  "_note": "Photos from Unsplash (Unsplash License: free for commercial use, no attribution required). Downloaded and optimised by scripts/fetch-photos.mjs into public/photos/{key}-{width}.webp. Widths ascend.",
   "photos": {
     "hero": {
-      "unsplash": "1590496793929-36417d3117de",
-      "alt": "Aerial view of stacked shipping containers lit by warm lights at night.",
-      "widths": [
-        1000,
-        2000
-      ],
+      "unsplash": "1573164713988-8665fc963095",
+      "alt": "An engineer with a laptop walking along a row of server racks lit in blue.",
+      "widths": [1000, 2000],
+      "position": "78% 40%"
+    },
+    "earth": {
+      "unsplash": "1451187580459-43490279c0fa",
+      "alt": "Earth at night seen from orbit, with city lights along the horizon.",
+      "widths": [1000, 2000],
+      "position": "50% 70%"
+    },
+    "builders": {
+      "unsplash": "1531482615713-2afd69097998",
+      "alt": "Two developers working through code together at a laptop.",
+      "widths": [800, 1600],
+      "position": "55% 45%"
+    },
+    "city": {
+      "unsplash": "1596005554384-d293674c91d7",
+      "alt": "Nairobi's skyline at night, reflected in water.",
+      "widths": [1000, 2000],
       "position": "50% 50%"
     },
-    "messy": {
-      "unsplash": "1580674285054-bed31e145f59",
-      "alt": "A stockroom piled with unsorted cardboard boxes and packages.",
-      "widths": [
-        800,
-        1600
-      ],
-      "position": "50% 40%"
+    "circuit": {
+      "unsplash": "1550751827-4bd374c3f58b",
+      "alt": "Close-up of a circuit board lit in cyan.",
+      "widths": [800, 1600],
+      "position": "50% 50%"
     },
-    "fleet": {
-      "unsplash": "1565891741441-64926e441838",
-      "alt": "Aerial view of lorries and trailers parked at a distribution centre's loading bays.",
-      "widths": [
-        160,
-        1000,
-        2000
-      ],
+    "servers": {
+      "unsplash": "1558494949-ef010cbdcc31",
+      "alt": "Server racks with neatly routed network cables.",
+      "widths": [1000, 2000],
+      "position": "50% 50%"
+    },
+    "kujaaburun": {
+      "unsplash": "1547471080-7cc2caa01a7e",
+      "alt": "A lone acacia tree on open savannah at golden hour.",
+      "widths": [800, 1600],
       "position": "50% 55%"
     },
-    "property": {
-      "unsplash": "1460317442991-0ec209397118",
-      "alt": "Balconies on the facade of a modern apartment building.",
-      "widths": [
-        160,
-        1000,
-        2000
-      ],
-      "position": "50% 35%"
-    },
-    "wholesale": {
-      "unsplash": "1553413077-190dd305871c",
-      "alt": "A long warehouse aisle between tall racks of stock.",
-      "widths": [
-        160,
-        1000,
-        2000
-      ],
-      "position": "50% 50%"
-    },
-    "admin": {
-      "unsplash": "1554224155-6726b3ff858f",
-      "alt": "Receipts, forms and a calculator spread across a desk.",
-      "widths": [
-        160,
-        1000,
-        2000
-      ],
-      "position": "50% 45%"
-    },
-    "services": {
-      "unsplash": "1581094794329-c8112a89af12",
-      "alt": "An engineer reviewing code on a large monitor.",
-      "widths": [
-        1000,
-        2000
-      ],
-      "position": "60% 50%"
-    },
-    "solutions": {
-      "unsplash": "1494412574643-ff11b0a5c1c3",
-      "alt": "Aerial view of a busy container port.",
-      "widths": [
-        1000,
-        2000
-      ],
-      "position": "50% 50%"
-    },
-    "process": {
-      "unsplash": "1581092160562-40aa08e78837",
-      "alt": "Someone marking up technical drawings on a workbench.",
-      "widths": [
-        1000,
-        2000
-      ],
-      "position": "50% 50%"
-    },
-    "about": {
-      "unsplash": "1487017159836-4e23ece2e4cf",
-      "alt": "A laptop on a dark wooden desk beside a white chair.",
-      "widths": [
-        1000,
-        2000
-      ],
-      "position": "50% 50%"
-    },
-    "cta": {
-      "unsplash": "1486406146926-c627a92ad1ab",
-      "alt": "Glass office towers seen from street level.",
-      "widths": [
-        1000,
-        2000
-      ],
-      "position": "50% 40%"
+    "sweetland": {
+      "unsplash": "1625246333195-78d9c38ad449",
+      "alt": "Rows of young maize plants growing in dark soil.",
+      "widths": [800, 1600],
+      "position": "50% 60%"
     }
   }
 }

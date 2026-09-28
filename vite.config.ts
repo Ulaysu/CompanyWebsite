@@ -20,7 +20,9 @@ export default defineConfig(({ mode }) => {
       formatting: 'minify',
       dirStyle: 'nested',
       includedRoutes(paths) {
-        renderedPaths = paths.filter((p) => !p.includes(':'))
+        // Redirect-only routes (see src/routes.ts) are served by public/_redirects, not pre-rendered.
+        const redirectOnly = ['/services', '/solutions', '/how-we-work']
+        renderedPaths = paths.filter((p) => !p.includes(':') && !redirectOnly.includes(p))
         return [...renderedPaths, '/404']
       },
       onFinished() {

@@ -8,27 +8,28 @@
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Surfaces (dark by default; see [data-theme='light'] below). */
-  --color-ink-950: #08080a;
-  --color-ink-900: #0c0c0f;
-  --color-ink-850: #111115;
-  --color-ink-800: #16161b;
-  --color-ink-700: #1f1f26;
-  --color-ink-600: #2a2a33;
+  /* Surfaces: deep navy, near-black (dark by default; see [data-theme='light'] below). */
+  --color-ink-950: #060910;
+  --color-ink-900: #0a0e17;
+  --color-ink-850: #0e131e;
+  --color-ink-800: #131a27;
+  --color-ink-700: #1b2333;
+  --color-ink-600: #263045;
 
   /* Text */
-  --color-fg: #ededeb;
-  --color-fg-muted: #a1a1a8;
-  --color-fg-subtle: #6e6e78;
+  --color-fg: #eef2f7;
+  --color-fg-muted: #9ba7b9;
+  --color-fg-subtle: #677387;
 
   /* Hairlines and tints: used as edge/[opacity] for borders, dividers and washes. */
   --color-edge: #ffffff;
 
-  /* Accent: restrained warm orange */
+  /* Accents: warm orange (Africa, origin), used sparingly; cool cyan (signal, network). */
   --color-accent: #f2803e;
   --color-accent-soft: #f7a66f;
+  --color-signal: #5ccfe6;
 
-  /* Status (used inside mock interfaces only) */
+  /* Status */
   --color-positive: #5fc59a;
   --color-warning: #e2b454;
 
@@ -54,25 +55,54 @@
 /* Light theme: the same tokens, re-pointed. Components never hard-code a theme. */
 [data-theme='light'] {
   color-scheme: light;
-  --color-ink-950: #f7f6f3;
+  --color-ink-950: #f5f7fa;
   --color-ink-900: #ffffff;
-  --color-ink-850: #f1f0ec;
-  --color-ink-800: #ecebe6;
-  --color-ink-700: #e4e3de;
-  --color-ink-600: #d6d5cf;
-  --color-fg: #111114;
-  --color-fg-muted: #4f4f57;
-  --color-fg-subtle: #7c7c86;
-  --color-edge: #16161b;
-  --color-accent: #e46a28;
-  --color-accent-soft: #c2561a;
+  --color-ink-850: #eef1f5;
+  --color-ink-800: #e7ebf1;
+  --color-ink-700: #dde2ea;
+  --color-ink-600: #cbd2dd;
+  --color-fg: #0a1220;
+  --color-fg-muted: #46536a;
+  --color-fg-subtle: #75819a;
+  --color-edge: #0a1220;
+  --color-accent: #e0692a;
+  --color-accent-soft: #bf5519;
+  --color-signal: #0b8bab;
   --color-positive: #1c8a5c;
   --color-warning: #a8740f;
-  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 1px 2px rgb(20 20 30 / 0.04), 0 24px 48px -28px rgb(20 20 30 / 0.18);
-  --heading-from: #0b0b0e;
-  --heading-to: #4a4a52;
-  --grid-line: rgb(20 20 30 / 0.05);
-  --dot: rgb(20 20 30 / 0.1);
+  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.8) inset, 0 1px 2px rgb(10 18 32 / 0.04), 0 24px 48px -28px rgb(10 18 32 / 0.18);
+  --heading-from: #07101e;
+  --heading-to: #3c4a63;
+  --grid-line: rgb(10 18 32 / 0.05);
+  --dot: rgb(10 18 32 / 0.1);
+}
+
+/*
+ * Always-dark surfaces (hero, Africa → World, closing call to action) keep the
+ * dark tokens even when the rest of the page is light.
+ */
+.surface-dark {
+  color-scheme: dark;
+  --color-ink-950: #060910;
+  --color-ink-900: #0a0e17;
+  --color-ink-850: #0e131e;
+  --color-ink-800: #131a27;
+  --color-ink-700: #1b2333;
+  --color-ink-600: #263045;
+  --color-fg: #eef2f7;
+  --color-fg-muted: #a9b4c4;
+  --color-fg-subtle: #7a869a;
+  --color-edge: #ffffff;
+  --color-accent: #f2803e;
+  --color-accent-soft: #f7a66f;
+  --color-signal: #5ccfe6;
+  --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
+  --heading-from: #ffffff;
+  --heading-to: #c3cad6;
+  --grid-line: rgb(255 255 255 / 0.035);
+  --dot: rgb(255 255 255 / 0.08);
+  background-color: var(--color-ink-950);
+  color: var(--color-fg);
 }
 
 @layer base {
@@ -80,7 +110,7 @@
     color-scheme: dark;
     --panel-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.6);
     --heading-from: #ffffff;
-    --heading-to: #b8b8bf;
+    --heading-to: #b9c2d0;
     --grid-line: rgb(255 255 255 / 0.035);
     --dot: rgb(255 255 255 / 0.08);
   }
@@ -114,7 +144,11 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-[80rem] px-5 sm:px-8 lg:px-12;
+  }
+  /* Generous vertical rhythm between story sections. */
+  .section {
+    @apply py-24 sm:py-32 lg:py-40;
   }
 
   .eyebrow {
@@ -122,10 +156,18 @@
   }
 
   .display {
-    @apply text-[2.5rem] leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl lg:text-[4.25rem];
+    @apply text-[2.75rem] leading-[0.98] font-semibold tracking-[-0.045em] sm:text-7xl lg:text-[5.75rem];
+  }
+  /* Large statement copy, e.g. the manifesto. */
+  .statement {
+    @apply text-[1.75rem] leading-[1.12] font-medium tracking-[-0.03em] sm:text-[2.5rem] lg:text-[3.25rem];
+  }
+  /* Section index, e.g. "01 — The company". */
+  .index-label {
+    @apply flex items-center gap-3 font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
   }
   .heading-xl {
-    @apply text-[2rem] leading-[1.08] font-semibold tracking-[-0.03em] sm:text-[2.75rem] lg:text-5xl;
+    @apply text-[2.125rem] leading-[1.04] font-semibold tracking-[-0.035em] sm:text-5xl lg:text-[3.5rem];
   }
   .heading-lg {
     @apply text-2xl leading-tight font-semibold tracking-[-0.02em] sm:text-[1.75rem];

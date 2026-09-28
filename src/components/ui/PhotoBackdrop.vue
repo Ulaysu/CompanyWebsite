@@ -15,7 +15,7 @@ const props = withDefaults(
     sizes?: string
     eager?: boolean
     /** How the photo fades into the page. */
-    fade?: 'hero' | 'bottom' | 'radial' | 'band' | 'caption' | 'none'
+    fade?: 'hero' | 'side' | 'full' | 'bottom' | 'radial' | 'caption' | 'none'
     /** 0–1: how visible the photo is. */
     strength?: number
   }>(),
@@ -45,51 +45,55 @@ const photo = computed(() => photos[props.name]!)
 </template>
 
 <style>
-/* Unscoped on purpose: the light-theme rules key off <html data-theme>. Class names are prefixed to avoid clashes. */
+/*
+ * Unscoped on purpose: the light-theme rules key off <html data-theme>.
+ * Inside an always-dark section (.surface-dark) the dark treatment is kept.
+ */
 .photo-backdrop__img {
-  filter: grayscale(0.15) saturate(0.95) contrast(1.05) brightness(0.88);
+  filter: saturate(0.9) contrast(1.06) brightness(0.9);
 }
 .photo-backdrop__tone {
-  background:
-    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent), transparent 22%),
-    color-mix(in oklab, var(--color-accent) 4%, transparent);
+  /* A cool navy grade so every photo sits in the same palette. */
+  background: color-mix(in oklab, #0b1a33 22%, transparent);
+  mix-blend-mode: multiply;
 }
-[data-theme='light'] .photo-backdrop__img {
-  filter: grayscale(0.2) saturate(0.9) contrast(0.98) brightness(1.04);
+[data-theme='light'] .photo-backdrop:not(.surface-dark .photo-backdrop) .photo-backdrop__img {
+  filter: saturate(0.9) contrast(0.98) brightness(1.04);
 }
-[data-theme='light'] .photo-backdrop__tone {
-  background: color-mix(in oklab, var(--color-ink-950) 22%, transparent);
+[data-theme='light'] .photo-backdrop:not(.surface-dark .photo-backdrop) .photo-backdrop__tone {
+  background: color-mix(in oklab, var(--color-ink-950) 20%, transparent);
+  mix-blend-mode: normal;
 }
 
-/*
- * Fades: strongest only where text sits (left side / bottom), and every fade
- * ends in the page background so sections still join seamlessly.
- */
+/* Fades: strongest only where text sits, always ending in the page background. */
 .photo-fade--hero {
   background:
-    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 82%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 45%, transparent 75%),
-    linear-gradient(180deg, transparent 60%, var(--color-ink-950) 100%);
+    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 94%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 78%, transparent) 38%, color-mix(in oklab, var(--color-ink-950) 20%, transparent) 70%, transparent 100%),
+    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 0%, transparent 22%, transparent 62%, var(--color-ink-950) 100%);
 }
-/* On narrow screens text spans the full width, so the scrim is even rather than left-weighted. */
-@media (max-width: 767px) {
-  .photo-fade--hero {
-    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 66%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 74%, transparent) 60%, var(--color-ink-950) 100%);
-  }
+.photo-fade--side {
+  background: linear-gradient(90deg, var(--color-ink-950) 0%, color-mix(in oklab, var(--color-ink-950) 80%, transparent) 35%, transparent 75%);
+}
+.photo-fade--full {
+  background: color-mix(in oklab, var(--color-ink-950) 72%, transparent);
 }
 .photo-fade--bottom {
-  background: linear-gradient(180deg, transparent 0%, transparent 50%, var(--color-ink-950) 100%);
+  background: linear-gradient(180deg, transparent 0%, transparent 45%, var(--color-ink-950) 100%);
 }
 .photo-fade--radial {
-  background: radial-gradient(ellipse 55% 45% at 50% 50%, color-mix(in oklab, var(--color-ink-950) 72%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 50%, transparent) 55%, color-mix(in oklab, var(--color-ink-950) 15%, transparent) 80%, var(--color-ink-950) 100%);
-}
-.photo-fade--band {
-  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 85%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 35%, transparent) 38%, transparent 70%);
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in oklab, var(--color-ink-950) 70%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 45%, transparent) 60%, var(--color-ink-950) 100%);
 }
 .photo-fade--caption {
-  /* Just enough behind a short title at the bottom edge; the rest of the photo is untouched. */
-  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 72%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 30%, transparent) 22%, transparent 42%);
+  background: linear-gradient(0deg, color-mix(in oklab, var(--color-ink-950) 88%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 40%, transparent) 30%, transparent 55%);
 }
 .photo-fade--none {
   background: none;
+}
+/* On narrow screens text spans the full width, so side-weighted scrims become even. */
+@media (max-width: 767px) {
+  .photo-fade--hero,
+  .photo-fade--side {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 74%, transparent) 55%, var(--color-ink-950) 100%);
+  }
 }
 </style>

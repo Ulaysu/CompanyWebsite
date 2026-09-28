@@ -41,7 +41,8 @@ watch(open, (v) => {
       'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300',
       scrolled || open
         ? 'border-b border-edge/[0.06] bg-ink-950/75 backdrop-blur-xl backdrop-saturate-150'
-        : 'border-b border-transparent',
+        : // Every page opens on a dark hero, so the bar reads as dark until it scrolls.
+          'surface-dark border-b border-transparent !bg-transparent',
     ]"
   >
     <div class="container-page flex h-16 items-center justify-between gap-6">
@@ -111,7 +112,7 @@ watch(open, (v) => {
           </ul>
           <div class="mt-auto space-y-5 pt-10">
             <p class="text-sm leading-relaxed text-fg-muted">
-              Have a process that shouldn't be this difficult? Start with the problem.
+              Have something worth building? Tell us about it.
             </p>
             <AppButton :to="primaryCta.to" size="lg" arrow class="w-full">{{ primaryCta.label }}</AppButton>
             <a :href="`mailto:${site.email}`" class="block text-center font-mono text-xs text-fg-subtle">{{ site.email }}</a>
