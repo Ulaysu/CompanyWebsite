@@ -5,7 +5,9 @@ import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 import AfricaWorldSection from '@/components/sections/AfricaWorldSection.vue'
 import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
 import BuildWithUs from '@/components/sections/BuildWithUs.vue'
-import { manifesto } from '@/content/company'
+import FounderSection from '@/components/sections/FounderSection.vue'
+import AppButton from '@/components/ui/AppButton.vue'
+import { direction, manifesto } from '@/content/company'
 import { projects } from '@/content/work'
 import { site } from '@/config/site'
 
@@ -31,11 +33,6 @@ usePageMeta({
           <h2 id="why-title" v-reveal="60" class="statement text-gradient mt-8">{{ manifesto.statement }}</h2>
           <div class="mt-10 space-y-6 text-lg leading-relaxed text-fg-muted">
             <p v-for="(para, i) in manifesto.paragraphs" :key="i" v-reveal="i * 80">{{ para }}</p>
-            <p v-reveal="160">
-              The company was founded by Sulayman Sanyang, a software engineer who wanted to build technology from
-              Africa that could stand next to anything built elsewhere, and to prove it with real products rather than
-              promises.
-            </p>
           </div>
         </div>
         <figure v-reveal class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-edge/[0.07] lg:col-span-4 lg:col-start-9">
@@ -50,7 +47,7 @@ usePageMeta({
     <section class="section border-t border-edge/[0.06]" aria-labelledby="now-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Where we are now</p>
+          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />What we’re building</p>
           <h2 id="now-title" v-reveal="60" class="heading-xl text-gradient mt-8">
             <span v-for="line in manifesto.stance" :key="line" class="block">{{ line }}</span>
           </h2>
@@ -67,6 +64,23 @@ usePageMeta({
             </li>
           </ul>
           <p v-reveal="120">The ambition is much bigger than the portfolio, for now. That’s the point.</p>
+        </div>
+      </div>
+    </section>
+
+    <FounderSection />
+
+    <section class="section" aria-labelledby="direction-title">
+      <div class="container-page grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Where we’re going</p>
+          <h2 id="direction-title" v-reveal="60" class="heading-xl text-gradient mt-8">{{ direction.title }}</h2>
+        </div>
+        <div class="lg:col-span-6 lg:col-start-7 lg:pt-16">
+          <p v-reveal class="text-xl leading-relaxed text-fg sm:text-2xl sm:leading-relaxed">{{ direction.body }}</p>
+          <div v-reveal="80" class="mt-10">
+            <AppButton to="/work" variant="secondary" arrow>See what we’re building</AppButton>
+          </div>
         </div>
       </div>
     </section>

@@ -49,6 +49,8 @@ The homepage tells one story, in order: hero → 01 The company → 02 The work 
 - `src/content/company.ts`: manifesto, capabilities, Africa → World copy, engineering, principles and engagement steps.
 - `src/content/work.ts`: the portfolio. **To add a project**, append an entry. A page at `/work/<slug>` is generated automatically. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist; the project page shows an honest placeholder for outcomes.
 
+**Founder portrait.** The About page founder section shows a designed frame until a real photo is added. To add one, run `node scripts/add-founder-photo.mjs path/to/photo.jpg` (it writes 4:5 WebP crops to `public/photos/founder-*.webp`), then set `founder.photo` to `'founder'` in `src/content/company.ts`. The founder bio and statement live in the same file.
+
 Retired URLs (`/services`, `/solutions`, `/how-we-work`) redirect client-side, and via `public/_redirects` on Netlify/Cloudflare Pages.
 
 The Africa-centred globe (`public/images/globe-dark-*.webp`) is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
