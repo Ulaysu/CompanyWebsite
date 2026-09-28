@@ -47,7 +47,7 @@ watch(open, (v) => {
   >
     <div class="container-page flex h-16 items-center justify-between gap-6">
       <RouterLink to="/" class="-m-1 rounded-md p-1" :aria-label="`${site.name} — home`">
-        <LogoMark :show-descriptor="true" />
+        <LogoMark :show-descriptor="true" descriptor-class="md:max-lg:hidden" />
       </RouterLink>
 
       <nav aria-label="Primary" class="hidden md:block">
@@ -55,7 +55,7 @@ watch(open, (v) => {
           <li v-for="item in navigation" :key="item.to">
             <RouterLink
               :to="item.to"
-              class="rounded-full px-3.5 py-2 text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
+              class="rounded-full px-3 py-2 text-sm whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-3.5"
               active-class="!text-fg"
             >
               {{ item.label }}

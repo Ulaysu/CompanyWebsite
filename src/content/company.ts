@@ -126,3 +126,31 @@ export const engagement = [
   { title: 'Build', body: 'We ship working software in short cycles, so progress is visible from early on.' },
   { title: 'Run & grow', body: 'We launch, operate and keep improving it as real usage shows what matters next.' },
 ]
+
+/** The founder. Used on the About page. */
+export const founder = {
+  name: 'Sulayman Sanyang',
+  role: 'Founder & Software Engineer',
+  origin: 'The Gambia',
+  /** Approximate coordinates of The Gambia, shown as a quiet detail beside the portrait. */
+  coordinates: '13.4° N · 16.6° W',
+  statement: 'Building world-class technology from Africa, for the world.',
+  bio: [
+    'Sulayman Sanyang is a software engineer and founder focused on building practical technology that solves real problems and can scale beyond its place of origin.',
+    'His journey began in The Gambia, where he built his foundation in computer science and software engineering. Building products, working with international teams and solving problems across different domains led him to something bigger than writing software: building technology companies that can compete globally.',
+    'Today he leads the company with a simple ambition: to build exceptional technology from Africa and take it to the world.',
+  ],
+  /**
+   * Portrait. Leave `null` until a real photo exists; the section then shows a
+   * designed frame instead. To add one: `node scripts/add-founder-photo.mjs path/to/photo.jpg`,
+   * then set this to 'founder'.
+   */
+  photo: null as 'founder' | null,
+  photoAlt: 'Portrait of Sulayman Sanyang, founder of the company.',
+}
+
+/** Where the company is going. Closes the About page story before the call to action. */
+export const direction = {
+  title: 'Where we’re going.',
+  body: 'A company that builds products used well beyond the place they were made, and proves along the way that world-class technology can come from Africa. We’re at the start of that road, building one real product at a time.',
+}

@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { site } from '@/config/site'
 
-withDefaults(defineProps<{ showDescriptor?: boolean }>(), { showDescriptor: true })
+withDefaults(
+  defineProps<{
+    showDescriptor?: boolean
+    /** Extra classes for the descriptor line, e.g. to hide it where space is tight. */
+    descriptorClass?: string
+  }>(),
+  { showDescriptor: true, descriptorClass: '' },
+)
 </script>
 
 <template>
@@ -14,8 +21,8 @@ withDefaults(defineProps<{ showDescriptor?: boolean }>(), { showDescriptor: true
       <span class="absolute -right-px -bottom-px size-1.5 rounded-full bg-accent" />
     </span>
     <span class="flex flex-col leading-none">
-      <span class="text-[0.9375rem] font-semibold tracking-[-0.01em] text-fg">{{ site.name }}</span>
-      <span v-if="showDescriptor" class="mt-1 text-[0.6875rem] tracking-[0.01em] text-fg-subtle">
+      <span class="text-[0.9375rem] font-semibold tracking-[-0.01em] whitespace-nowrap text-fg">{{ site.name }}</span>
+      <span v-if="showDescriptor" :class="['mt-1 text-[0.6875rem] tracking-[0.01em] whitespace-nowrap text-fg-subtle', descriptorClass]">
         {{ site.descriptor }}
       </span>
     </span>
