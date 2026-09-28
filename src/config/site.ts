@@ -1,46 +1,52 @@
 /**
  * Brand + site configuration.
  *
- * Everything that identifies the company lives here, so the brand can be
- * renamed (e.g. to a registered company name) without touching components.
+ * Everything that identifies the company lives here, so components never
+ * hard-code the name, the philosophy or the navigation.
  */
 export const site = {
-  /** TODO(owner): replace with the company name once it's final. */
-  name: 'Sulayman Sanyang',
-  descriptor: 'Technology, built from Africa',
-  /** Short monogram used in the logo mark. */
-  monogram: 'SS',
-  tagline: 'World-class technology, built from Africa.',
+  name: 'SOFORR',
+  descriptor: 'Technology company',
+  tagline: 'Building world-class technology from Africa to the world.',
   description:
-    'A technology company building world-class software from Africa for the world: digital products, platforms, business systems and the infrastructure behind them.',
+    'SOFORR is a technology company building products, platforms, systems and infrastructure that solve real problems. Founded in The Gambia, building from Africa to the world.',
+
+  /** The philosophy the company is named after. */
+  philosophy: {
+    phrase: 'Duniyai ka Soforr.',
+    meaning: 'This world is all about helping one another.',
+    language: 'Jola-Bulluf',
+  },
 
   /** Canonical production URL (no trailing slash). Override with VITE_SITE_URL. */
   url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') || 'https://www.example.com',
 
   /**
    * TODO(owner): replace with the real inbox before launch.
-   * Shown on the contact page and used as the fallback when no form endpoint is configured.
+   * Shown on the Work with us page and used as the fallback when no form endpoint is configured.
    */
   email: 'hello@example.com',
 
   /** One honest line about where the company is and who it builds for. */
-  basedIn: 'Based in Africa · Building for the world',
+  basedIn: 'Rooted in The Gambia · Building for the world',
 
   /**
-   * Social profiles. Leave `null` to hide.
-   * TODO(owner): add real URLs, e.g. 'https://github.com/<handle>' / 'https://www.linkedin.com/company/<handle>'.
+   * Company social profiles. Leave `null` to hide.
+   * TODO(owner): add the real SOFORR accounts, e.g. 'https://github.com/<handle>'.
    */
   social: {
     github: null as string | null,
     linkedin: null as string | null,
+    x: null as string | null,
   },
 } as const
 
 export const navigation = [
-  { label: 'Work', to: '/work' },
+  { label: 'Home', to: '/' },
   { label: 'What we build', to: '/what-we-build' },
+  { label: 'Products', to: '/products' },
   { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Work with us', to: '/work-with-us' },
 ] as const
 
-export const primaryCta = { label: 'Build with us', to: '/contact' } as const
+export const primaryCta = { label: 'Start a conversation', to: '/work-with-us' } as const

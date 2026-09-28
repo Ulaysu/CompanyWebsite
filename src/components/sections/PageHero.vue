@@ -14,7 +14,7 @@ defineProps<{ label: string; title: string; lede?: string; photo?: PhotoName }>(
       <p class="index-label animate-fade-up">
         <span class="h-px w-6 bg-accent" aria-hidden="true" />{{ label }}
       </p>
-      <h1 id="page-title" class="text-gradient mt-7 max-w-4xl animate-fade-up text-[2.625rem] leading-[1.02] font-semibold tracking-[-0.04em] [animation-delay:80ms] sm:text-6xl lg:text-7xl">
+      <h1 id="page-title" class="mt-7 max-w-4xl animate-fade-up text-[2.625rem] leading-[1] font-semibold tracking-[-0.045em] [animation-delay:80ms] sm:text-6xl lg:text-7xl">
         {{ title }}
       </h1>
       <p v-if="lede" class="lede mt-7 max-w-2xl animate-fade-up text-fg-muted [animation-delay:160ms]">{{ lede }}</p>

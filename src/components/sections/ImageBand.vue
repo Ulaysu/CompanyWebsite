@@ -17,7 +17,7 @@ withDefaults(
 
 <template>
   <figure class="container-page" v-reveal>
-    <div class="overflow-hidden rounded-2xl border border-edge/[0.07] bg-ink-900">
+    <div class="overflow-hidden border border-edge/[0.08] bg-ink-900">
       <div :style="zoom !== 1 ? { transform: `scale(${zoom})` } : undefined">
         <ThemedImage :name="name" :alt="alt" sizes="(min-width: 1216px) 1216px, 100vw" img-class="block h-auto w-full" />
       </div>

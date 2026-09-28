@@ -3,48 +3,51 @@ import { RouterLink } from 'vue-router'
 import { ArrowUpRight } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
 import { navigation, primaryCta, site } from '@/config/site'
-import { projects } from '@/content/work'
+import { founder } from '@/content/company'
+import { products } from '@/content/products'
 
 const year = new Date().getFullYear()
+const links = navigation.filter((n) => n.to !== '/')
 const socials = [
   { label: 'GitHub', href: site.social.github },
   { label: 'LinkedIn', href: site.social.linkedin },
+  { label: 'X', href: site.social.x },
 ].filter((s): s is { label: string; href: string } => Boolean(s.href))
 </script>
 
 <template>
-  <footer class="surface-dark relative border-t border-edge/[0.08]">
-    <div class="container-page grid grid-cols-1 gap-12 py-16 md:grid-cols-12 md:gap-8 md:py-24">
-      <div class="md:col-span-5">
-        <RouterLink to="/" class="inline-block rounded-md" :aria-label="`${site.name} — home`">
+  <footer class="surface-dark relative overflow-hidden border-t border-edge/[0.08]">
+    <div class="container-page grid grid-cols-1 gap-14 pt-20 pb-12 md:grid-cols-12 md:gap-8 md:pt-28">
+      <div class="md:col-span-6">
+        <RouterLink to="/" class="inline-block" :aria-label="`${site.name}, home`">
           <LogoMark />
         </RouterLink>
-        <p class="mt-8 max-w-sm text-2xl font-semibold tracking-[-0.03em] text-fg">{{ site.tagline }}</p>
-        <p class="mt-6 flex items-center gap-2 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
-          <span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />
-          {{ site.basedIn }}
+        <p class="serif mt-10 text-4xl leading-none text-fg italic sm:text-5xl">{{ site.philosophy.phrase }}</p>
+        <p class="mt-3 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
+          {{ site.philosophy.language }}: “{{ site.philosophy.meaning }}”
         </p>
+        <p class="mt-8 max-w-sm text-lg leading-snug font-medium tracking-[-0.015em] text-fg">{{ site.tagline }}</p>
       </div>
 
-      <nav aria-label="Footer" class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
+      <nav aria-label="Footer" class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-6">
         <div>
-          <h2 class="eyebrow mb-4">Company</h2>
+          <h2 class="eyebrow mb-5">Company</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="item in navigation" :key="item.to">
+            <li v-for="item in links" :key="item.to">
               <RouterLink :to="item.to" class="text-fg-muted transition-colors hover:text-fg">{{ item.label }}</RouterLink>
             </li>
           </ul>
         </div>
         <div>
-          <h2 class="eyebrow mb-4">Now building</h2>
+          <h2 class="eyebrow mb-5">Products</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="p in projects" :key="p.slug">
-              <RouterLink :to="`/work/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
+            <li v-for="p in products" :key="p.slug">
+              <RouterLink :to="`/products/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
             </li>
           </ul>
         </div>
         <div class="col-span-2 sm:col-span-1">
-          <h2 class="eyebrow mb-4">Contact</h2>
+          <h2 class="eyebrow mb-5">Contact</h2>
           <ul class="space-y-3 text-sm">
             <li>
               <RouterLink :to="primaryCta.to" class="text-fg-muted transition-colors hover:text-fg">{{ primaryCta.label }}</RouterLink>
@@ -58,13 +61,23 @@ const socials = [
               </a>
             </li>
           </ul>
+          <h2 class="eyebrow mt-10 mb-3">Founder</h2>
+          <p class="text-sm text-fg-muted">
+            <RouterLink to="/about#founder" class="transition-colors hover:text-fg">{{ founder.name }} <span class="text-fg-subtle">/</span> {{ founder.handle }}</RouterLink>
+          </p>
         </div>
       </nav>
     </div>
-    <div class="border-t border-edge/[0.08]">
-      <div class="container-page flex flex-col gap-2 py-6 text-xs text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
+
+    <!-- Oversized wordmark, cropped by the page edge. -->
+    <div aria-hidden="true" class="container-page pointer-events-none select-none">
+      <p class="wordmark -mb-[0.2em] text-[24vw] leading-[0.8] text-fg/[0.045] lg:text-[21rem]">{{ site.name }}</p>
+    </div>
+
+    <div class="relative border-t border-edge/[0.08]">
+      <div class="container-page flex flex-col gap-2 py-6 font-mono text-[0.6875rem] tracking-wide text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
-        <p>{{ site.descriptor }}</p>
+        <p class="flex items-center gap-2"><span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />{{ site.basedIn }}</p>
       </div>
     </div>
   </footer>

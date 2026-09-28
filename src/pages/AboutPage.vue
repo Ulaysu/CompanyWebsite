@@ -1,90 +1,65 @@
 <script setup lang="ts">
 import { usePageMeta } from '@/composables/usePageMeta'
 import PageHero from '@/components/sections/PageHero.vue'
-import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
+import BeliefSection from '@/components/sections/BeliefSection.vue'
+import VisionSection from '@/components/sections/VisionSection.vue'
 import AfricaWorldSection from '@/components/sections/AfricaWorldSection.vue'
-import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
-import BuildWithUs from '@/components/sections/BuildWithUs.vue'
 import FounderSection from '@/components/sections/FounderSection.vue'
+import FinalCta from '@/components/sections/FinalCta.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import { direction, manifesto } from '@/content/company'
-import { projects } from '@/content/work'
+import { direction, founder, principles } from '@/content/company'
 import { site } from '@/config/site'
 
 usePageMeta({
   title: 'About',
-  description: `${site.name} is a young technology company building world-class software from Africa, for the world.`,
+  description: `${site.name} is a technology company founded in The Gambia by ${founder.name} (${founder.handle}), building world-class technology from Africa to the world.`,
 })
 </script>
 
 <template>
   <div>
     <PageHero
-      label="About"
-      title="Built from Africa, for the world."
-      lede="A young technology company with a simple conviction: where software is built should never decide how good it can be."
+      label="About SOFORR"
+      title="A technology company built on helping one another."
+      :lede="`SOFORR was founded in The Gambia by ${founder.name}, known online as ${founder.handle}. We build products, platforms, systems and infrastructure, from Africa to the world.`"
       photo="city"
     />
 
-    <section class="section" aria-labelledby="why-title">
-      <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-7">
-          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Why we exist</p>
-          <h2 id="why-title" v-reveal="60" class="statement text-gradient mt-8">{{ manifesto.statement }}</h2>
-          <div class="mt-10 space-y-6 text-lg leading-relaxed text-fg-muted">
-            <p v-for="(para, i) in manifesto.paragraphs" :key="i" v-reveal="i * 80">{{ para }}</p>
-          </div>
-        </div>
-        <figure v-reveal class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-edge/[0.07] lg:col-span-4 lg:col-start-9">
-          <PhotoBackdrop name="builders" fade="none" sizes="(min-width: 1024px) 400px, 100vw" />
-        </figure>
+    <BeliefSection index="" />
+    <VisionSection index="" label="Why we exist" />
+    <AfricaWorldSection index="" />
+
+    <section class="section" aria-labelledby="principles-title">
+      <div class="container-page">
+        <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />How we think</p>
+        <h2 id="principles-title" v-reveal="60" class="heading-xl mt-8">Principles we build by.</h2>
+        <ol class="mt-14 grid grid-cols-1 gap-x-16 gap-y-12 sm:mt-20 md:grid-cols-2">
+          <li v-for="(p, i) in principles" :key="p.title" v-reveal="(i % 2) * 90" class="border-t border-edge/10 pt-8">
+            <span class="font-mono text-xs text-accent">0{{ i + 1 }}</span>
+            <h3 class="mt-5 text-2xl font-semibold tracking-[-0.03em] text-fg sm:text-3xl">{{ p.title }}</h3>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-fg-muted">{{ p.body }}</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <AfricaWorldSection />
-    <PrinciplesSection index="" />
-
-    <section class="section border-t border-edge/[0.06]" aria-labelledby="now-title">
-      <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-        <div class="lg:col-span-5">
-          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />What we’re building</p>
-          <h2 id="now-title" v-reveal="60" class="heading-xl text-gradient mt-8">
-            <span v-for="line in manifesto.stance" :key="line" class="block">{{ line }}</span>
-          </h2>
-        </div>
-        <div class="space-y-6 text-lg leading-relaxed text-fg-muted lg:col-span-6 lg:col-start-7">
-          <p v-reveal>
-            We’re early, and we’d rather be honest about that than invent a track record. Right now we’re building our
-            first products and our first partnerships:
-          </p>
-          <ul v-reveal="80" class="divide-y divide-edge/10 border-y border-edge/10">
-            <li v-for="p in projects" :key="p.slug" class="flex flex-wrap items-baseline justify-between gap-2 py-4">
-              <RouterLink :to="`/work/${p.slug}`" class="font-semibold text-fg underline decoration-edge/25 underline-offset-4 hover:decoration-accent">{{ p.name }}</RouterLink>
-              <span class="font-mono text-xs text-fg-subtle">{{ p.kind }} · {{ p.status }}</span>
-            </li>
-          </ul>
-          <p v-reveal="120">The ambition is much bigger than the portfolio, for now. That’s the point.</p>
-        </div>
-      </div>
-    </section>
-
-    <FounderSection />
+    <FounderSection index="" />
 
     <section class="section" aria-labelledby="direction-title">
       <div class="container-page grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Where we’re going</p>
-          <h2 id="direction-title" v-reveal="60" class="heading-xl text-gradient mt-8">{{ direction.title }}</h2>
+          <p v-reveal class="index-label"><span class="h-px w-6 bg-accent" aria-hidden="true" />Direction</p>
+          <h2 id="direction-title" v-reveal="60" class="heading-xl mt-8">{{ direction.title }}</h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7 lg:pt-16">
           <p v-reveal class="text-xl leading-relaxed text-fg sm:text-2xl sm:leading-relaxed">{{ direction.body }}</p>
           <div v-reveal="80" class="mt-10">
-            <AppButton to="/work" variant="secondary" arrow>See what we’re building</AppButton>
+            <AppButton to="/products" variant="secondary" arrow>See what we’re building</AppButton>
           </div>
         </div>
       </div>
     </section>
 
-    <BuildWithUs />
+    <FinalCta />
   </div>
 </template>

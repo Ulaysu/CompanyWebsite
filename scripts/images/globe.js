@@ -5,8 +5,8 @@ import { feature } from 'topojson-client'
 
 const deg = Math.PI / 180
 
-/** Where the arcs start: a point on the West African coast. */
-const ORIGIN = [-15.5, 12.5]
+/** Where the arcs start: The Gambia, where SOFORR is rooted. */
+const ORIGIN = [-16.6, 13.4]
 const DESTINATIONS = [
   [-0.1, 51.5], // London
   [2.35, 48.9], // Paris
@@ -58,9 +58,9 @@ export async function globe(canvas) {
 
   // Atmosphere glow
   const glow = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.32)
-  glow.addColorStop(0, 'rgba(92,207,230,0.20)')
-  glow.addColorStop(0.35, 'rgba(92,207,230,0.07)')
-  glow.addColorStop(1, 'rgba(92,207,230,0)')
+  glow.addColorStop(0, 'rgba(255,226,196,0.10)')
+  glow.addColorStop(0.35, 'rgba(255,226,196,0.035)')
+  glow.addColorStop(1, 'rgba(255,226,196,0)')
   ctx.fillStyle = glow
   ctx.beginPath()
   ctx.arc(cx, cy, R * 1.32, 0, Math.PI * 2)
@@ -68,9 +68,9 @@ export async function globe(canvas) {
 
   // Ocean sphere
   const ocean = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R)
-  ocean.addColorStop(0, '#12213a')
-  ocean.addColorStop(0.7, '#0a1426')
-  ocean.addColorStop(1, '#060c18')
+  ocean.addColorStop(0, '#1d1b1a')
+  ocean.addColorStop(0.7, '#111010')
+  ocean.addColorStop(1, '#090909')
   ctx.fillStyle = ocean
   ctx.beginPath()
   ctx.arc(cx, cy, R, 0, Math.PI * 2)
@@ -79,7 +79,7 @@ export async function globe(canvas) {
   // Graticule
   ctx.beginPath()
   path(geoGraticule10())
-  ctx.strokeStyle = 'rgba(140,180,220,0.06)'
+  ctx.strokeStyle = 'rgba(255,240,225,0.05)'
   ctx.lineWidth = 1
   ctx.stroke()
 
@@ -97,7 +97,7 @@ export async function globe(canvas) {
       const africa = inAfrica(p)
       const r = (africa ? 2.3 : 1.9) * (0.45 + 0.55 * facing) * (W / 2000)
       ctx.globalAlpha = (africa ? 0.95 : 0.7) * (0.3 + 0.7 * facing)
-      ctx.fillStyle = africa ? '#eef3f9' : '#8fb2d6'
+      ctx.fillStyle = africa ? '#f6efe6' : '#9a948b'
       ctx.beginPath()
       ctx.arc(x, y, r, 0, Math.PI * 2)
       ctx.fill()
@@ -107,8 +107,8 @@ export async function globe(canvas) {
 
   // Limb shading for depth
   const limb = ctx.createRadialGradient(cx, cy, R * 0.55, cx, cy, R)
-  limb.addColorStop(0, 'rgba(6,9,16,0)')
-  limb.addColorStop(1, 'rgba(6,9,16,0.55)')
+  limb.addColorStop(0, 'rgba(9,9,9,0)')
+  limb.addColorStop(1, 'rgba(9,9,9,0.6)')
   ctx.fillStyle = limb
   ctx.beginPath()
   ctx.arc(cx, cy, R, 0, Math.PI * 2)
@@ -140,13 +140,13 @@ export async function globe(canvas) {
     const a = pts[0]
     const b = pts[pts.length - 1]
     const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y)
-    grad.addColorStop(0, 'rgba(242,128,62,0.95)')
-    grad.addColorStop(1, 'rgba(92,207,230,0.9)')
+    grad.addColorStop(0, 'rgba(232,114,58,0.95)')
+    grad.addColorStop(1, 'rgba(246,236,224,0.85)')
     ctx.save()
     ctx.strokeStyle = grad
     ctx.lineWidth = 2.2 * (W / 2000)
     ctx.lineCap = 'round'
-    ctx.shadowColor = 'rgba(92,207,230,0.6)'
+    ctx.shadowColor = 'rgba(232,114,58,0.45)'
     ctx.shadowBlur = 10 * (W / 2000)
     ctx.beginPath()
     let drawing = false
@@ -165,7 +165,7 @@ export async function globe(canvas) {
     // Travelling pulse somewhere along each arc
     const pulse = pts[Math.floor((0.35 + r() * 0.5) * n)]
     if (pulse.visible) {
-      ctx.fillStyle = 'rgba(220,245,255,0.95)'
+      ctx.fillStyle = 'rgba(255,246,236,0.95)'
       ctx.beginPath()
       ctx.arc(pulse.x, pulse.y, 3.2 * (W / 2000), 0, Math.PI * 2)
       ctx.fill()
@@ -173,13 +173,13 @@ export async function globe(canvas) {
 
     if (b.visible && geoDistance(dest, center) < Math.PI / 2) {
       const halo = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, 16 * (W / 2000))
-      halo.addColorStop(0, 'rgba(92,207,230,0.55)')
-      halo.addColorStop(1, 'rgba(92,207,230,0)')
+      halo.addColorStop(0, 'rgba(255,236,214,0.45)')
+      halo.addColorStop(1, 'rgba(255,236,214,0)')
       ctx.fillStyle = halo
       ctx.beginPath()
       ctx.arc(b.x, b.y, 16 * (W / 2000), 0, Math.PI * 2)
       ctx.fill()
-      ctx.fillStyle = '#bff1fb'
+      ctx.fillStyle = '#fff4e8'
       ctx.beginPath()
       ctx.arc(b.x, b.y, 3.6 * (W / 2000), 0, Math.PI * 2)
       ctx.fill()
@@ -189,15 +189,15 @@ export async function globe(canvas) {
   // Origin
   const o = lift(ORIGIN, 0)
   for (const [rad, alpha] of [[46, 0.12], [30, 0.22], [18, 0.45]]) {
-    ctx.strokeStyle = `rgba(242,128,62,${alpha})`
+    ctx.strokeStyle = `rgba(232,114,58,${alpha})`
     ctx.lineWidth = 1.5 * (W / 2000)
     ctx.beginPath()
     ctx.arc(o.x, o.y, rad * (W / 2000), 0, Math.PI * 2)
     ctx.stroke()
   }
   const og = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, 28 * (W / 2000))
-  og.addColorStop(0, 'rgba(242,128,62,0.8)')
-  og.addColorStop(1, 'rgba(242,128,62,0)')
+  og.addColorStop(0, 'rgba(232,114,58,0.8)')
+  og.addColorStop(1, 'rgba(232,114,58,0)')
   ctx.fillStyle = og
   ctx.beginPath()
   ctx.arc(o.x, o.y, 28 * (W / 2000), 0, Math.PI * 2)

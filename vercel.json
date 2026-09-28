@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/services", "destination": "/what-we-build", "permanent": true },
+    { "source": "/solutions", "destination": "/products", "permanent": true },
+    { "source": "/how-we-work", "destination": "/what-we-build", "permanent": true },
+    { "source": "/work", "destination": "/products", "permanent": true },
+    { "source": "/work/:slug", "destination": "/products/:slug", "permanent": true },
+    { "source": "/contact", "destination": "/work-with-us", "permanent": true }
+  ]
+}

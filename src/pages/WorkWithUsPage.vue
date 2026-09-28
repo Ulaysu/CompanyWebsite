@@ -6,20 +6,21 @@ import FormField from '@/components/ui/FormField.vue'
 import AppButton from '@/components/ui/AppButton.vue'
 import PageHero from '@/components/sections/PageHero.vue'
 import { site } from '@/config/site'
+import { partnership } from '@/content/company'
 
 usePageMeta({
-  title: 'Build with us',
+  title: 'Work with us',
   description:
-    'Have something worth building? A product idea, a business system, or technology that needs to become something more. Tell us about it.',
+    'SOFORR works selectively with organisations that need technology to solve meaningful operational or business problems. Tell us about the problem, opportunity or idea.',
 })
 
-const kinds = ['A new product or platform', 'A business system', 'APIs & integrations', 'Automation & intelligence', 'Not sure yet'] as const
+const kinds = [...partnership.areas.map((a) => a.title), 'Something else'] as const
 
 const form = reactive({
   name: '',
   email: '',
   organisation: '',
-  kind: '' as '' | (typeof kinds)[number],
+  kind: '' as string,
   idea: '',
   stage: '',
   other: '',
@@ -37,8 +38,8 @@ const labels: Record<Exclude<Field, 'fax'>, string> = {
   name: 'Name',
   email: 'Email',
   organisation: 'Company or organisation',
-  kind: 'What are you building?',
-  idea: 'Tell us about it',
+  kind: 'Area',
+  idea: 'The problem, opportunity or idea',
   stage: 'Where is it today?',
   other: 'Anything else we should know?',
 }
@@ -72,7 +73,7 @@ async function submit(e: Event) {
 
   if (!endpoint) {
     // No backend configured: open the visitor's email client with everything pre-filled.
-    const subject = `Build with us — ${form.organisation.trim() || form.name.trim()}`
+    const subject = `SOFORR — ${form.organisation.trim() || form.name.trim()}`
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody.value)}`
     status.value = 'mailto'
     return
@@ -95,17 +96,17 @@ async function submit(e: Event) {
 
 const nextSteps = [
   { title: 'We read it properly', body: 'Every message is read by the people who would build it.' },
-  { title: 'We reply with questions', body: 'Usually a few, to understand the idea and who it’s for.' },
-  { title: 'We suggest a first step', body: 'Often a short call, then a clear view of what to build first.' },
+  { title: 'We reply with questions', body: 'Usually a few, to understand the problem and who it affects.' },
+  { title: 'We decide together', body: 'If it is a good fit, we suggest a first step. If not, we say so.' },
 ]
 </script>
 
 <template>
   <div>
     <PageHero
-      label="Build with us"
-      title="Have something worth building?"
-      lede="A product idea, a business system, or technology that needs to become something more. Tell us about it. You don’t need a specification, just the ambition."
+      label="Work with us"
+      :title="partnership.title"
+      lede="SOFORR works selectively with organisations that need technology to solve meaningful operational or business problems. Tell us about the problem, opportunity or idea. You don’t need a specification."
     />
 
     <section class="container-page grid grid-cols-1 gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-12" aria-label="Contact form">
@@ -119,8 +120,8 @@ const nextSteps = [
             </li>
           </ol>
 
-          <div class="mt-10 flex items-center gap-4 rounded-xl border border-edge/[0.1] p-4">
-            <span class="grid size-10 shrink-0 place-items-center rounded-lg border border-edge/10 bg-edge/[0.03]">
+          <div class="mt-10 flex items-center gap-4 border border-edge/[0.1] p-4">
+            <span class="grid size-10 shrink-0 place-items-center border border-edge/10 bg-edge/[0.03]">
               <Mail class="size-4 text-fg-muted" aria-hidden="true" />
             </span>
             <div class="min-w-0">
@@ -163,13 +164,13 @@ const nextSteps = [
 
             <div class="border-t border-edge/[0.08] pt-10">
             <fieldset class="min-w-0">
-              <legend class="eyebrow mb-5">What are you building? <span class="ml-2 normal-case tracking-normal text-fg-subtle">Optional</span></legend>
+              <legend class="eyebrow mb-5">What is it about? <span class="ml-2 normal-case tracking-normal text-fg-subtle">Optional</span></legend>
               <div class="flex flex-wrap gap-2">
                 <label
                   v-for="k in kinds"
                   :key="k"
                   :class="[
-                    'cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent',
+                    'cursor-pointer border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent',
                     form.kind === k ? 'border-accent/60 bg-accent/10 text-fg' : 'border-edge/15 text-fg-muted hover:border-edge/30 hover:text-fg',
                   ]"
                 >
@@ -182,9 +183,9 @@ const nextSteps = [
 
             <div class="border-t border-edge/[0.08] pt-10">
             <fieldset class="min-w-0 space-y-5">
-              <legend class="eyebrow mb-5">The idea</legend>
-              <FormField v-model="form.idea" label="Tell us about it" name="idea" multiline :rows="5" required :error="errors.idea" placeholder="What do you want to build, who is it for, and why now?" />
-              <FormField v-model="form.stage" label="Where is it today?" name="stage" placeholder="e.g. An idea, a prototype, a live product that needs to grow" />
+              <legend class="eyebrow mb-5">The problem</legend>
+              <FormField v-model="form.idea" label="The problem, opportunity or idea" name="idea" multiline :rows="5" required :error="errors.idea" placeholder="What needs to exist, who is it for, and why does it matter now?" />
+              <FormField v-model="form.stage" label="Where is it today?" name="stage" placeholder="e.g. An idea, a manual process, a system that has outgrown itself" />
               <FormField v-model="form.other" label="Anything else we should know?" name="other" multiline :rows="3" hint="Timelines, constraints, links: whatever is useful." />
             </fieldset>
             </div>
@@ -198,7 +199,7 @@ const nextSteps = [
               <p class="text-xs leading-relaxed text-fg-subtle sm:max-w-xs">We only use your details to reply to you. No mailing lists.</p>
               <AppButton type="submit" size="lg" :disabled="status === 'sending'" class="w-full sm:w-auto">
                 <Loader2 v-if="status === 'sending'" class="size-4 animate-spin" aria-hidden="true" />
-                {{ status === 'sending' ? 'Sending…' : 'Build with us' }}
+                {{ status === 'sending' ? 'Sending…' : 'Start a conversation' }}
                 <ArrowRight v-if="status !== 'sending'" class="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </AppButton>
             </div>
