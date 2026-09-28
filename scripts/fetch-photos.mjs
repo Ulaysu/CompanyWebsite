@@ -21,7 +21,7 @@ for (const [key, photo] of Object.entries(photos)) {
   const original = execFileSync('curl', ['-sfL', '--max-time', '60', url], { maxBuffer: 64 * 1024 * 1024 })
   for (const w of photo.widths) {
     const file = join(outDir, `${key}-${w}.webp`)
-    const buf = await sharp(original).resize({ width: w, withoutEnlargement: true }).webp({ quality: 62, effort: 6 }).toBuffer()
+    const buf = await sharp(original).resize({ width: w, withoutEnlargement: true }).webp({ quality: 80, effort: 6 }).toBuffer()
     await writeFile(file, buf)
     console.log(`public/photos/${key}-${w}.webp  ${(buf.length / 1024).toFixed(0)} KB`)
   }

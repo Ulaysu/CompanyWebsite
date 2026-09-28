@@ -23,7 +23,7 @@ usePageMeta({ title: project.value.name, description: project.value.summary })
   <div>
     <section class="surface-dark relative flex min-h-[86svh] flex-col overflow-hidden" aria-labelledby="page-title">
       <PhotoBackdrop :name="project.photo" eager fade="hero" sizes="100vw" />
-      <div class="container-page relative flex flex-1 flex-col justify-end pt-36 pb-14 sm:pb-20">
+      <div class="on-photo container-page relative flex flex-1 flex-col justify-end pt-36 pb-14 sm:pb-20">
         <RouterLink to="/work" class="inline-flex w-fit animate-fade-up items-center gap-2 font-mono text-xs text-fg-muted transition-colors hover:text-fg">
           <ArrowLeft class="size-3.5" aria-hidden="true" /> All work
         </RouterLink>
@@ -90,7 +90,7 @@ usePageMeta({ title: project.value.name, description: project.value.summary })
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 :srcset="photoSrcset(project.detailPhoto)"
                 :src="photoSrc(project.detailPhoto)"
-                class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.04)]"
+                class="absolute inset-0 h-full w-full object-cover"
                 :style="{ objectPosition: photos[project.detailPhoto]!.position }"
               />
             </div>

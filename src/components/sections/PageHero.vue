@@ -10,7 +10,7 @@ defineProps<{ label: string; title: string; lede?: string; photo?: PhotoName }>(
   <section class="surface-dark relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28" aria-labelledby="page-title">
     <PhotoBackdrop v-if="photo" :name="photo" eager fade="hero" />
     <div v-else aria-hidden="true" class="bg-grid mask-radial pointer-events-none absolute inset-0 opacity-70" />
-    <div class="container-page relative">
+    <div class="container-page relative" :class="photo ? 'on-photo' : ''">
       <p class="index-label animate-fade-up">
         <span class="text-fg">SOFORR</span><span class="text-fg-subtle/60" aria-hidden="true">/</span>{{ label }}
       </p>

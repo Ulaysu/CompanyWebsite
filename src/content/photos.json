@@ -5,8 +5,8 @@
       "unsplash": "1531482615713-2afd69097998",
       "alt": "Two developers working through code together at a laptop.",
       "widths": [
-        800,
-        1600
+        1000,
+        2000
       ],
       "position": "55% 45%"
     },
@@ -23,8 +23,8 @@
       "unsplash": "1621862681356-eda413727d27",
       "alt": "The Banjul waterfront and ferry pier on the Gambia River.",
       "widths": [
-        800,
-        1600
+        1000,
+        2400
       ],
       "position": "50% 55%"
     },
@@ -32,8 +32,8 @@
       "unsplash": "1448099940878-e0c48ea3a165",
       "alt": "Aerial view of a river winding through mangrove forest in The Gambia.",
       "widths": [
-        800,
-        1600
+        1000,
+        2400
       ],
       "position": "50% 50%"
     },
@@ -41,8 +41,8 @@
       "unsplash": "1602516029536-77f808c3db4e",
       "alt": "Horses grazing in a summer pasture edged by pine trees in Kennebunk, Maine.",
       "widths": [
-        800,
-        1600
+        1000,
+        2400
       ],
       "position": "40% 70%"
     },
@@ -54,6 +54,15 @@
         1600
       ],
       "position": "55% 50%"
+    },
+    "team": {
+      "unsplash": "1522071820081-009f0129c71c",
+      "alt": "A team working together on laptops around a wooden table.",
+      "widths": [
+        1000,
+        2000
+      ],
+      "position": "55% 45%"
     }
   }
 }
