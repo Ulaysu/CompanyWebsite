@@ -9,12 +9,12 @@ import { site } from '@/config/site'
 import { partnership } from '@/content/company'
 
 usePageMeta({
-  title: 'Work with us',
+  title: 'Contact',
   description:
-    'SOFORR works selectively with organisations that need technology to solve meaningful operational or business problems. Tell us about the problem, opportunity or idea.',
+    'Have something worth building? Tell SOFORR about the problem, opportunity or idea. We work selectively with organisations that have important problems worth solving.',
 })
 
-const kinds = [...partnership.areas.map((a) => a.title), 'Something else'] as const
+const kinds = [...partnership.areas, 'Something else'] as const
 
 const form = reactive({
   name: '',
@@ -104,9 +104,9 @@ const nextSteps = [
 <template>
   <div>
     <PageHero
-      label="Work with us"
-      :title="partnership.title"
-      lede="SOFORR works selectively with organisations that need technology to solve meaningful operational or business problems. Tell us about the problem, opportunity or idea. You don’t need a specification."
+      label="Contact"
+      title="Have something worth building?"
+      lede="Tell us about the problem, opportunity or idea. Alongside our own products, we work selectively with organisations that have important problems worth solving. You don’t need a specification."
     />
 
     <section class="container-page grid grid-cols-1 gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-12" aria-label="Contact form">
@@ -114,7 +114,7 @@ const nextSteps = [
         <div class="lg:sticky lg:top-28">
           <ol class="space-y-6 border-l border-edge/[0.1] pl-6">
             <li v-for="(s, i) in nextSteps" :key="s.title" class="relative">
-              <span class="absolute top-1.5 -left-[27.5px] size-1.5 rounded-full bg-accent" aria-hidden="true" />
+              <span class="absolute top-1.5 -left-[27.5px] size-1.5 rounded-full bg-fg-subtle" aria-hidden="true" />
               <p class="text-sm font-medium text-fg"><span class="mr-2 font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span>{{ s.title }}</p>
               <p class="mt-1 text-sm text-fg-muted">{{ s.body }}</p>
             </li>
@@ -129,14 +129,14 @@ const nextSteps = [
               <a :href="`mailto:${site.email}`" class="block truncate font-medium text-fg underline-offset-4 hover:underline">{{ site.email }}</a>
             </div>
           </div>
-          <p class="mt-6 font-mono text-xs text-fg-subtle">{{ site.basedIn }}</p>
+          <p class="mt-6 font-mono text-xs text-fg-subtle">{{ site.originShort }}</p>
         </div>
       </div>
 
       <div class="lg:col-span-8">
         <div class="panel p-5 sm:p-10">
           <div v-if="status === 'sent' || status === 'mailto'" class="py-10 text-center" role="status" aria-live="polite">
-            <CheckCircle2 class="mx-auto size-10 text-accent" aria-hidden="true" />
+            <CheckCircle2 class="mx-auto size-10 text-positive" aria-hidden="true" />
             <h2 class="mt-5 text-2xl font-semibold tracking-tight text-fg">
               {{ status === 'sent' ? 'Thank you. Message received.' : 'Your email is ready to send.' }}
             </h2>
@@ -171,7 +171,7 @@ const nextSteps = [
                   :key="k"
                   :class="[
                     'cursor-pointer border px-4 py-2 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent',
-                    form.kind === k ? 'border-accent/60 bg-accent/10 text-fg' : 'border-edge/15 text-fg-muted hover:border-edge/30 hover:text-fg',
+                    form.kind === k ? 'border-fg bg-fg text-ink-950' : 'border-edge/15 text-fg-muted hover:border-edge/30 hover:text-fg',
                   ]"
                 >
                   <input v-model="form.kind" type="radio" name="kind" :value="k" class="sr-only" />

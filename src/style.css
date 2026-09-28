@@ -7,7 +7,7 @@
 @theme {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* Used sparingly: the Jola-Bulluf phrase and a few editorial accents. */
+  /* The brand's second voice: the philosophy, the founder and a few editorial words. */
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
 
   /* Surfaces: warm near-black (dark by default; see [data-theme='light'] below). */
@@ -26,7 +26,7 @@
   /* Hairlines and tints: used as edge/[opacity] for borders, dividers and washes. */
   --color-edge: #ffffff;
 
-  /* Accent: laterite, the colour of West African earth. Used sparingly. */
+  /* Signal: one warm accent for the mark, live status and focus. Never decoration. */
   --color-accent: #e8723a;
   --color-accent-soft: #f29a68;
   /* Secondary signal: warm sand, for quiet technical details. */
@@ -40,8 +40,7 @@
 
   --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quint) infinite;
   --animate-fade-up: fade-up 1s var(--ease-out-quint) both;
-  --animate-travel: travel 4.8s var(--ease-out-quint) infinite;
-  --animate-drift: drift 24s ease-in-out infinite alternate;
+  --animate-word: word-rise 1.1s var(--ease-out-quint) both;
 
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -51,16 +50,10 @@
     from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
     to { opacity: 1; transform: none; filter: none; }
   }
-  /* A signal travelling along the Africa → Technology → World line. */
-  @keyframes travel {
-    0% { left: 0%; opacity: 0; }
-    10% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { left: 100%; opacity: 0; }
-  }
-  @keyframes drift {
-    from { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-    to { transform: translate3d(-1.5%, 1%, 0) rotate(-4deg) scale(1.03); }
+  /* Headline words rise out of a clipped line. */
+  @keyframes word-rise {
+    from { transform: translateY(105%); }
+    to { transform: none; }
   }
 }
 
@@ -88,7 +81,7 @@
 }
 
 /*
- * Always-dark surfaces (hero, products, Africa, founder, closing call to action)
+ * Always-dark surfaces (hero, work, founder, closing call to action)
  * keep the dark tokens even when the rest of the page is light.
  */
 .surface-dark {
@@ -219,19 +212,6 @@
   .mask-radial {
     mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
   }
-  /* Corner ticks for technical frames: add to a relative element. */
-  .frame-ticks {
-    background:
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top left / 12px 1px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top left / 1px 12px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top right / 12px 1px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) top right / 1px 12px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom left / 12px 1px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom left / 1px 12px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom right / 12px 1px,
-      linear-gradient(var(--tick, color-mix(in oklab, var(--color-edge) 45%, transparent)) 0 0) bottom right / 1px 12px;
-    background-repeat: no-repeat;
-  }
 }
 
 /* Scroll-reveal (see directives/reveal.ts). Content is visible without JS. */
@@ -239,13 +219,56 @@
   opacity: 0;
   transform: translateY(16px);
   transition:
-    opacity 0.8s var(--ease-out-quint),
-    transform 0.8s var(--ease-out-quint);
+    opacity 0.9s var(--ease-out-quint),
+    transform 0.9s var(--ease-out-quint);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+}
+/*
+ * Images open like a shutter instead of fading. The clip sits on the children:
+ * a fully clipped target never counts as intersecting, so it would never reveal.
+ */
+.js [data-reveal].reveal-clip {
+  opacity: 1;
+  transform: none;
+}
+.js [data-reveal].reveal-clip > * {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.3s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].reveal-clip.is-visible > * {
+  clip-path: inset(0 0 0 0);
+}
+/* Rules that draw themselves across the page. */
+.js [data-reveal].reveal-line {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.4s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].reveal-line.is-visible {
+  transform: none;
+}
+
+/* Headline word reveal: each word sits in a clipped line box. */
+.word-line {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.word-line > span {
+  display: inline-block;
+}
+.js .word-line > span {
+  animation: var(--animate-word);
+  animation-delay: var(--word-delay, 0ms);
 }
 
 /* Route transitions */
@@ -263,5 +286,5 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .js [data-reveal] { opacity: 1; transform: none; }
+  .js [data-reveal], .js [data-reveal].reveal-clip > * { opacity: 1; transform: none; clip-path: none; }
 }

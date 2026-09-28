@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { usePageMeta } from '@/composables/usePageMeta'
 import HomeHero from '@/components/sections/HomeHero.vue'
-import BeliefSection from '@/components/sections/BeliefSection.vue'
-import VisionSection from '@/components/sections/VisionSection.vue'
+import PhilosophySection from '@/components/sections/PhilosophySection.vue'
 import BuildSection from '@/components/sections/BuildSection.vue'
-import ProductsSection from '@/components/sections/ProductsSection.vue'
-import AfricaWorldSection from '@/components/sections/AfricaWorldSection.vue'
-import HowWeBuildSection from '@/components/sections/HowWeBuildSection.vue'
-import PartnershipSection from '@/components/sections/PartnershipSection.vue'
+import WorkSection from '@/components/sections/WorkSection.vue'
+import ProcessSection from '@/components/sections/ProcessSection.vue'
+import EngineeringSection from '@/components/sections/EngineeringSection.vue'
+import PartnerSection from '@/components/sections/PartnerSection.vue'
 import FounderSection from '@/components/sections/FounderSection.vue'
+import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
 import FinalCta from '@/components/sections/FinalCta.vue'
 
 usePageMeta()
@@ -17,14 +17,14 @@ usePageMeta()
 <template>
   <div>
     <HomeHero />
-    <BeliefSection />
-    <VisionSection />
+    <PhilosophySection />
     <BuildSection />
-    <ProductsSection />
-    <AfricaWorldSection />
-    <HowWeBuildSection />
-    <PartnershipSection />
+    <WorkSection />
+    <ProcessSection />
+    <EngineeringSection />
+    <PartnerSection />
     <FounderSection />
+    <PrinciplesSection />
     <FinalCta />
   </div>
 </template>

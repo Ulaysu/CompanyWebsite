@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import { Menu, X, ArrowRight } from 'lucide-vue-next'
+import { Menu, X } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
 import AppButton from '@/components/ui/AppButton.vue'
 import ThemeToggle from '@/components/ui/ThemeToggle.vue'
@@ -47,7 +47,7 @@ watch(open, (v) => {
   >
     <div class="container-page flex h-16 items-center justify-between gap-6">
       <RouterLink to="/" class="-m-1 rounded-md p-1" :aria-label="`${site.name} — home`">
-        <LogoMark :show-descriptor="true" descriptor-class="md:max-xl:hidden" />
+        <LogoMark />
       </RouterLink>
 
       <nav aria-label="Primary" class="hidden md:block">
@@ -55,9 +55,8 @@ watch(open, (v) => {
           <li v-for="item in navigation" :key="item.to">
             <RouterLink
               :to="item.to"
-              class="px-2.5 py-2 text-[0.8125rem] whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-3.5 lg:text-sm"
-              :active-class="item.to === '/' ? '' : '!text-fg'"
-              exact-active-class="!text-fg"
+              class="relative px-3 py-2 text-sm whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-4"
+              active-class="!text-fg"
             >
               {{ item.label }}
             </RouterLink>
@@ -98,26 +97,24 @@ watch(open, (v) => {
         class="h-[calc(100dvh-4rem)] overflow-y-auto border-t border-edge/[0.06] bg-ink-950 md:hidden"
       >
         <nav aria-label="Mobile" class="container-page flex h-full flex-col pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]">
-          <ul class="divide-y divide-edge/[0.06]">
-            <li v-for="(item, i) in navigation" :key="item.to">
+          <ul class="border-b border-edge/[0.08]">
+            <li v-for="(item, i) in navigation" :key="item.to" class="border-t border-edge/[0.08]">
               <RouterLink
                 :to="item.to"
-                class="flex items-center justify-between py-5 text-2xl font-medium tracking-tight text-fg-muted"
-                :active-class="item.to === '/' ? '' : '!text-fg'"
-                exact-active-class="!text-fg"
-                :style="{ animationDelay: `${i * 40}ms` }"
+                class="flex items-baseline gap-4 py-5 text-[2.25rem] leading-none font-semibold tracking-[-0.04em] text-fg-muted"
+                active-class="!text-fg"
               >
+                <span class="font-mono text-[0.6875rem] font-normal tracking-normal text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
                 {{ item.label }}
-                <ArrowRight class="size-5 text-fg-subtle" aria-hidden="true" />
               </RouterLink>
             </li>
           </ul>
-          <div class="mt-auto space-y-5 pt-10">
-            <p class="text-sm leading-relaxed text-fg-muted">
-              Have something worth building? Tell us about the problem, opportunity or idea.
-            </p>
+          <div class="mt-auto space-y-6 pt-10">
+            <p class="serif text-3xl leading-none text-fg italic">{{ site.philosophy.phrase }}</p>
             <AppButton :to="primaryCta.to" size="lg" arrow class="w-full">{{ primaryCta.label }}</AppButton>
-            <a :href="`mailto:${site.email}`" class="block text-center font-mono text-xs text-fg-subtle">{{ site.email }}</a>
+            <p class="flex justify-between gap-4 font-mono text-[0.6875rem] text-fg-subtle">
+              <a :href="`mailto:${site.email}`">{{ site.email }}</a><span>{{ site.originShort.split(' · ')[0] }}</span>
+            </p>
           </div>
         </nav>
       </div>

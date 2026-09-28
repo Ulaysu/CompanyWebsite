@@ -14,10 +14,3 @@ export const images = {
 } satisfies Record<string, GeneratedImage>
 
 export type ImageName = keyof typeof images
-
-/** The Africa-centred network globe. Dark only, transparent background. */
-export const globe = {
-  srcset: '/images/globe-dark-900.webp 900w, /images/globe-dark-1800.webp 1800w',
-  src: '/images/globe-dark-900.webp',
-  size: 1800,
-}

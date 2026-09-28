@@ -1,19 +1,20 @@
 <script setup lang="ts">
+import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { founder } from '@/content/company'
 
 /**
- * “Built by CodeDream.” The founder story within the company story:
- * CodeDream → Founder → SOFORR. Always dark, so the portrait reads the same in both themes.
+ * The founder. CodeDream is the person; SOFORR is the company.
+ * Always dark, so the portrait reads the same in both themes.
  */
-withDefaults(defineProps<{ index?: string }>(), { index: '08' })
+withDefaults(defineProps<{ index?: string }>(), { index: '07' })
 </script>
 
 <template>
-  <section id="founder" class="surface-dark relative overflow-hidden border-y border-edge/[0.06]" aria-labelledby="founder-title">
-    <div class="container-page section relative grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-10 lg:gap-x-20">
+  <section id="founder" class="surface-dark relative overflow-hidden" aria-labelledby="founder-title">
+    <div class="container-page section grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-10 lg:gap-x-20">
       <!-- Portrait -->
-      <figure v-reveal class="relative md:col-span-5">
-        <div class="relative aspect-[4/5] overflow-hidden bg-ink-900">
+      <figure class="relative md:col-span-5">
+        <div v-reveal class="reveal-clip relative aspect-[4/5] overflow-hidden bg-ink-900">
           <img
             v-if="founder.photo"
             loading="lazy"
@@ -24,57 +25,46 @@ withDefaults(defineProps<{ index?: string }>(), { index: '08' })
             :src="`/photos/${founder.photo}-720.webp`"
             width="1440"
             height="1800"
-            class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.9)_contrast(1.04)]"
+            class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.05)]"
           />
-
           <!-- Placeholder until a portrait exists: a designed frame, never a stand-in face. -->
-          <div v-else class="absolute inset-0" role="img" :aria-label="`${founder.name}, ${founder.role}`">
+          <div v-else class="absolute inset-0 grid place-items-center" role="img" :aria-label="`${founder.name}, ${founder.role}`">
             <div class="bg-dots absolute inset-0 opacity-60" />
-            <div class="absolute inset-0 grid place-items-center">
-              <span class="serif text-[6rem] leading-none text-fg/80 italic">{{ founder.handle }}</span>
-            </div>
+            <span class="serif relative text-[5rem] leading-none text-fg/80 italic">{{ founder.handle }}</span>
           </div>
-
-          <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/85 to-transparent" />
-          <div aria-hidden="true" class="frame-ticks absolute inset-4" />
-          <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 font-mono text-[0.6875rem] tracking-wide">
-            <span class="flex items-center gap-2 text-fg"><span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />{{ founder.origin }}</span>
-            <span class="text-fg-muted">{{ founder.coordinates }}</span>
-          </figcaption>
+          <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/80 to-transparent" />
         </div>
+        <figcaption class="mt-4 flex items-baseline justify-between gap-4 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
+          <span>{{ founder.name }}</span><span>{{ founder.origin }}</span>
+        </figcaption>
       </figure>
 
       <!-- Story -->
-      <div class="md:col-span-7 lg:col-span-6 lg:col-start-7">
-        <p v-reveal class="index-label"><span v-if="index" class="text-accent">{{ index }}</span><span class="h-px w-6 bg-edge/20" aria-hidden="true" />Founder</p>
-        <h2 id="founder-title" v-reveal="60" class="display mt-8 !text-[3rem] sm:!text-7xl">
-          Built by <span class="serif font-normal tracking-[-0.02em] text-accent italic">CodeDream</span>.
-        </h2>
+      <div class="flex flex-col md:col-span-7 lg:col-span-6 lg:col-start-7">
+        <SectionLabel :index="index" label="Founder" />
+        <h2 id="founder-title" v-reveal="60" class="heading-xl mt-8">{{ founder.title }}</h2>
 
-        <!-- CodeDream → Founder → SOFORR -->
-        <ol v-reveal="100" class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.6875rem] tracking-[0.16em] uppercase" aria-label="CodeDream, founder of SOFORR">
-          <template v-for="(step, i) in founder.chain" :key="step">
-            <li :class="i === founder.chain.length - 1 ? 'text-fg' : 'text-fg-muted'">{{ step }}</li>
-            <li v-if="i < founder.chain.length - 1" aria-hidden="true" class="text-accent">→</li>
-          </template>
-        </ol>
-
-        <div v-reveal="140" class="mt-10 border-t border-edge/10 pt-8">
-          <p class="text-2xl font-semibold tracking-[-0.025em] text-fg sm:text-[1.75rem]">{{ founder.name }}</p>
-          <p class="mt-1 text-[0.9375rem] text-fg-muted">{{ founder.role }}</p>
-          <p class="mt-3 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">Known online as <span class="text-fg">{{ founder.handle }}</span></p>
-        </div>
+        <!-- Person and company, kept distinct. -->
+        <dl v-reveal="100" class="mt-10 grid grid-cols-2 border-y border-edge/15">
+          <div class="border-r border-edge/15 py-5 pr-5">
+            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The engineer</dt>
+            <dd class="serif mt-2 text-4xl leading-none text-fg italic sm:text-5xl">{{ founder.handle }}</dd>
+            <dd class="mt-3 text-sm text-fg-muted">{{ founder.name }} · {{ founder.role }}</dd>
+          </div>
+          <div class="py-5 pl-5">
+            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The company</dt>
+            <dd class="mt-2 text-4xl leading-none font-semibold tracking-[0.06em] text-fg sm:text-5xl">SOFORR</dd>
+            <dd class="mt-3 text-sm text-fg-muted">Technology company</dd>
+          </div>
+        </dl>
 
         <div class="mt-10 space-y-5 text-[1.0625rem] leading-relaxed text-fg-muted">
-          <p v-for="(para, i) in founder.story" :key="i" v-reveal="180 + i * 60" :class="i === founder.story.length - 1 ? 'text-fg' : ''">
-            {{ para }}
-          </p>
+          <p v-for="(para, i) in founder.story" :key="i" v-reveal="140 + i * 60" :class="i === founder.story.length - 1 ? 'text-fg' : ''">{{ para }}</p>
         </div>
 
-        <blockquote v-reveal class="mt-12 border-l-2 border-accent pl-6">
-          <p class="serif text-[1.75rem] leading-[1.15] text-fg italic sm:text-4xl">“{{ founder.statement }}”</p>
-          <footer class="mt-4 font-mono text-xs text-fg-subtle">{{ founder.name }} / {{ founder.handle }}</footer>
-        </blockquote>
+        <p v-reveal class="mt-auto border-t border-edge/15 pt-8 text-2xl leading-snug font-medium tracking-[-0.025em] text-fg sm:mt-14 sm:text-[1.75rem]">
+          {{ founder.statement }}
+        </p>
       </div>
     </div>
   </section>
