@@ -145,7 +145,7 @@ export const founder = {
    * designed frame instead. To add one: `node scripts/add-founder-photo.mjs path/to/photo.jpg`,
    * then set this to 'founder'.
    */
-  photo: null as 'founder' | null,
+  photo: 'founder' as 'founder' | null,
   photoAlt: 'Portrait of Sulayman Sanyang, founder of the company.',
 }
 
