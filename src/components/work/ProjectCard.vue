@@ -21,7 +21,7 @@ defineProps<{ project: Project }>()
       sizes="(min-width: 1024px) 50vw, 100vw"
       :srcset="photoSrcset(project.photo)"
       :src="photoSrc(project.photo)"
-      class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.05)] transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+      class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
       :style="{ objectPosition: photos[project.photo]!.position }"
     />
     <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/55 to-ink-950/10" />

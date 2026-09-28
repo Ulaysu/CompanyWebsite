@@ -14,7 +14,7 @@ const outDir = join(root, 'public', 'images')
 const SCENES = {
   system: [2400, 1300, [1000, 2000]],
   // Always shown on a dark section, so only a dark version is rendered.
-  globe: [2000, 2000, [900, 1800], 0.86, ['dark']],
+  globe: [2400, 2400, [1000, 2000], 0.88, ['dark']],
 }
 
 const only = process.argv.slice(2)

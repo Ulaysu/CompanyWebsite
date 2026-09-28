@@ -40,7 +40,7 @@ The images in `public/images/` are generated in code, not stock or AI imagery. I
 
 ## Photography
 
-Real photos (page headers and project imagery, each tied to the place the work happens) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
+Real photos (page headers and project imagery, each tied to the place the work happens) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` shows photos at full clarity with a very light grade, fading into the page only where text sits on top.
 
 To swap a photo, change its `unsplash` ID in `photos.json` and run `node scripts/fetch-photos.mjs <key>`. To use your own photo, save it over `public/photos/<key>-<width>.webp` for each width listed.
 
@@ -62,7 +62,7 @@ The hero globe (`public/images/globe-dark-*.webp`), centred on Africa with arcs 
 
 ## Design
 
-Warm near-black and paper surfaces. Geist for type, with Instrument Serif as the brand's second voice (the philosophy, CodeDream, a few editorial words). One warm accent (`--color-accent`), reserved for the mark, live status and focus. Sharp corners and hairlines rather than cards; no gradient text. Motion is limited to headline word reveals, image shutter reveals, rules that draw themselves and quiet hover states, all disabled under `prefers-reduced-motion`.
+Warm near-black and paper surfaces. Geist for type, with Instrument Serif as the brand's second voice (the philosophy, CodeDream, a few editorial words). One warm accent (`--color-accent`), reserved for the mark, live status and focus. Sharp corners and hairlines rather than cards; no gradient text. Background photographs are shown at full clarity (WebP quality 80, up to 2400px for full-bleed headers), with scrims only where text sits and a soft `.on-photo` text shadow for legibility. Motion is limited to headline word reveals, image shutter reveals, rules that draw themselves and quiet hover states, all disabled under `prefers-reduced-motion`.
 
 ## Structure
 

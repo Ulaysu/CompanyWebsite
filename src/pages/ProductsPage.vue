@@ -21,6 +21,7 @@ const partnerCount = projects.length - ownProducts.length
       label="Products"
       title="We don’t just build technology for others. We build our own."
       lede="SOFORR’s own products, designed around problems we understand closely. Each is shown with its real status."
+      photo="gambia-river"
     />
 
     <section class="section !pt-20 sm:!pt-28" aria-label="Our products">

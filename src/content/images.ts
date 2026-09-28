@@ -17,7 +17,7 @@ export type ImageName = keyof typeof images
 
 /** The network globe: Africa at the centre, arcs travelling from The Gambia to the world. Dark only, transparent background. */
 export const globe = {
-  srcset: '/images/globe-dark-900.webp 900w, /images/globe-dark-1800.webp 1800w',
-  src: '/images/globe-dark-900.webp',
-  size: 1800,
+  srcset: '/images/globe-dark-1000.webp 1000w, /images/globe-dark-2000.webp 2000w',
+  src: '/images/globe-dark-1000.webp',
+  size: 2000,
 }

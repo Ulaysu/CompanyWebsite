@@ -3,8 +3,8 @@ import { computed } from 'vue'
 import { photos, photoSrc, photoSrcset, type PhotoName } from '@/content/photos'
 
 /**
- * A photograph used as a background. It is desaturated and toned to match the
- * theme, then faded into the page so text on top stays readable.
+ * A photograph used as a background, shown as clearly as possible and faded
+ * into the page only where text sits on top of it.
  * Fill the parent: give the parent `relative` and a size.
  */
 const props = withDefaults(
@@ -38,7 +38,7 @@ const photo = computed(() => photos[props.name]!)
       class="photo-backdrop__img h-full w-full object-cover"
       :style="{ objectPosition: photo.position, opacity: strength }"
     />
-    <!-- Tone: pulls the photo towards the page colour and the accent. -->
+    <!-- Tone: a very light grade so photos sit in the palette. -->
     <div class="photo-backdrop__tone absolute inset-0" />
     <div :class="['absolute inset-0', `photo-fade--${fade}`]" />
   </div>
@@ -50,29 +50,28 @@ const photo = computed(() => photos[props.name]!)
  * Inside an always-dark section (.surface-dark) the dark treatment is kept.
  */
 .photo-backdrop__img {
-  filter: saturate(0.9) contrast(1.06) brightness(0.9);
+  filter: contrast(1.04);
 }
 .photo-backdrop__tone {
-  /* A cool navy grade so every photo sits in the same palette. */
-  background: color-mix(in oklab, #0b1a33 22%, transparent);
+  /* A very light warm grade so photos sit in the palette without losing clarity. */
+  background: color-mix(in oklab, #0a0a0a 8%, transparent);
   mix-blend-mode: multiply;
 }
 [data-theme='light'] .photo-backdrop:not(.surface-dark .photo-backdrop) .photo-backdrop__img {
-  filter: saturate(0.9) contrast(0.98) brightness(1.04);
+  filter: none;
 }
 [data-theme='light'] .photo-backdrop:not(.surface-dark .photo-backdrop) .photo-backdrop__tone {
-  background: color-mix(in oklab, var(--color-ink-950) 20%, transparent);
-  mix-blend-mode: normal;
+  background: none;
 }
 
 /* Fades: strongest only where text sits, always ending in the page background. */
 .photo-fade--hero {
   background:
-    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 94%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 78%, transparent) 38%, color-mix(in oklab, var(--color-ink-950) 20%, transparent) 70%, transparent 100%),
-    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 0%, transparent 22%, transparent 62%, var(--color-ink-950) 100%);
+    linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 82%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 36%, transparent 62%),
+    linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 45%, transparent) 0%, transparent 18%, transparent 68%, var(--color-ink-950) 100%);
 }
 .photo-fade--side {
-  background: linear-gradient(90deg, var(--color-ink-950) 0%, color-mix(in oklab, var(--color-ink-950) 80%, transparent) 35%, transparent 75%);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--color-ink-950) 90%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 65%, transparent) 38%, transparent 70%);
 }
 .photo-fade--full {
   background: color-mix(in oklab, var(--color-ink-950) 72%, transparent);
@@ -93,7 +92,7 @@ const photo = computed(() => photos[props.name]!)
 @media (max-width: 767px) {
   .photo-fade--hero,
   .photo-fade--side {
-    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 55%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 74%, transparent) 55%, var(--color-ink-950) 100%);
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-ink-950) 35%, transparent) 0%, color-mix(in oklab, var(--color-ink-950) 20%, transparent) 30%, color-mix(in oklab, var(--color-ink-950) 75%, transparent) 70%, var(--color-ink-950) 100%);
   }
 }
 </style>

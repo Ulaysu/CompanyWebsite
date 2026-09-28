@@ -25,14 +25,13 @@ withDefaults(defineProps<{ index?: string }>(), { index: '07' })
             :src="`/photos/${founder.photo}-720.webp`"
             width="1440"
             height="1800"
-            class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.85)_contrast(1.05)]"
+            class="absolute inset-0 h-full w-full object-cover"
           />
           <!-- Placeholder until a portrait exists: a designed frame, never a stand-in face. -->
           <div v-else class="absolute inset-0 grid place-items-center" role="img" :aria-label="`${founder.name}, ${founder.role}`">
             <div class="bg-dots absolute inset-0 opacity-60" />
             <span class="serif relative text-[5rem] leading-none text-fg/80 italic">{{ founder.handle }}</span>
           </div>
-          <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/80 to-transparent" />
         </div>
         <figcaption class="mt-4 flex items-baseline justify-between gap-4 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
           <span>{{ founder.name }}</span><span>{{ founder.origin }}</span>

@@ -53,7 +53,7 @@ withDefaults(defineProps<{ index?: string; headingLevel?: 'h1' | 'h2' }>(), { in
                 sizes="(min-width: 1024px) 44vw, 100vw"
                 :srcset="photoSrcset(p.photo)"
                 :src="photoSrc(p.photo)"
-                class="absolute inset-0 h-full w-full object-cover [filter:saturate(0.82)_contrast(1.04)] transition-transform duration-[1.6s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035]"
                 :style="{ objectPosition: photos[p.photo]!.position }"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-ink-950/50 via-transparent to-transparent" />

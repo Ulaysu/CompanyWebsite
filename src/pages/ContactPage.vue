@@ -107,6 +107,7 @@ const nextSteps = [
       label="Contact"
       title="Have something worth building?"
       lede="Tell us about the problem, opportunity or idea. Alongside our own products, we work selectively with organisations that have important problems worth solving. You don’t need a specification."
+      photo="team"
     />
 
     <section class="container-page grid grid-cols-1 gap-14 py-20 sm:py-28 lg:grid-cols-12 lg:gap-12" aria-label="Contact form">

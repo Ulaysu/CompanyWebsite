@@ -22,22 +22,22 @@ const words = [
     <!-- The globe: Africa at the centre, arcs travelling from The Gambia to the rest of the world. -->
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-[-4%] left-1/2 -z-10 w-[150vw] max-w-none -translate-x-1/2 animate-fade-up opacity-45 [animation-delay:300ms] sm:top-[-10%] sm:w-[105vw] sm:opacity-55 lg:top-[44%] lg:right-[-11vw] lg:left-auto lg:w-[60vw] lg:max-w-[66rem] lg:translate-x-0 lg:-translate-y-1/2 lg:opacity-100"
+      class="pointer-events-none absolute top-[-4%] left-1/2 -z-10 w-[150vw] max-w-none -translate-x-1/2 animate-fade-up opacity-75 [animation-delay:300ms] sm:top-[-10%] sm:w-[105vw] sm:opacity-80 lg:top-[44%] lg:right-[-11vw] lg:left-auto lg:w-[60vw] lg:max-w-[66rem] lg:translate-x-0 lg:-translate-y-1/2 lg:opacity-100"
     >
       <img
         :src="globe.src"
         :srcset="globe.srcset"
-        sizes="(min-width: 1024px) 62vw, 150vw"
+        sizes="(min-width: 1024px) 60vw, 150vw"
         :width="globe.size"
         :height="globe.size"
         fetchpriority="high"
         decoding="async"
         alt=""
-        class="block h-auto w-full animate-drift"
+        class="block h-auto w-full"
       />
     </div>
     <!-- Legibility: darken where the text sits. -->
-    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(10_10_10/0.2)_0%,rgb(10_10_10/0.6)_50%,#0a0a0a_100%)] lg:bg-[linear-gradient(90deg,#0a0a0a_0%,rgb(10_10_10/0.85)_28%,rgb(10_10_10/0.1)_55%,transparent_100%),linear-gradient(180deg,transparent_70%,#0a0a0a_96%)]" />
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(10_10_10/0.1)_0%,rgb(10_10_10/0.45)_45%,#0a0a0a_92%)] lg:bg-[linear-gradient(90deg,#0a0a0a_0%,rgb(10_10_10/0.8)_26%,transparent_50%),linear-gradient(180deg,transparent_78%,#0a0a0a_98%)]" />
 
     <div class="container-page relative flex flex-1 flex-col pt-28 pb-8 sm:pt-36 lg:pb-10">
       <div class="lg:max-w-[58%]">
@@ -78,7 +78,7 @@ const words = [
                 width="800"
                 height="600"
                 decoding="async"
-                class="absolute inset-0 h-full w-full object-cover grayscale-[35%] transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 group-hover:grayscale-0"
+                class="absolute inset-0 h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                 :style="{ objectPosition: photos[p.photo]!.position }"
               />
             </span>
