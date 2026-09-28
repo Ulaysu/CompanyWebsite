@@ -1,33 +1,26 @@
 <script setup lang="ts">
 import { usePageMeta } from '@/composables/usePageMeta'
-import HeroSection from '@/components/sections/HeroSection.vue'
-import DomainStrip from '@/components/sections/DomainStrip.vue'
-import ProblemSection from '@/components/sections/ProblemSection.vue'
-import ServicesOverview from '@/components/sections/ServicesOverview.vue'
-import SolutionsShowcase from '@/components/sections/SolutionsShowcase.vue'
-import DifferentiatorSection from '@/components/sections/DifferentiatorSection.vue'
-import ProcessOverview from '@/components/sections/ProcessOverview.vue'
-import ProblemsWorthSolving from '@/components/sections/ProblemsWorthSolving.vue'
-import TechnologySection from '@/components/sections/TechnologySection.vue'
-import FinalCta from '@/components/sections/FinalCta.vue'
+import HomeHero from '@/components/sections/HomeHero.vue'
+import CompanySection from '@/components/sections/CompanySection.vue'
+import WorkSection from '@/components/sections/WorkSection.vue'
+import CapabilitiesSection from '@/components/sections/CapabilitiesSection.vue'
+import AfricaWorldSection from '@/components/sections/AfricaWorldSection.vue'
+import EngineeringSection from '@/components/sections/EngineeringSection.vue'
+import PrinciplesSection from '@/components/sections/PrinciplesSection.vue'
+import BuildWithUs from '@/components/sections/BuildWithUs.vue'
 
-usePageMeta({
-  description:
-    'Turn messy business processes into software that works. Custom internal systems, automation, APIs, and operational software that reduce manual work, improve visibility, and keep revenue moving.',
-})
+usePageMeta()
 </script>
 
 <template>
   <div>
-    <HeroSection />
-    <DomainStrip />
-    <ProblemSection />
-    <ServicesOverview />
-    <SolutionsShowcase />
-    <DifferentiatorSection />
-    <ProcessOverview />
-    <ProblemsWorthSolving />
-    <TechnologySection />
-    <FinalCta />
+    <HomeHero />
+    <CompanySection />
+    <WorkSection />
+    <CapabilitiesSection />
+    <AfricaWorldSection />
+    <EngineeringSection />
+    <PrinciplesSection />
+    <BuildWithUs />
   </div>
 </template>

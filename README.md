@@ -1,6 +1,6 @@
-# Sulayman Sanyang — Custom Software & Automation
+# Sulayman Sanyang — Technology, built from Africa
 
-Marketing site for a custom software engineering studio. Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
+Website for a technology company building world-class software from Africa, for the world. Vue 3 + Vite + Tailwind CSS v4, statically pre-rendered with `vite-ssg` so every page ships real HTML with its own SEO and Open Graph metadata.
 
 ## Commands
 
@@ -41,6 +41,17 @@ The images in `public/images/` are generated in code, not stock or AI imagery. I
 Real photos (hero, page headers, solution headers, problem section, final call to action) come from Unsplash under the [Unsplash License](https://unsplash.com/license): free for commercial use, no attribution required. They are listed in `src/content/photos.json` with their Unsplash photo ID, alt text and focal point. `scripts/fetch-photos.mjs` downloads them, resizes them and saves WebP files to `public/photos/`, so the site doesn't hotlink anything. `PhotoBackdrop.vue` applies one consistent treatment (desaturated, toned to the theme, faded into the page) so the photos sit in the brand rather than looking like stock.
 
 To swap a photo, change its `unsplash` ID in `photos.json` and run `node scripts/fetch-photos.mjs <key>`. To use your own photo, save it over `public/photos/<key>-<width>.webp` for each width listed.
+
+## Story and content
+
+The homepage tells one story, in order: hero → 01 The company → 02 The work → 03 What we build → 04 Africa → World → 05 Engineering → 06 Principles → Build with us.
+
+- `src/content/company.ts`: manifesto, capabilities, Africa → World copy, engineering, principles and engagement steps.
+- `src/content/work.ts`: the portfolio. **To add a project**, append an entry. A page at `/work/<slug>` is generated automatically. Only fill in what's true: leave `technology`, `outcome` and `url` unset until they exist; the project page shows an honest placeholder for outcomes.
+
+Retired URLs (`/services`, `/solutions`, `/how-we-work`) redirect client-side, and via `public/_redirects` on Netlify/Cloudflare Pages.
+
+The Africa-centred globe (`public/images/globe-dark-*.webp`) is drawn by `scripts/images/globe.js` from Natural Earth land data (`world-atlas`); regenerate it with `node scripts/generate-images.mjs globe`.
 
 ## Structure
 

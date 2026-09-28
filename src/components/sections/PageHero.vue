@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import ThemedImage from '@/components/ui/ThemedImage.vue'
 import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 import type { PhotoName } from '@/content/photos'
 
-defineProps<{ eyebrow: string; title: string; lede?: string; photo?: PhotoName }>()
+/** Opening of an inner page. Always dark, so the header and type read the same in both themes. */
+defineProps<{ label: string; title: string; lede?: string; photo?: PhotoName }>()
 </script>
 
 <template>
-  <section class="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24" aria-labelledby="page-title">
+  <section class="surface-dark relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28" aria-labelledby="page-title">
     <PhotoBackdrop v-if="photo" :name="photo" eager fade="hero" />
-    <div
-      v-else
-      aria-hidden="true"
-      class="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_70%_80%_at_85%_30%,#000_25%,transparent_75%)]"
-    >
-      <ThemedImage name="field" alt="" sizes="100vw" img-class="h-full w-full object-cover object-right" />
-    </div>
+    <div v-else aria-hidden="true" class="bg-grid mask-radial pointer-events-none absolute inset-0 opacity-70" />
     <div class="container-page relative">
-      <p class="eyebrow flex animate-fade-up items-center gap-2"><span class="h-px w-5 bg-accent/70" aria-hidden="true" />{{ eyebrow }}</p>
-      <h1 id="page-title" class="text-gradient mt-6 max-w-4xl animate-fade-up text-[2.375rem] leading-[1.04] font-semibold tracking-[-0.035em] [animation-delay:80ms] sm:text-6xl">
+      <p class="index-label animate-fade-up">
+        <span class="h-px w-6 bg-accent" aria-hidden="true" />{{ label }}
+      </p>
+      <h1 id="page-title" class="text-gradient mt-7 max-w-4xl animate-fade-up text-[2.625rem] leading-[1.02] font-semibold tracking-[-0.04em] [animation-delay:80ms] sm:text-6xl lg:text-7xl">
         {{ title }}
       </h1>
-      <p v-if="lede" class="lede mt-6 max-w-2xl animate-fade-up [animation-delay:160ms]">{{ lede }}</p>
+      <p v-if="lede" class="lede mt-7 max-w-2xl animate-fade-up text-fg-muted [animation-delay:160ms]">{{ lede }}</p>
       <div class="animate-fade-up [animation-delay:240ms]">
         <slot />
       </div>
