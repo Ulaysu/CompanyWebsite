@@ -14,6 +14,8 @@ const props = withDefaults(
     error?: string
     autocomplete?: string
     inputmode?: 'text' | 'email' | 'url'
+    /** Renders a <select> with these options. */
+    options?: readonly { value: string; label: string }[]
   }>(),
   { type: 'text', required: false, multiline: false, rows: 4 },
 )
@@ -33,6 +35,7 @@ const fieldClass =
     <label :for="id" class="mb-2 flex items-baseline justify-between gap-3 text-sm font-medium text-fg">
       {{ label }}
       <span v-if="!required" class="text-xs font-normal text-fg-subtle">Optional</span>
+      <span v-else class="sr-only">(required)</span>
     </label>
     <textarea
       v-if="multiline"
@@ -46,6 +49,19 @@ const fieldClass =
       :aria-describedby="describedBy"
       :class="[fieldClass, 'resize-y py-3 leading-relaxed', error ? 'border-red-400/60' : 'border-edge/10']"
     />
+    <select
+      v-else-if="options"
+      :id="id"
+      v-model="model"
+      :name="name"
+      :required="required"
+      :aria-invalid="error ? 'true' : undefined"
+      :aria-describedby="describedBy"
+      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/10']"
+    >
+      <option value="" disabled>Select…</option>
+      <option v-for="o in options" :key="o.value" :value="o.value">{{ o.label }}</option>
+    </select>
     <input
       v-else
       :id="id"

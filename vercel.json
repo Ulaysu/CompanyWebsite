@@ -3,13 +3,60 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/what-we-build", "destination": "/approach", "permanent": true },
-    { "source": "/services", "destination": "/approach", "permanent": true },
-    { "source": "/how-we-work", "destination": "/approach", "permanent": true },
-    { "source": "/solutions", "destination": "/work", "permanent": true },
-    { "source": "/work-with-us", "destination": "/contact", "permanent": true },
-    { "source": "/products/kujaaburun", "destination": "/work/kujaaburun", "permanent": true },
-    { "source": "/products/sweetland-farms", "destination": "/work/sweetland-farms-os", "permanent": true },
-    { "source": "/work/sweetland-farms", "destination": "/work/sweetland-farms-os", "permanent": true }
+    {
+      "source": "/approach",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/what-we-build",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/how-we-work",
+      "destination": "/engineering",
+      "permanent": true
+    },
+    {
+      "source": "/solutions",
+      "destination": "/our-work",
+      "permanent": true
+    },
+    {
+      "source": "/work-with-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/work",
+      "destination": "/our-work",
+      "permanent": true
+    },
+    {
+      "source": "/work/kujaaburun",
+      "destination": "/products/kujaaburun",
+      "permanent": true
+    },
+    {
+      "source": "/work/sweetland-farms-os",
+      "destination": "/our-work/sweetland-farms-os",
+      "permanent": true
+    },
+    {
+      "source": "/work/sweetland-farms",
+      "destination": "/our-work/sweetland-farms-os",
+      "permanent": true
+    },
+    {
+      "source": "/products/sweetland-farms",
+      "destination": "/products/sweetland-farms-os",
+      "permanent": true
+    }
   ]
 }

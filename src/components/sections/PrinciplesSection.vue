@@ -3,15 +3,15 @@ import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { principles } from '@/content/company'
 
 /** Principles, kept short and restrained. */
-withDefaults(defineProps<{ index?: string }>(), { index: '08' })
+withDefaults(defineProps<{ index?: string }>(), { index: '05' })
 </script>
 
 <template>
   <section class="section" aria-labelledby="principles-title">
     <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-4">
-        <SectionLabel :index="index" label="Principles" />
-        <h2 id="principles-title" v-reveal="60" class="heading-xl mt-8">What we hold to.</h2>
+        <SectionLabel :index="index" label="Engineering principles" />
+        <h2 id="principles-title" v-reveal="60" class="heading-xl mt-8">The principles we engineer by.</h2>
       </div>
       <ol class="border-t border-edge/15 lg:col-span-8">
         <li

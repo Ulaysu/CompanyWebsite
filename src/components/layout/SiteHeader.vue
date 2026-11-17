@@ -55,8 +55,9 @@ watch(open, (v) => {
           <li v-for="item in navigation" :key="item.to">
             <RouterLink
               :to="item.to"
-              class="relative px-3 py-2 text-sm whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-4"
-              active-class="!text-fg"
+              :exact-active-class="item.to === '/' ? '!text-fg' : undefined"
+              class="relative px-2.5 py-2 text-sm whitespace-nowrap text-fg-muted transition-colors duration-200 hover:text-fg lg:px-3.5"
+              :active-class="item.to === '/' ? '' : '!text-fg'"
             >
               {{ item.label }}
             </RouterLink>
@@ -101,8 +102,9 @@ watch(open, (v) => {
             <li v-for="(item, i) in navigation" :key="item.to" class="border-t border-edge/[0.08]">
               <RouterLink
                 :to="item.to"
-                class="flex items-baseline gap-4 py-5 text-[2.25rem] leading-none font-semibold tracking-[-0.04em] text-fg-muted"
-                active-class="!text-fg"
+                class="flex items-baseline gap-4 py-4 text-[2rem] leading-none font-semibold tracking-[-0.04em] text-fg-muted"
+                :active-class="item.to === '/' ? '' : '!text-fg'"
+                :exact-active-class="item.to === '/' ? '!text-fg' : undefined"
               >
                 <span class="font-mono text-[0.6875rem] font-normal tracking-normal text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
                 {{ item.label }}
@@ -113,7 +115,7 @@ watch(open, (v) => {
             <p class="serif text-3xl leading-none text-fg italic">{{ site.philosophy.phrase }}</p>
             <AppButton :to="primaryCta.to" size="lg" arrow class="w-full">{{ primaryCta.label }}</AppButton>
             <p class="flex justify-between gap-4 font-mono text-[0.6875rem] text-fg-subtle">
-              <a :href="`mailto:${site.email}`">{{ site.email }}</a><span>{{ site.originShort.split(' · ')[0] }}</span>
+              <a v-if="site.email" :href="`mailto:${site.email}`">{{ site.email }}</a><span>{{ site.originShort.split(' · ')[0] }}</span>
             </p>
           </div>
         </nav>

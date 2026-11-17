@@ -12,8 +12,8 @@ interface PageMeta {
 export function usePageMeta({ title, description = site.description }: PageMeta = {}) {
   const route = useRoute()
   const fullTitle = title
-    ? `${title} — ${site.name}`
-    : `${site.name} — ${site.descriptor}`
+    ? `${title} | ${site.name}`
+    : `${site.name}: ${site.descriptor}`
   const url = `${site.url}${route.path === '/' ? '' : route.path.replace(/\/$/, '')}`
   const image = `${site.url}/og-image.png`
 
@@ -30,7 +30,7 @@ export function usePageMeta({ title, description = site.description }: PageMeta 
       { property: 'og:image', content: image },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
-      { property: 'og:image:alt', content: `${site.name} — ${site.descriptor}` },
+      { property: 'og:image:alt', content: `${site.name}: ${site.descriptor}. ${site.headline}` },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: fullTitle },
       { name: 'twitter:description', content: description },

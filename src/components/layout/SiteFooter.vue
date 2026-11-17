@@ -4,7 +4,9 @@ import { ArrowUpRight } from 'lucide-vue-next'
 import LogoMark from '@/components/ui/LogoMark.vue'
 import { navigation, primaryCta, site } from '@/config/site'
 import { founder } from '@/content/company'
-import { projects } from '@/content/work'
+import { products } from '@/content/products'
+import { caseStudies } from '@/content/caseStudies'
+import { services } from '@/content/company'
 
 const year = new Date().getFullYear()
 const socials = [
@@ -35,10 +37,21 @@ const socials = [
           </ul>
         </div>
         <div>
-          <h2 class="eyebrow mb-5">Work</h2>
+          <h2 class="eyebrow mb-5">Engineering</h2>
           <ul class="space-y-3 text-sm">
-            <li v-for="p in projects" :key="p.slug">
-              <RouterLink :to="`/work/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
+            <li v-for="s in services" :key="s.id">
+              <RouterLink :to="`/engineering#${s.id}`" class="text-fg-muted transition-colors hover:text-fg">{{ s.title }}</RouterLink>
+            </li>
+          </ul>
+          <h2 class="eyebrow mt-10 mb-5">Products</h2>
+          <ul class="space-y-3 text-sm">
+            <li v-for="p in products" :key="p.slug">
+              <RouterLink :to="`/products/${p.slug}`" class="text-fg-muted transition-colors hover:text-fg">{{ p.name }}</RouterLink>
+            </li>
+          </ul>
+          <ul v-if="caseStudies.length" class="mt-3 space-y-3 text-sm">
+            <li v-for="c in caseStudies" :key="c.slug">
+              <RouterLink :to="`/our-work/${c.slug}`" class="text-fg-subtle transition-colors hover:text-fg">Case study: {{ c.title }}</RouterLink>
             </li>
           </ul>
         </div>
@@ -48,7 +61,7 @@ const socials = [
             <li>
               <RouterLink :to="primaryCta.to" class="text-fg-muted transition-colors hover:text-fg">{{ primaryCta.label }}</RouterLink>
             </li>
-            <li>
+            <li v-if="site.email">
               <a :href="`mailto:${site.email}`" class="break-all text-fg-muted transition-colors hover:text-fg">{{ site.email }}</a>
             </li>
             <li v-for="s in socials" :key="s.label">
@@ -59,7 +72,7 @@ const socials = [
           </ul>
           <h2 class="eyebrow mt-10 mb-3">Founder</h2>
           <RouterLink to="/about#founder" class="text-sm text-fg-muted transition-colors hover:text-fg">
-            {{ founder.name }} <span class="text-fg-subtle">/</span> {{ founder.handle }}
+            {{ founder.name }}, {{ founder.role }}
           </RouterLink>
         </div>
       </nav>
