@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { founder } from '@/content/company'
+import { site } from '@/config/site'
 
 /**
  * The founder. CodeDream is the person; SOFORR is the company.
  * Always dark, so the portrait reads the same in both themes.
  */
-withDefaults(defineProps<{ index?: string }>(), { index: '07' })
+withDefaults(defineProps<{ index?: string }>(), { index: '08' })
 </script>
 
 <template>
@@ -46,14 +47,14 @@ withDefaults(defineProps<{ index?: string }>(), { index: '07' })
         <!-- Person and company, kept distinct. -->
         <dl v-reveal="100" class="mt-10 grid grid-cols-2 border-y border-edge/15">
           <div class="border-r border-edge/15 py-5 pr-5">
-            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The engineer</dt>
+            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The founder</dt>
             <dd class="serif mt-2 text-4xl leading-none text-fg italic sm:text-5xl">{{ founder.handle }}</dd>
             <dd class="mt-3 text-sm text-fg-muted">{{ founder.name }} · {{ founder.role }}</dd>
           </div>
           <div class="py-5 pl-5">
             <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The company</dt>
             <dd class="mt-2 text-4xl leading-none font-semibold tracking-[0.06em] text-fg sm:text-5xl">SOFORR</dd>
-            <dd class="mt-3 text-sm text-fg-muted">Technology company</dd>
+            <dd class="mt-3 text-sm text-fg-muted">{{ site.descriptor }}</dd>
           </div>
         </dl>
 

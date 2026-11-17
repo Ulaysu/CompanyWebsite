@@ -2,16 +2,14 @@
 import { RouterLink } from 'vue-router'
 import { ArrowUpRight } from 'lucide-vue-next'
 import AppButton from '@/components/ui/AppButton.vue'
-import LocalTime from '@/components/ui/LocalTime.vue'
 import { site } from '@/config/site'
-import { projects } from '@/content/work'
-import { photoSrc, photos } from '@/content/photos'
+import { divisions } from '@/content/company'
 import { globe } from '@/content/images'
 
-/** The headline, word by word. The last two words are set in the serif. */
+/** The headline, word by word. The last three words are set in the serif. */
 const words = [
-  ...'We build technology for ideas'.split(' ').map((w) => ({ w, serif: false })),
-  ...'worth building.'.split(' ').map((w) => ({ w, serif: true })),
+  ...'Engineering software. Building'.split(' ').map((w) => ({ w, serif: false })),
+  ...'what comes next.'.split(' ').map((w) => ({ w, serif: true })),
 ]
 </script>
 
@@ -45,54 +43,43 @@ const words = [
           <span class="text-fg">{{ site.name }}</span><span class="text-fg-subtle/60" aria-hidden="true">/</span>{{ site.descriptor }}
         </p>
 
-        <h1 id="hero-title" class="mt-8 text-[3.25rem] leading-[0.95] font-semibold tracking-[-0.05em] text-fg sm:mt-10 sm:text-[5.5rem] lg:text-[5.25rem] xl:text-[6.25rem]">
+        <h1 id="hero-title" class="mt-8 text-[3rem] leading-[0.95] font-semibold tracking-[-0.05em] text-fg sm:mt-10 sm:text-[5rem] lg:text-[4.75rem] xl:text-[5.75rem]">
           <template v-for="(item, i) in words" :key="i">
             <span class="word-line"><span :class="item.serif ? 'serif font-normal tracking-[-0.03em] italic' : ''" :style="{ '--word-delay': `${120 + i * 70}ms` }">{{ item.w }}</span></span>{{ i < words.length - 1 ? ' ' : '' }}
           </template>
         </h1>
 
-        <p class="mt-10 max-w-lg animate-fade-up text-lg leading-relaxed text-fg-muted [animation-delay:700ms] sm:text-xl">{{ site.summary }}</p>
+        <div class="mt-10 max-w-xl animate-fade-up space-y-4 text-lg leading-relaxed text-fg-muted [animation-delay:700ms] sm:text-xl">
+          <p v-for="line in site.summary" :key="line">{{ line }}</p>
+        </div>
         <div class="mt-9 flex animate-fade-up flex-col gap-3 [animation-delay:780ms] sm:flex-row">
-          <AppButton to="/work" size="lg" arrow>See the work</AppButton>
-          <AppButton to="/contact" variant="secondary" size="lg">Start a conversation</AppButton>
+          <AppButton to="/contact" size="lg" arrow>Discuss a project</AppButton>
+          <AppButton to="/products" variant="secondary" size="lg">Explore our products</AppButton>
         </div>
       </div>
 
-      <!-- Evidence: what we're building, and where. -->
+      <!-- The two divisions, with equal weight. -->
       <div class="mt-auto pt-16 lg:pt-20">
-        <div class="grid animate-fade-up grid-cols-1 gap-x-8 border-t border-edge/15 [animation-delay:900ms] md:grid-cols-[auto_1fr_1fr] md:items-center">
-          <p class="eyebrow flex items-center gap-2 pt-5 pb-1 md:py-0 md:pr-4">
-            <span class="relative flex size-1.5" aria-hidden="true"><span class="absolute inset-0 animate-pulse-dot rounded-full bg-accent" /></span>
-            Now building
-          </p>
+        <div class="grid animate-fade-up grid-cols-1 border-t border-edge/15 [animation-delay:900ms] md:grid-cols-2">
           <RouterLink
-            v-for="p in projects"
-            :key="p.slug"
-            :to="`/work/${p.slug}`"
-            class="group grid grid-cols-[4rem_1fr_auto] items-center gap-4 border-b border-edge/15 py-4 md:border-b-0 md:border-l md:pl-8"
+            v-for="(d, i) in divisions"
+            :key="d.id"
+            :to="d.cta.to"
+            class="group flex items-center justify-between gap-6 border-b border-edge/15 py-5 md:border-b-0 md:py-6"
+            :class="i === 0 ? 'md:pr-8' : 'md:border-l md:border-edge/15 md:pl-8'"
           >
-            <span class="relative block aspect-[4/3] overflow-hidden bg-ink-900">
-              <img
-                :src="photoSrc(p.photo)"
-                alt=""
-                width="800"
-                height="600"
-                decoding="async"
-                class="absolute inset-0 h-full w-full object-cover transition duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                :style="{ objectPosition: photos[p.photo]!.position }"
-              />
-            </span>
             <span class="min-w-0">
-              <span class="block truncate text-base font-semibold tracking-[-0.01em] text-fg">{{ p.name }}</span>
-              <span class="mt-1 block truncate font-mono text-[0.6875rem] tracking-wide text-fg-subtle">{{ p.place.name }} · <LocalTime :time-zone="p.place.timeZone" /></span>
+              <span class="font-mono text-[0.6875rem] tracking-[0.16em] text-fg-subtle uppercase">{{ d.index }} / Division</span>
+              <span class="mt-1.5 block text-xl font-semibold tracking-[-0.02em] text-fg">{{ d.title }}</span>
+              <span class="mt-1 block text-sm text-fg-muted">{{ d.summary }}</span>
             </span>
-            <ArrowUpRight class="size-4 text-fg-subtle transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg" aria-hidden="true" />
+            <ArrowUpRight class="size-5 shrink-0 text-fg-subtle transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg" aria-hidden="true" />
           </RouterLink>
         </div>
 
         <div class="flex animate-fade-up items-center justify-between gap-6 border-t border-edge/10 pt-5 font-mono text-[0.6875rem] tracking-wide text-fg-subtle [animation-delay:1000ms]">
           <p>{{ site.origin }}</p>
-          <p class="hidden sm:block">Products · Platforms · Systems · Infrastructure</p>
+          <p class="hidden sm:block">Engineering services · Software products</p>
         </div>
       </div>
     </div>

@@ -4,10 +4,14 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
+import { redirects } from './src/redirects'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const siteUrl = (env.VITE_SITE_URL || 'https://www.example.com').replace(/\/$/, '')
+  if (mode === 'production' && !env.VITE_SITE_URL) {
+    console.warn('\n[sofforr] WARNING: VITE_SITE_URL is not set. Canonical URLs, Open Graph URLs and the sitemap fall back to https://www.example.com. Set it before launch.\n')
+  }
   let renderedPaths: string[] = []
 
   return {
@@ -20,11 +24,8 @@ export default defineConfig(({ mode }) => {
       formatting: 'minify',
       dirStyle: 'nested',
       includedRoutes(paths) {
-        // Redirect-only routes (see `redirects` in src/routes.ts) are served by vercel.json / public/_redirects, not pre-rendered.
-        const redirectOnly = [
-          '/what-we-build', '/services', '/how-we-work', '/solutions', '/work-with-us',
-          '/products/kujaaburun', '/products/sweetland-farms', '/work/sweetland-farms',
-        ]
+        // Redirect-only routes come from src/redirects.ts and are served by vercel.json / public/_redirects, not pre-rendered.
+        const redirectOnly = Object.keys(redirects)
         renderedPaths = paths.filter((p) => !p.includes(':') && !redirectOnly.includes(p))
         return [...renderedPaths, '/404']
       },
