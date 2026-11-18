@@ -1,12 +1,8 @@
 <script setup lang="ts">
-/** The quiet label that opens every chapter, e.g. "01 / Philosophy". */
+/** A short plain-language label that names a section. Index numbers were removed: only real sequences are numbered. */
 defineProps<{ index?: string; label: string }>()
 </script>
 
 <template>
-  <p v-reveal class="index-label">
-    <span v-if="index" class="text-fg">{{ index }}</span>
-    <span v-if="index" class="text-fg-subtle/60" aria-hidden="true">/</span>
-    <span>{{ label }}</span>
-  </p>
+  <p class="index-label">{{ label }}</p>
 </template>

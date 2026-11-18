@@ -7,21 +7,22 @@
   @font-face { font-family: GeistMono; src: url('../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; }
   @font-face { font-family: Serif; font-style: italic; src: url('../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2') format('woff2'); }
   * { margin: 0; box-sizing: border-box; }
-  body { width: 1200px; height: 630px; background: #0a0a0a; color: #f4efe8; font-family: Geist, sans-serif; position: relative; overflow: hidden; }
-  .grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgb(255 255 255 / .04) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / .04) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 80% at 20% 20%, #000 15%, transparent 75%); }
+  body { width: 1200px; height: 630px; background: #fff; color: #0a1f44; font-family: Geist, sans-serif; position: relative; overflow: hidden; }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(to right, rgb(10 31 68 / .05) 1px, transparent 1px), linear-gradient(to bottom, rgb(10 31 68 / .05) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 80% at 20% 20%, #000 15%, transparent 75%); }
   .wrap { position: relative; padding: 64px 72px; height: 100%; display: flex; flex-direction: column; }
-  .eyebrow { font-family: GeistMono; font-size: 16px; letter-spacing: .16em; color: #8a857d; text-transform: uppercase; display: flex; gap: 14px; align-items: center; }
-  .eyebrow b { color: #f4efe8; font-weight: 500; }
-  h1 { margin-top: auto; font-size: 92px; line-height: .96; font-weight: 600; letter-spacing: -.05em; max-width: 1000px; }
-  h1 em { font-family: Serif; font-style: italic; font-weight: 400; letter-spacing: -.02em; }
-  .foot { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / .12); display: flex; justify-content: space-between; font-family: GeistMono; font-size: 16px; letter-spacing: .04em; color: #8a857d; }
-  .foot span:last-child { font-family: Serif; font-style: italic; font-size: 28px; letter-spacing: 0; color: #f4efe8; line-height: 1; }
+  .eyebrow { font-family: GeistMono; font-size: 16px; letter-spacing: 0; color: #1747cc; font-weight:600; font-family: Geist; display: flex; gap: 14px; align-items: center; }
+  .eyebrow b { color: #0a1f44; font-weight: 500; }
+  h1 { margin-top: auto; font-size: 84px; line-height: .96; font-weight: 600; letter-spacing: -.05em; max-width: 1056px; }
+  h1 em { font-style: normal; }
+  .foot { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(10 31 68 / .12); display: flex; justify-content: space-between; font-family: GeistMono; font-size: 16px; letter-spacing: .04em; color: #5d6e8f; }
+  .foot span:last-child { font-family: Serif; font-style: italic; font-size: 28px; letter-spacing: 0; color: #0a1f44; line-height: 1; }
+  .band{position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(to right,#d93a2b 0 28%,#fff 28% 36%,#1f5bff 36% 64%,#fff 64% 72%,#0f8f5a 72% 100%)}
 </style>
 </head>
 <body>
-  <div class="grid"></div>
+  <div class="grid"></div><div class="band"></div>
   <div class="wrap">
-    <div class="eyebrow"><svg width="40" height="25" viewBox="0 0 32 20"><circle cx="10" cy="10" r="7.25" fill="none" stroke="#f4efe8" stroke-width="2.5"/><circle cx="22" cy="10" r="7.25" fill="none" stroke="#e8723a" stroke-width="2.5"/><path d="M 15.13 4.87 A 7.25 7.25 0 0 1 17.25 10" fill="none" stroke="#f4efe8" stroke-width="2.5"/></svg><b>SOFORR</b> / International software engineering company</div>
+    <div class="eyebrow"><svg width="40" height="25" viewBox="0 0 32 20"><circle cx="10" cy="10" r="7.25" fill="none" stroke="#0a1f44" stroke-width="2.5"/><circle cx="22" cy="10" r="7.25" fill="none" stroke="#1f5bff" stroke-width="2.5"/><path d="M 15.13 4.87 A 7.25 7.25 0 0 1 17.25 10" fill="none" stroke="#0a1f44" stroke-width="2.5"/></svg><b>SOFORR</b> / International software engineering company</div>
     <h1>Engineering software. Building <em>what comes next.</em></h1>
     <div class="foot"><span>Founded in The Gambia. Serving clients worldwide.</span><span>Duniyai ka Soforr.</span></div>
   </div>

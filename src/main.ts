@@ -1,7 +1,6 @@
 import { ViteSSG } from 'vite-ssg'
 import '@fontsource-variable/geist'
-import '@fontsource-variable/geist-mono'
-import '@fontsource/instrument-serif/latin-400.css'
+import '@fontsource-variable/bricolage-grotesque'
 import '@fontsource/instrument-serif/latin-400-italic.css'
 import './style.css'
 import App from './App.vue'

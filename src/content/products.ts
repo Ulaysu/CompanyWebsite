@@ -1,5 +1,4 @@
 import type { PhotoName } from './photos'
-import type { ImageName } from './images'
 
 /**
  * SOFORR's products. A page at `/products/<slug>` is generated for each entry.
@@ -41,8 +40,9 @@ export interface Product {
   /** Photograph, if the product has a real place or context. */
   photo?: PhotoName
   detailPhoto?: PhotoName
-  /** A technical illustration (never a screenshot). */
-  illustration?: { name: ImageName; alt: string; caption: string }
+  /** A concept diagram (never a screenshot). */
+  diagram?: 'business-os'
+  diagramCaption?: string
   /** Real product screenshots only. */
   screenshots?: Screenshot[]
   technology?: string[]
@@ -72,11 +72,8 @@ export const products: Product[] = [
       { title: 'Designed around real operations', body: 'Shaped by how businesses actually work, not by a generic feature list.' },
       { title: 'Held to our engineering standard', body: 'The same architecture, testing and delivery practices we bring to client engagements.' },
     ],
-    illustration: {
-      name: 'system',
-      alt: 'Isometric technical illustration of a central system connected to payments, orders, inventory, CRM, documents and reporting modules.',
-      caption: 'Technical illustration of the single-system idea behind business operating software. It is a concept diagram, not a screenshot of the product.',
-    },
+    diagram: 'business-os',
+    diagramCaption: 'Concept diagram: one system at the centre of a business’s operations. It illustrates the idea and is not a screenshot of the product.',
     cta: { label: 'Discuss Soforr Business OS', to: '/contact?engagement=product&product=soforr-business-os' },
   },
   {
@@ -118,8 +115,6 @@ export const products: Product[] = [
       { title: 'Visibility over time', body: 'Information that helps decisions improve.' },
     ],
     origin: 'Maine, USA (the client’s location)',
-    photo: 'sweetland',
-    detailPhoto: 'sweetland-detail',
     caseStudy: 'sweetland-farms-os',
     cta: { label: 'Discuss a similar system', to: '/contact?engagement=fixed-price' },
   },

@@ -24,8 +24,8 @@ withDefaults(
       <path d="M 15.13 4.87 A 7.25 7.25 0 0 1 17.25 10" fill="none" stroke="currentColor" stroke-width="2.5" class="text-fg" />
     </svg>
     <span class="flex items-baseline gap-3 leading-none">
-      <span class="text-[1.0625rem] font-semibold tracking-[0.14em] whitespace-nowrap text-fg">{{ site.name }}</span>
-      <span v-if="showDescriptor" :class="['hidden font-mono text-[0.625rem] tracking-[0.14em] whitespace-nowrap text-fg-subtle uppercase sm:inline', descriptorClass]">
+      <span class="text-[1.0625rem] font-semibold whitespace-nowrap text-fg">{{ site.name }}</span>
+      <span v-if="showDescriptor" :class="['hidden text-[0.625rem] whitespace-nowrap text-fg-subtle sm:inline', descriptorClass]">
         {{ site.descriptor }}
       </span>
     </span>

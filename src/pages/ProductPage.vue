@@ -23,8 +23,8 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
     <PageHero :label="product.ownership === 'Owned by SOFORR' ? 'Product' : 'Built for a client'" :title="product.name" :lede="product.summary" :photo="product.photo">
       <div class="mt-8 flex flex-wrap items-center gap-2">
         <ProductStatus :status="product.status" />
-        <span class="border border-edge/15 bg-ink-950/50 px-2.5 py-1 font-mono text-[0.6875rem] leading-none text-fg-muted">{{ product.ownership }}</span>
-        <span v-if="product.flagship" class="border border-fg/40 px-2.5 py-1 font-mono text-[0.6875rem] leading-none text-fg">Flagship product</span>
+        <span class="rounded-full border border-edge/15 px-2.5 py-1 text-xs leading-none text-fg-muted">{{ product.ownership }}</span>
+        <span v-if="product.flagship" class="rounded-full bg-fg px-2.5 py-1 text-xs leading-none text-ink-950">Flagship product</span>
       </div>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <AppButton :to="product.cta.to" size="lg" arrow>{{ product.cta.label }}</AppButton>
@@ -54,7 +54,7 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
             </div>
             <div v-if="product.technology?.length">
               <dt class="eyebrow">Technology</dt>
-              <dd class="mt-2 font-mono text-sm text-fg-muted">{{ product.technology.join(' · ') }}</dd>
+              <dd class="mt-2 text-sm text-fg-muted">{{ product.technology.join(' · ') }}</dd>
             </div>
           </dl>
         </aside>
@@ -70,9 +70,9 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
             <p class="mt-3 text-[1.0625rem] leading-relaxed text-fg">{{ product.statusNote }}</p>
           </div>
 
-          <figure v-if="!product.photo || product.illustration">
+          <figure v-if="product.diagram">
             <div v-reveal class="reveal-clip"><ProductMedia :product="product" /></div>
-            <figcaption v-if="product.illustration" class="mt-3 font-mono text-[0.6875rem] text-fg-subtle">{{ product.illustration.caption }}</figcaption>
+            <figcaption class="mt-3 text-xs text-fg-subtle">{{ product.diagramCaption }}</figcaption>
           </figure>
           <figure v-else-if="product.detailPhoto">
             <div v-reveal class="reveal-clip relative aspect-[16/10] overflow-hidden bg-ink-900">
@@ -87,14 +87,14 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
                 :style="{ objectPosition: photos[product.detailPhoto]!.position }"
               />
             </div>
-            <figcaption class="mt-3 font-mono text-[0.6875rem] text-fg-subtle">Photograph: {{ photos[product.detailPhoto]!.alt }}</figcaption>
+            <figcaption class="mt-3 text-[0.6875rem] text-fg-subtle">Photograph: {{ photos[product.detailPhoto]!.alt }}</figcaption>
           </figure>
 
           <div v-if="product.principles?.length" v-reveal>
             <h2 class="eyebrow">{{ product.ownership === 'Owned by SOFORR' ? 'What we are building toward' : 'What is being built' }}</h2>
             <ul class="mt-6 divide-y divide-edge/10 border-y border-edge/10">
               <li v-for="(item, i) in product.principles" :key="item.title" class="grid grid-cols-[2rem_1fr] gap-x-4 py-5">
-                <span class="font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span>
+                <span class="text-xs text-fg-subtle">0{{ i + 1 }}</span>
                 <span>
                   <span class="block text-lg text-fg">{{ item.title }}</span>
                   <span class="mt-1 block text-[0.9375rem] text-fg-muted">{{ item.body }}</span>
@@ -107,7 +107,7 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
             <h2 class="eyebrow">Screenshots</h2>
             <figure v-for="s in product.screenshots" :key="s.src" class="mt-6">
               <img :src="s.src" :alt="s.alt" :width="s.width" :height="s.height" loading="lazy" decoding="async" class="h-auto w-full border border-edge/10" />
-              <figcaption v-if="s.caption" class="mt-2 font-mono text-[0.6875rem] text-fg-subtle">{{ s.caption }}</figcaption>
+              <figcaption v-if="s.caption" class="mt-2 text-[0.6875rem] text-fg-subtle">{{ s.caption }}</figcaption>
             </figure>
           </div>
 
@@ -133,7 +133,7 @@ usePageMeta({ title: product.value.name, description: `${product.value.summary} 
         <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <li v-for="p in others" :key="p.slug">
             <RouterLink :to="`/products/${p.slug}`" class="group block border border-edge/10 p-6 transition-colors hover:border-edge/30">
-              <p class="font-mono text-[0.6875rem] text-fg-subtle">{{ p.ownership }} · {{ p.status }}</p>
+              <p class="text-[0.6875rem] text-fg-subtle">{{ p.ownership }} · {{ p.status }}</p>
               <p class="mt-3 text-2xl font-semibold tracking-[-0.03em] text-fg">{{ p.name }}</p>
               <p class="mt-2 text-[0.9375rem] text-fg-muted">{{ p.summary }}</p>
             </RouterLink>

@@ -1,288 +1,169 @@
 @import 'tailwindcss';
 
-/* Theme variants: `light:` / `dark:` follow the data-theme attribute on <html>. */
-@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
-@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
-
 @theme {
+  /* Display: Bricolage Grotesque. Text: Geist. The serif is reserved for the philosophy phrase. */
+  --font-display: 'Bricolage Grotesque Variable', 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
-  /* The brand's second voice: the philosophy, the founder and a few editorial words. */
+  --font-mono: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
 
-  /* Surfaces: warm near-black (dark by default; see [data-theme='light'] below). */
-  --color-ink-950: #0a0a0a;
-  --color-ink-900: #111110;
-  --color-ink-850: #161615;
-  --color-ink-800: #1d1c1b;
-  --color-ink-700: #272624;
-  --color-ink-600: #34322f;
+  /* Surfaces: paper and mist. */
+  --color-ink-950: #ffffff;
+  --color-ink-900: #f4f7fc;
+  --color-ink-850: #eaf0f9;
+  --color-ink-800: #dde6f3;
+  --color-ink-700: #c9d5e8;
+  --color-ink-600: #aebcd3;
 
-  /* Text: warm white, never pure. */
-  --color-fg: #f4efe8;
-  --color-fg-muted: #aaa49b;
-  --color-fg-subtle: #77726a;
+  /* Text: deep river navy. */
+  --color-fg: #0a1f44;
+  --color-fg-muted: #44557a;
+  --color-fg-subtle: #5d6e8f;
+  --color-edge: #0a1f44;
 
-  /* Hairlines and tints: used as edge/[opacity] for borders, dividers and washes. */
-  --color-edge: #ffffff;
+  /* River: links, focus and the one live moment. */
+  --color-accent: #1f5bff;
+  --color-accent-soft: #1747cc;
+  --color-signal: #0a1f44;
 
-  /* Signal: one warm accent for the mark, live status and focus. Never decoration. */
-  --color-accent: #e8723a;
-  --color-accent-soft: #f29a68;
-  /* Secondary signal: warm sand, for quiet technical details. */
-  --color-signal: #d5c2a0;
+  --color-positive: #0f8f5a;
+  --color-warning: #b45309;
 
-  /* Status */
-  --color-positive: #7cc49a;
-  --color-warning: #e2b454;
+  /* The flag, used only in the tri-band. */
+  --color-flag-red: #d93a2b;
+  --color-flag-blue: #1f5bff;
+  --color-flag-green: #0f8f5a;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-
   --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quint) infinite;
-  --animate-fade-up: fade-up 1s var(--ease-out-quint) both;
-  --animate-word: word-rise 1.1s var(--ease-out-quint) both;
+  --animate-fade-up: fade-up 0.8s var(--ease-out-quint) both;
 
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.35; transform: scale(0.8); }
   }
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
-    to { opacity: 1; transform: none; filter: none; }
-  }
-  /* Headline words rise out of a clipped line. */
-  @keyframes word-rise {
-    from { transform: translateY(105%); }
-    to { transform: none; }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
   }
 }
 
-/* Light theme: the same tokens, re-pointed. Components never hard-code a theme. */
-[data-theme='light'] {
-  color-scheme: light;
-  --color-ink-950: #f5f2ec;
-  --color-ink-900: #fbf9f5;
-  --color-ink-850: #eeeae3;
-  --color-ink-800: #e6e1d8;
-  --color-ink-700: #dad4c9;
-  --color-ink-600: #c8c0b3;
-  --color-fg: #141312;
-  --color-fg-muted: #57524b;
-  --color-fg-subtle: #837d73;
-  --color-edge: #141312;
-  --color-accent: #c85a24;
-  --color-accent-soft: #a8481a;
-  --color-signal: #86683a;
-  --color-positive: #2a7d52;
-  --color-warning: #a8740f;
-  --panel-shadow: 0 1px 2px rgb(20 19 18 / 0.04), 0 24px 48px -28px rgb(20 19 18 / 0.16);
-  --grid-line: rgb(20 19 18 / 0.05);
-  --dot: rgb(20 19 18 / 0.1);
-}
-
-/*
- * Always-dark surfaces (hero, work, founder, closing call to action)
- * keep the dark tokens even when the rest of the page is light.
- */
+/* Navy bands: the same tokens, re-pointed. */
 .surface-dark {
   color-scheme: dark;
-  --color-ink-950: #0a0a0a;
-  --color-ink-900: #111110;
-  --color-ink-850: #161615;
-  --color-ink-800: #1d1c1b;
-  --color-ink-700: #272624;
-  --color-ink-600: #34322f;
-  --color-fg: #f4efe8;
-  --color-fg-muted: #b0aaa1;
-  --color-fg-subtle: #7f7a72;
+  --color-ink-950: #07173a;
+  --color-ink-900: #0c2250;
+  --color-ink-850: #102a5f;
+  --color-ink-800: #16346e;
+  --color-ink-700: #1f4180;
+  --color-ink-600: #2c5199;
+  --color-fg: #f4f7fc;
+  --color-fg-muted: #b9c6df;
+  --color-fg-subtle: #93a6c8;
   --color-edge: #ffffff;
-  --color-accent: #e8723a;
-  --color-accent-soft: #f29a68;
-  --color-signal: #d5c2a0;
-  --color-positive: #7cc49a;
-  --panel-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
-  --grid-line: rgb(255 255 255 / 0.035);
-  --dot: rgb(255 255 255 / 0.08);
+  --color-accent: #6b97ff;
+  --color-accent-soft: #9db8ff;
+  --card-shadow: none;
   background-color: var(--color-ink-950);
   color: var(--color-fg);
 }
 
 @layer base {
   :root {
-    color-scheme: dark;
-    --panel-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
-    --grid-line: rgb(255 255 255 / 0.035);
-    --dot: rgb(255 255 255 / 0.08);
+    color-scheme: light;
+    --card-shadow: 0 1px 2px rgb(10 31 68 / 0.05), 0 12px 32px -12px rgb(10 31 68 / 0.14);
   }
   html {
-    background: var(--color-ink-950);
-    transition: background-color 0.3s ease;
+    background: #fff;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
   }
   body {
     @apply bg-ink-950 font-sans text-fg antialiased;
-    font-feature-settings: 'ss01', 'cv11';
     overflow-x: clip;
   }
-  ::selection {
-    background: color-mix(in oklab, var(--color-accent) 35%, transparent);
-    color: #fff;
-  }
+  ::selection { background: color-mix(in oklab, var(--color-accent) 25%, transparent); }
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 6px;
   }
   h1, h2, h3, h4 {
+    font-family: var(--font-display);
     text-wrap: balance;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
   }
   p { text-wrap: pretty; }
 }
 
 @layer components {
-  .container-page {
-    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
+  .container-page { @apply mx-auto w-full max-w-[80rem] px-5 sm:px-8 lg:px-12; }
+  .section { @apply py-20 sm:py-24 lg:py-32; }
+
+  .eyebrow { @apply text-sm font-semibold text-fg-muted; }
+  .index-label { @apply flex items-center gap-3 text-sm font-semibold text-accent-soft; }
+  .wordmark { @apply font-display font-semibold tracking-[-0.055em]; }
+
+  .display { @apply text-[2.75rem] leading-[1] font-semibold tracking-[-0.045em] sm:text-6xl lg:text-[4.5rem]; }
+  .statement { @apply text-[1.75rem] leading-[1.15] font-medium tracking-[-0.03em] sm:text-4xl lg:text-5xl; }
+  .heading-xl { @apply text-[2rem] leading-[1.05] font-semibold tracking-[-0.04em] sm:text-4xl lg:text-[3rem]; }
+  .heading-lg { @apply text-2xl leading-tight font-semibold tracking-[-0.02em]; }
+  .lede { @apply text-base leading-relaxed text-fg-muted sm:text-lg; }
+  .serif { @apply font-serif font-normal tracking-[-0.01em]; }
+
+  /* A raised surface. Radius steps up with the size of the thing. */
+  .card {
+    @apply rounded-2xl border border-edge/10 bg-ink-950;
+    box-shadow: var(--card-shadow);
   }
-  /* Generous vertical rhythm between story sections. */
-  .section {
-    @apply py-24 sm:py-32 lg:py-44;
+  .panel { @apply rounded-2xl border border-edge/10 bg-ink-950; box-shadow: var(--card-shadow); }
+  .on-photo { text-shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 2px 18px rgb(0 0 0 / 0.45); }
+
+  /* The flag's structure: red, white, blue, white, green. */
+  .tri-band {
+    background: linear-gradient(
+      to bottom,
+      var(--color-flag-red) 0 28%, #fff 28% 36%,
+      var(--color-flag-blue) 36% 64%, #fff 64% 72%,
+      var(--color-flag-green) 72% 100%
+    );
+  }
+  .tri-band-h {
+    background: linear-gradient(
+      to right,
+      var(--color-flag-red) 0 28%, #fff 28% 36%,
+      var(--color-flag-blue) 36% 64%, #fff 64% 72%,
+      var(--color-flag-green) 72% 100%
+    );
   }
 
-  .eyebrow {
-    @apply font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
-  }
-
-  /* The wordmark set as display type. */
-  .wordmark {
-    @apply font-semibold tracking-[-0.055em];
-    font-feature-settings: 'ss01';
-  }
-
-  .display {
-    @apply text-[2.75rem] leading-[0.98] font-semibold tracking-[-0.045em] sm:text-7xl lg:text-[5.75rem];
-  }
-  /* Large statement copy. */
-  .statement {
-    @apply text-[1.75rem] leading-[1.12] font-medium tracking-[-0.03em] sm:text-[2.5rem] lg:text-[3.25rem];
-  }
-  /* Editorial serif, used for the philosophy and a few quiet accents. */
-  .serif {
-    @apply font-serif font-normal tracking-[-0.01em];
-  }
-  /* Section index, e.g. "01 — Belief". */
-  .index-label {
-    @apply flex items-center gap-3 font-mono text-[0.6875rem] font-medium tracking-[0.16em] text-fg-subtle uppercase;
-  }
-  .heading-xl {
-    @apply text-[2.25rem] leading-[1.02] font-semibold tracking-[-0.04em] sm:text-5xl lg:text-[4rem];
-  }
-  .heading-lg {
-    @apply text-2xl leading-tight font-semibold tracking-[-0.02em] sm:text-[1.75rem];
-  }
-  .lede {
-    @apply text-base leading-relaxed text-fg-muted sm:text-lg;
-  }
-
-  /* A quiet surface for forms. */
-  .panel {
-    @apply border bg-ink-900;
-    border-color: color-mix(in oklab, var(--color-edge) 8%, transparent);
-    box-shadow: var(--panel-shadow);
-  }
-
-  /* Kept for older markup: headings are solid colour now, no gradients. */
-  .text-gradient {
-    color: var(--color-fg);
-  }
-
-  /* Text set directly on a photograph: a soft shadow keeps it legible without darkening the image. */
-  .on-photo {
-    text-shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 2px 18px rgb(0 0 0 / 0.45);
-  }
-
-  /* Fine technical grid used as a background texture. */
   .bg-grid {
     background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 64px 64px;
+      linear-gradient(to right, rgb(10 31 68 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(10 31 68 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
-  .bg-dots {
-    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
-    background-size: 18px 18px;
-  }
-  .mask-radial {
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
-  }
+  .bg-dots { background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px); background-size: 18px 18px; }
+  .mask-radial { mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%); }
 }
 
-/* Scroll-reveal (see directives/reveal.ts). Content is visible without JS. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.9s var(--ease-out-quint),
-    transform 0.9s var(--ease-out-quint);
-  transition-delay: var(--reveal-delay, 0ms);
+/* The hero pipeline: one pulse, stage by stage. */
+@keyframes stage-on {
+  0%, 4% { background-color: transparent; }
+  8%, 20% { background-color: color-mix(in oklab, var(--color-accent) 9%, transparent); }
+  26%, 100% { background-color: transparent; }
 }
-.js [data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
+@keyframes stage-dot {
+  0%, 4% { background-color: var(--color-ink-700); transform: scale(1); }
+  8%, 20% { background-color: var(--color-accent); transform: scale(1.25); }
+  26%, 100% { background-color: var(--color-ink-700); transform: scale(1); }
 }
-/*
- * Images open like a shutter instead of fading. The clip sits on the children:
- * a fully clipped target never counts as intersecting, so it would never reveal.
- */
-.js [data-reveal].reveal-clip {
-  opacity: 1;
-  transform: none;
-}
-.js [data-reveal].reveal-clip > * {
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 1.3s var(--ease-out-quint);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-.js [data-reveal].reveal-clip.is-visible > * {
-  clip-path: inset(0 0 0 0);
-}
-/* Rules that draw themselves across the page. */
-.js [data-reveal].reveal-line {
-  opacity: 1;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 1.4s var(--ease-out-quint);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-.js [data-reveal].reveal-line.is-visible {
-  transform: none;
-}
+.pipeline-stage { animation: stage-on 12s linear infinite; animation-delay: calc(var(--i) * 2.4s - 2.4s); }
+.pipeline-dot { animation: stage-dot 12s linear infinite; animation-delay: calc(var(--i) * 2.4s - 2.4s); }
 
-/* Headline word reveal: each word sits in a clipped line box. */
-.word-line {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
-}
-.word-line > span {
-  display: inline-block;
-}
-.js .word-line > span {
-  animation: var(--animate-word);
-  animation-delay: var(--word-delay, 0ms);
-}
-
-/* Route transitions */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.28s var(--ease-out-quint), transform 0.28s var(--ease-out-quint);
-}
-.page-enter-from { opacity: 0; transform: translateY(6px); }
-.page-leave-to { opacity: 0; }
+.page-enter-active, .page-leave-active { transition: opacity 0.18s ease; }
+.page-enter-from, .page-leave-to { opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -291,5 +172,5 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .js [data-reveal], .js [data-reveal].reveal-clip > * { opacity: 1; transform: none; clip-path: none; }
+  .pipeline-stage, .pipeline-dot { animation: none !important; }
 }

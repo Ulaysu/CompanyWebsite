@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import SectionLabel from '@/components/ui/SectionLabel.vue'
 import { founder } from '@/content/company'
-import { site } from '@/config/site'
 
-/**
- * The founder. CodeDream is the person; SOFORR is the company.
- * Always dark, so the portrait reads the same in both themes.
- */
-withDefaults(defineProps<{ index?: string }>(), { index: '08' })
+/** The founder, as a light section with a framed portrait. */
+withDefaults(defineProps<{ index?: string }>(), { index: '' })
 </script>
 
 <template>
-  <section id="founder" class="surface-dark relative overflow-hidden" aria-labelledby="founder-title">
-    <div class="container-page section grid grid-cols-1 gap-14 md:grid-cols-12 md:gap-10 lg:gap-x-20">
-      <!-- Portrait -->
-      <figure class="relative md:col-span-5">
-        <div v-reveal class="reveal-clip relative aspect-[4/5] overflow-hidden bg-ink-900">
+  <section id="founder" class="section" aria-labelledby="founder-title">
+    <div class="container-page grid grid-cols-1 gap-12 md:grid-cols-12 lg:gap-x-20">
+      <figure class="md:col-span-5">
+        <div class="card relative aspect-[4/5] overflow-hidden">
           <img
             v-if="founder.photo"
             loading="lazy"
@@ -28,43 +22,19 @@ withDefaults(defineProps<{ index?: string }>(), { index: '08' })
             height="1800"
             class="absolute inset-0 h-full w-full object-cover"
           />
-          <!-- Placeholder until a portrait exists: a designed frame, never a stand-in face. -->
-          <div v-else class="absolute inset-0 grid place-items-center" role="img" :aria-label="`${founder.name}, ${founder.role}`">
-            <div class="bg-dots absolute inset-0 opacity-60" />
-            <span class="serif relative text-[5rem] leading-none text-fg/80 italic">{{ founder.handle }}</span>
+          <div v-else class="absolute inset-0 grid place-items-center bg-ink-900" role="img" :aria-label="`${founder.name}, ${founder.role}`">
+            <span class="serif text-6xl text-fg italic">{{ founder.handle }}</span>
           </div>
         </div>
-        <figcaption class="mt-4 flex items-baseline justify-between gap-4 font-mono text-[0.6875rem] tracking-wide text-fg-subtle">
-          <span>{{ founder.name }}</span><span>{{ founder.origin }}</span>
-        </figcaption>
+        <figcaption class="mt-4 text-sm text-fg-muted"><span class="font-semibold text-fg">{{ founder.name }}</span>, {{ founder.role }}</figcaption>
       </figure>
 
-      <!-- Story -->
       <div class="flex flex-col md:col-span-7 lg:col-span-6 lg:col-start-7">
-        <SectionLabel :index="index" label="Founder" />
-        <h2 id="founder-title" v-reveal="60" class="heading-xl mt-8">{{ founder.title }}</h2>
-
-        <!-- Person and company, kept distinct. -->
-        <dl v-reveal="100" class="mt-10 grid grid-cols-2 border-y border-edge/15">
-          <div class="border-r border-edge/15 py-5 pr-5">
-            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The founder</dt>
-            <dd class="serif mt-2 text-4xl leading-none text-fg italic sm:text-5xl">{{ founder.handle }}</dd>
-            <dd class="mt-3 text-sm text-fg-muted">{{ founder.name }} · {{ founder.role }}</dd>
-          </div>
-          <div class="py-5 pl-5">
-            <dt class="font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase">The company</dt>
-            <dd class="mt-2 text-4xl leading-none font-semibold tracking-[0.06em] text-fg sm:text-5xl">SOFORR</dd>
-            <dd class="mt-3 text-sm text-fg-muted">{{ site.descriptor }}</dd>
-          </div>
-        </dl>
-
-        <div class="mt-10 space-y-5 text-[1.0625rem] leading-relaxed text-fg-muted">
-          <p v-for="(para, i) in founder.story" :key="i" v-reveal="140 + i * 60" :class="i === founder.story.length - 1 ? 'text-fg' : ''">{{ para }}</p>
+        <h2 id="founder-title" class="heading-xl">{{ founder.title }}</h2>
+        <div class="mt-8 space-y-5 text-[1.0625rem] leading-relaxed text-fg-muted">
+          <p v-for="(para, i) in founder.story" :key="i" :class="i === founder.story.length - 1 ? 'text-fg' : ''">{{ para }}</p>
         </div>
-
-        <p v-reveal class="mt-auto border-t border-edge/15 pt-8 text-2xl leading-snug font-medium tracking-[-0.025em] text-fg sm:mt-14 sm:text-[1.75rem]">
-          {{ founder.statement }}
-        </p>
+        <p class="mt-auto border-t border-edge/10 pt-8 font-display text-2xl leading-snug font-medium tracking-[-0.025em] text-fg">{{ founder.statement }}</p>
       </div>
     </div>
   </section>

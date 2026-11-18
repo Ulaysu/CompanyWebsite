@@ -17,8 +17,9 @@ const socials = [
 </script>
 
 <template>
-  <footer class="surface-dark relative overflow-hidden border-t border-edge/[0.08]">
-    <div class="container-page grid grid-cols-1 gap-14 pt-20 pb-12 md:grid-cols-12 md:gap-8 md:pt-28">
+  <footer class="surface-dark relative overflow-hidden">
+    <div class="tri-band-h h-1" aria-hidden="true" />
+    <div class="container-page grid grid-cols-1 gap-14 pt-16 pb-14 md:grid-cols-12 md:gap-8 md:pt-24">
       <div class="md:col-span-6">
         <RouterLink to="/" class="inline-block" :aria-label="`${site.name}, home`">
           <LogoMark />
@@ -78,13 +79,8 @@ const socials = [
       </nav>
     </div>
 
-    <!-- Oversized wordmark, cropped by the page edge. -->
-    <div aria-hidden="true" class="container-page pointer-events-none select-none">
-      <p class="wordmark -mb-[0.2em] text-[24vw] leading-[0.8] text-fg/[0.045] lg:text-[21rem]">{{ site.name }}</p>
-    </div>
-
     <div class="relative border-t border-edge/[0.08]">
-      <div class="container-page flex flex-col gap-2 py-6 font-mono text-[0.6875rem] tracking-wide text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
+      <div class="container-page flex flex-col gap-2 py-6 text-[0.6875rem] tracking-wide text-fg-subtle sm:flex-row sm:items-center sm:justify-between">
         <p>© {{ year }} {{ site.name }}. All rights reserved.</p>
         <p>{{ site.originShort }}</p>
       </div>

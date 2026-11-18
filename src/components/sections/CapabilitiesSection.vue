@@ -1,44 +1,26 @@
 <script setup lang="ts">
-import SectionLabel from '@/components/ui/SectionLabel.vue'
-import PhotoBackdrop from '@/components/ui/PhotoBackdrop.vue'
 import { capabilities } from '@/content/company'
 
-/** Technical capabilities: each practice, what it means, and the tools behind it. */
+/** Technical capabilities: what each practice means and the tools behind it. */
 withDefaults(defineProps<{ index?: string }>(), { index: '' })
 </script>
 
 <template>
-  <section aria-labelledby="capabilities-title">
-    <div class="surface-dark relative isolate flex min-h-[56svh] items-end overflow-hidden">
-      <PhotoBackdrop name="servers" fade="side" sizes="100vw" class="-z-10" />
-      <div class="on-photo container-page w-full pt-40 pb-16 sm:pb-20">
-        <SectionLabel :index="index" label="Technical capabilities" />
-        <h2 id="capabilities-title" v-reveal="60" class="heading-xl mt-8 max-w-4xl">We care about what happens after launch.</h2>
-        <p v-reveal="120" class="mt-8 max-w-xl text-lg leading-relaxed text-fg sm:text-xl">
-          Launch is the start. We build systems that survive real use, evolve without being rewritten and scale when they need to.
-        </p>
+  <section class="section bg-ink-900" aria-labelledby="capabilities-title">
+    <div class="container-page">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
+        <h2 id="capabilities-title" class="heading-xl lg:col-span-7">We care about what happens after launch.</h2>
+        <p class="lede lg:col-span-4 lg:col-start-9">Launch is the start. We build systems that survive real use, evolve without being rewritten and scale when they need to.</p>
       </div>
-    </div>
-
-    <div class="container-page section !pt-16 sm:!pt-24">
-      <div class="hidden grid-cols-[minmax(0,4fr)_minmax(0,7fr)_minmax(0,5fr)] gap-8 border-b border-edge/20 pb-3 font-mono text-[0.625rem] tracking-[0.16em] text-fg-subtle uppercase sm:grid" aria-hidden="true">
-        <span>Capability</span><span>What it means</span><span>With</span>
-      </div>
-      <dl>
-        <div
-          v-for="(p, i) in capabilities"
-          :key="p.title"
-          v-reveal="(i % 3) * 60"
-          class="grid grid-cols-1 gap-2 border-b border-edge/10 py-6 sm:grid-cols-[minmax(0,4fr)_minmax(0,7fr)_minmax(0,5fr)] sm:gap-8"
-        >
-          <dt class="flex items-baseline gap-3 text-lg font-semibold tracking-[-0.015em] text-fg sm:text-xl">
-            <span class="font-mono text-[0.625rem] font-normal text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>{{ p.title }}
-          </dt>
-          <dd class="text-[0.9375rem] leading-relaxed text-fg-muted sm:text-base">{{ p.body }}</dd>
-          <dd v-if="p.tools?.length" class="font-mono text-[0.75rem] leading-relaxed text-fg sm:text-[0.8125rem]">{{ p.tools.join(' · ') }}</dd>
-          <dd v-else class="hidden font-mono text-[0.75rem] text-fg-subtle sm:block" aria-hidden="true">—</dd>
-        </div>
-      </dl>
+      <ul class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <li v-for="p in capabilities" :key="p.title" class="card flex flex-col p-6">
+          <h3 class="text-lg font-semibold tracking-[-0.02em] text-fg">{{ p.title }}</h3>
+          <p class="mt-2 text-[0.9375rem] leading-relaxed text-fg-muted">{{ p.body }}</p>
+          <p v-if="p.tools?.length" class="mt-auto flex flex-wrap gap-1.5 pt-4">
+            <span v-for="t in p.tools" :key="t" class="rounded-full bg-ink-900 px-2.5 py-1 text-xs font-medium text-fg">{{ t }}</span>
+          </p>
+        </li>
+      </ul>
     </div>
   </section>
 </template>

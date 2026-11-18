@@ -59,7 +59,7 @@ const otherOwned = ownedProducts.filter((p) => !p.flagship)
           <li v-for="p in clientBuiltProducts" :key="p.slug" v-reveal class="border-b border-edge/10 py-8">
             <div class="flex flex-wrap items-center gap-2">
               <ProductStatus :status="p.status" />
-              <span class="border border-edge/15 px-2.5 py-1 font-mono text-[0.6875rem] leading-none text-fg-muted">{{ p.ownership }}</span>
+              <span class="rounded-full border border-edge/15 px-2.5 py-1 text-xs leading-none text-fg-muted">{{ p.ownership }}</span>
             </div>
             <h3 class="mt-5 text-3xl font-semibold tracking-[-0.04em] text-fg sm:text-4xl">{{ p.name }}</h3>
             <p class="mt-3 text-lg leading-snug text-fg">{{ p.summary }}</p>

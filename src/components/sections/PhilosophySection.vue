@@ -19,7 +19,7 @@ withDefaults(defineProps<{ index?: string }>(), { index: '01' })
         </p>
         <div v-reveal="160" class="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-baseline sm:gap-6">
           <p class="text-2xl leading-snug tracking-[-0.02em] text-fg sm:text-[2rem]">{{ site.philosophy.meaning }}</p>
-          <p class="font-mono text-[0.6875rem] tracking-[0.16em] text-fg-subtle uppercase">{{ site.philosophy.language }}</p>
+          <p class="text-[0.6875rem] text-fg-subtle ">{{ site.philosophy.language }}</p>
         </div>
       </div>
 
@@ -39,7 +39,7 @@ withDefaults(defineProps<{ index?: string }>(), { index: '01' })
             v-reveal="i * 80"
             class="group flex items-baseline gap-5 border-t border-edge/10 py-5 last:border-b sm:py-6"
           >
-            <span class="w-6 shrink-0 font-mono text-[0.6875rem] text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
+            <span class="w-6 shrink-0 text-[0.6875rem] text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
             <span class="text-xl leading-snug tracking-[-0.02em] text-fg transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1.5 sm:text-[1.625rem]">{{ line }}</span>
           </li>
         </ol>

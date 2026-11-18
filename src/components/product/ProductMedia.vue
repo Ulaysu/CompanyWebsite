@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import type { Product } from '@/content/products'
 import { photoSrc, photoSrcset, photos } from '@/content/photos'
-import ThemedImage from '@/components/ui/ThemedImage.vue'
+import BusinessOsDiagram from '@/components/product/BusinessOsDiagram.vue'
 
-/**
- * The visual for a product: its photograph if it has one, otherwise a clearly
- * labelled technical illustration. Real screenshots are shown separately.
- */
+/** A product's visual: its real photograph if it has one, otherwise a clearly labelled concept diagram. */
 defineProps<{ product: Product; sizes?: string; eager?: boolean }>()
 </script>
 
 <template>
-  <div class="relative aspect-[4/3] overflow-hidden bg-ink-900">
+  <div class="card relative aspect-[4/3] overflow-hidden">
     <img
       v-if="product.photo"
       :loading="eager ? 'eager' : 'lazy'"
@@ -23,14 +20,7 @@ defineProps<{ product: Product; sizes?: string; eager?: boolean }>()
       class="absolute inset-0 h-full w-full object-cover"
       :style="{ objectPosition: photos[product.photo]!.position }"
     />
-    <div v-else-if="product.illustration" class="absolute inset-0 grid place-items-center">
-      <ThemedImage
-        :name="product.illustration.name"
-        :alt="product.illustration.alt"
-        :sizes="sizes ?? '(min-width: 1024px) 58vw, 100vw'"
-        :eager="eager"
-        img-class="block h-full w-full object-cover"
-      />
-    </div>
+    <div v-else-if="product.diagram === 'business-os'" class="absolute inset-0 bg-ink-900 p-6 sm:p-10"><BusinessOsDiagram /></div>
+    <div v-else class="absolute inset-0 bg-ink-900" />
   </div>
 </template>

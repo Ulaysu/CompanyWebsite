@@ -27,7 +27,7 @@ const describedBy = computed(() =>
 )
 
 const fieldClass =
-  'block w-full border bg-ink-950/60 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none focus:border-edge/25 focus:shadow-[0_0_0_3px_rgb(232_114_58/0.14)]'
+  'block w-full rounded-lg border bg-ink-950 px-3.5 text-[0.9375rem] text-fg placeholder:text-fg-subtle/70 transition-[border-color,box-shadow] duration-200 outline-none hover:border-edge/25 focus:border-accent focus:shadow-[0_0_0_3px_rgb(31_91_255/0.18)]'
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const fieldClass =
       :placeholder="placeholder"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="describedBy"
-      :class="[fieldClass, 'resize-y py-3 leading-relaxed', error ? 'border-red-400/60' : 'border-edge/10']"
+      :class="[fieldClass, 'resize-y py-3 leading-relaxed', error ? 'border-red-400/60' : 'border-edge/15']"
     />
     <select
       v-else-if="options"
@@ -57,7 +57,7 @@ const fieldClass =
       :required="required"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="describedBy"
-      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/10']"
+      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/15']"
     >
       <option value="" disabled>Select…</option>
       <option v-for="o in options" :key="o.value" :value="o.value">{{ o.label }}</option>
@@ -74,7 +74,7 @@ const fieldClass =
       :inputmode="inputmode"
       :aria-invalid="error ? 'true' : undefined"
       :aria-describedby="describedBy"
-      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/10']"
+      :class="[fieldClass, 'h-12', error ? 'border-red-400/60' : 'border-edge/15']"
     />
     <p v-if="hint && !error" :id="`${id}-hint`" class="mt-2 text-xs text-fg-subtle">{{ hint }}</p>
     <p v-if="error" :id="`${id}-error`" class="mt-2 text-xs text-red-300">{{ error }}</p>

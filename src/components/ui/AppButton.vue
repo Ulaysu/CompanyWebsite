@@ -19,17 +19,17 @@ const props = withDefaults(
 const tag = computed(() => (props.to ? RouterLink : props.href ? 'a' : 'button'))
 
 const classes = computed(() => [
-  'group relative inline-flex items-center justify-center gap-2.5 font-medium whitespace-nowrap',
+  'group relative inline-flex items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap',
   'transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out',
   'disabled:cursor-not-allowed disabled:opacity-60 active:translate-y-px',
   {
     sm: 'h-9 px-4 text-[0.8125rem]',
     md: 'h-11 px-5 text-sm',
-    lg: 'h-13 px-7 text-[0.9375rem]',
+    lg: 'h-12 px-7 text-[0.9375rem]',
   }[props.size],
   {
-    primary: 'bg-fg text-ink-950 hover:bg-fg/85',
-    secondary: 'border border-edge/20 bg-ink-950/40 text-fg backdrop-blur-md hover:border-edge/50',
+    primary: 'bg-fg text-ink-950 shadow-sm hover:bg-accent-soft hover:text-white',
+    secondary: 'border border-edge/20 text-fg hover:border-edge/50 hover:bg-edge/[0.04]',
     ghost: 'px-0 text-fg hover:text-fg',
   }[props.variant],
 ])

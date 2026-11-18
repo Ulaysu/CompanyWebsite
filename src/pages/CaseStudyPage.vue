@@ -28,7 +28,7 @@ const unpublished = computed(() =>
 <template>
   <div>
     <PageHero label="Case study" :title="study.title" :lede="study.summary" :photo="study.photo">
-      <RouterLink to="/our-work" class="mt-8 inline-flex items-center gap-2 font-mono text-xs text-fg-muted transition-colors hover:text-fg">
+      <RouterLink to="/our-work" class="mt-8 inline-flex items-center gap-2 text-xs text-fg-muted transition-colors hover:text-fg">
         <ArrowLeft class="size-3.5" aria-hidden="true" /> All work
       </RouterLink>
     </PageHero>
@@ -43,7 +43,7 @@ const unpublished = computed(() =>
             <div><dt class="eyebrow">Status</dt><dd class="mt-2 text-fg">{{ study.status }}</dd></div>
             <div v-if="study.technologies?.length">
               <dt class="eyebrow">Technologies</dt>
-              <dd class="mt-2 font-mono text-sm text-fg-muted">{{ study.technologies.join(' · ') }}</dd>
+              <dd class="mt-2 text-sm text-fg-muted">{{ study.technologies.join(' · ') }}</dd>
             </div>
           </dl>
         </aside>
@@ -58,7 +58,7 @@ const unpublished = computed(() =>
             <h2 class="eyebrow">Scope</h2>
             <ul class="mt-6 divide-y divide-edge/10 border-y border-edge/10">
               <li v-for="(item, i) in study.scope" :key="item" class="flex items-baseline gap-5 py-5">
-                <span class="font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span><span class="text-lg text-fg">{{ item }}</span>
+                <span class="text-xs text-fg-subtle">0{{ i + 1 }}</span><span class="text-lg text-fg">{{ item }}</span>
               </li>
             </ul>
           </div>
@@ -67,7 +67,7 @@ const unpublished = computed(() =>
             <h2 class="eyebrow">Engineering approach</h2>
             <ul class="mt-6 divide-y divide-edge/10 border-y border-edge/10">
               <li v-for="(item, i) in study.approach" :key="item" class="flex items-baseline gap-5 py-5">
-                <span class="font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span><span class="text-lg text-fg">{{ item }}</span>
+                <span class="text-xs text-fg-subtle">0{{ i + 1 }}</span><span class="text-lg text-fg">{{ item }}</span>
               </li>
             </ul>
           </div>

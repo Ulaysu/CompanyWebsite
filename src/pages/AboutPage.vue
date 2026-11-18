@@ -28,7 +28,6 @@ usePageMeta({
     <section class="section !pt-20 sm:!pt-28" aria-labelledby="company-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <SectionLabel index="01" label="The company" />
           <h2 id="company-title" v-reveal="60" class="heading-xl mt-8">Two divisions, one engineering standard.</h2>
         </div>
         <div class="space-y-5 lg:col-span-6 lg:col-start-7">
@@ -47,7 +46,6 @@ usePageMeta({
     <section class="section border-t border-edge/[0.07]" aria-labelledby="origin-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <SectionLabel index="02" label="Origin and ambition" />
           <h2 id="origin-title" v-reveal="60" class="heading-xl mt-8">
             Founded in The Gambia.<br /><span class="text-fg-muted">Engineering for the world.</span>
           </h2>
@@ -67,7 +65,6 @@ usePageMeta({
     <section class="section border-t border-edge/[0.07]" aria-labelledby="philosophy-engineering-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <SectionLabel index="03" label="Engineering philosophy" />
           <h2 id="philosophy-engineering-title" v-reveal="60" class="heading-xl mt-8">Engineering is how we help.</h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7">
@@ -87,12 +84,11 @@ usePageMeta({
     <section class="section border-t border-edge/[0.07]" aria-labelledby="values-title">
       <div class="container-page grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-4">
-          <SectionLabel index="06" label="Company values" />
           <h2 id="values-title" v-reveal="60" class="heading-xl mt-8">What the company stands for.</h2>
         </div>
         <ol class="border-t border-edge/15 lg:col-span-8">
           <li v-for="(v, i) in values" :key="v.title" v-reveal="i * 60" class="grid grid-cols-[2rem_1fr] gap-x-3 gap-y-1 border-b border-edge/10 py-6 sm:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.4fr)] sm:items-baseline sm:gap-6">
-            <span class="font-mono text-[0.6875rem] text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
+            <span class="text-[0.6875rem] text-fg-subtle">{{ String(i + 1).padStart(2, '0') }}</span>
             <h3 class="text-xl font-semibold tracking-[-0.025em] text-fg sm:text-2xl">{{ v.title }}</h3>
             <p class="col-start-2 text-[0.9375rem] leading-relaxed text-fg-muted sm:col-start-3">{{ v.body }}</p>
           </li>
@@ -105,7 +101,6 @@ usePageMeta({
     <section class="section border-t border-edge/[0.07]" aria-labelledby="direction-title">
       <div class="container-page grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div class="lg:col-span-5">
-          <SectionLabel index="08" label="Direction" />
           <h2 id="direction-title" v-reveal="60" class="heading-xl mt-8">{{ direction.title }}</h2>
         </div>
         <div class="lg:col-span-6 lg:col-start-7 lg:pt-16">

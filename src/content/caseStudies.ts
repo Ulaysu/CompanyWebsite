@@ -54,7 +54,6 @@ export const caseStudiesAll: CaseStudy[] = [
       'Design the smallest useful first release, then extend it',
       'Build in short cycles so the farm can review working software',
     ],
-    photo: 'sweetland',
     productSlug: 'sweetland-farms-os',
   },
 ]

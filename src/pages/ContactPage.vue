@@ -158,7 +158,7 @@ const nextSteps = [
           <ol class="space-y-6 border-l border-edge/[0.1] pl-6">
             <li v-for="(s, i) in nextSteps" :key="s.title" class="relative">
               <span class="absolute top-1.5 -left-[27.5px] size-1.5 rounded-full bg-fg-subtle" aria-hidden="true" />
-              <p class="text-sm font-medium text-fg"><span class="mr-2 font-mono text-xs text-fg-subtle">0{{ i + 1 }}</span>{{ s.title }}</p>
+              <p class="text-sm font-medium text-fg"><span class="mr-2 text-xs text-fg-subtle">0{{ i + 1 }}</span>{{ s.title }}</p>
               <p class="mt-1 text-sm text-fg-muted">{{ s.body }}</p>
             </li>
           </ol>
@@ -172,7 +172,7 @@ const nextSteps = [
               <a :href="`mailto:${site.email}`" class="block truncate font-medium text-fg underline-offset-4 hover:underline">{{ site.email }}</a>
             </div>
           </div>
-          <p class="mt-6 font-mono text-xs text-fg-subtle">{{ site.originShort }}</p>
+          <p class="mt-6 text-xs text-fg-subtle">{{ site.originShort }}</p>
         </div>
       </div>
 
@@ -181,7 +181,7 @@ const nextSteps = [
           <TriangleAlert class="mt-0.5 size-4 shrink-0 text-warning" aria-hidden="true" />
           <p>
             <strong class="font-medium">The enquiry form is not connected yet.</strong>
-            Backend integration is still required (set <code class="font-mono text-xs">VITE_CONTACT_ENDPOINT</code> or <code class="font-mono text-xs">VITE_CONTACT_EMAIL</code> when building the site). Submitting will not send your enquiry.
+            Backend integration is still required (set <code class="text-xs">VITE_CONTACT_ENDPOINT</code> or <code class="text-xs">VITE_CONTACT_EMAIL</code> when building the site). Submitting will not send your enquiry.
           </p>
         </div>
 
